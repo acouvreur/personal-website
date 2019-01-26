@@ -1,0 +1,144 @@
+{
+  "basics": {
+    "name": "Alexis Couvreur",
+    "label": "Software Architect Student",
+    "picture": "https://media.licdn.com/dms/image/C5103AQFxNbfxSQ5n_Q/profile-displayphoto-shrink_200_200/0?e=1551916800&v=beta&t=obJ51oIbfGWVplMiO-1H5sLpy_s9r9AUaCPSqS4xT8k",
+    "email": "me@alexiscouvreur.fr",
+    "phone": "(+33)6 26 36 78 39",
+    "website": "https://alexiscouvreur.fr",
+    "summary": "",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Valbonne",
+      "countryCode": "FR",
+      "region": "Provence-Alpes-Côte d'Azur"
+    },
+    "profiles": [
+      {
+        "network": "Twitter",
+        "username": "zittoone",
+        "url": "https://twitter.com/Zittoone"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "alexis-couvreur",
+        "url": "https://www.linkedin.com/in/alexis-couvreur/"
+      }, 
+      {
+        "network": "GitHub",
+        "username": "acouvreur",
+        "url": "https://github.com/acouvreur"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Supralog",
+      "position": "Software Architect Apprentice",
+      "website": "https://supralog.com",
+      "startDate": "2018-09-17",
+      "summary": "Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.",
+      "highlights": [
+        "Build an algorithm for artist to detect if their music was violating copy right infringement laws",
+        "Successfully won Techcrunch Disrupt",
+        "Optimized an algorithm that holds the current world record for Weisman Scores"
+      ]
+    },
+    {
+      "company": "I3S/CNRS",
+      "position": "Student Intern",
+      "website": "https://www.i3s.unice.fr/",
+      "startDate": "2018-06-18",
+      "endDate": "2018-08-20",
+      "summary": "Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.",
+      "highlights": [
+        "Build an algorithm for artist to detect if their music was violating copy right infringement laws",
+        "Successfully won Techcrunch Disrupt",
+        "Optimized an algorithm that holds the current world record for Weisman Scores"
+      ]
+    },
+    {
+      "company": "UltraProd",
+      "position": "Software Developer Intern",
+      "website": "https://supralog.com",
+      "startDate": "2016-04-01",
+      "endDate": "2016-07-01",
+      "summary": "Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.",
+      "highlights": [
+        "Build an algorithm for artist to detect if their music was violating copy right infringement laws",
+        "Successfully won Techcrunch Disrupt",
+        "Optimized an algorithm that holds the current world record for Weisman Scores"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Université Nice Sophia Antipolis (membre d'Université Côte d'Azur)",
+      "area": "Software Architecture",
+      "studyType": "Master II",
+      "startDate": "2018-09-01",
+      "endDate": "2019-09-15"
+    },
+    {
+      "institution": "Université Nice Sophia Antipolis (membre d'Université Côte d'Azur)",
+      "area": "Information Technology",
+      "studyType": "Master I",
+      "startDate": "2017-09-01",
+      "endDate": "2018-06-01"
+    },
+    {
+      "institution": "Aix-Marseille Université",
+      "area": "Information Technology",
+      "studyType": "Licence",
+      "startDate": "2016-09-01",
+      "endDate": "2017-06-01"
+    },
+    {
+      "institution": "Université Nice Sophia Antipolis (membre d'Université Côte d'Azur)",
+      "area": "Information Technology",
+      "studyType": "DUT Informatique",
+      "startDate": "2014-09-01",
+      "endDate": "2016-07-01"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Web Development",
+      "level": "Master",
+      "keywords": [
+        "HTML",
+        "CSS",
+        "Javascript"
+      ]
+    },
+    {
+      "name": "Compression",
+      "level": "Master",
+      "keywords": [
+        "Mpeg",
+        "MP4",
+        "GIF"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "French",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Wildlife",
+      "keywords": [
+        "Ferrets",
+        "Unicorns"
+      ]
+    }
+  ]
+}
