@@ -2,11 +2,11 @@
   "basics": {
     "name": "Alexis Couvreur",
     "label": "Software Architect Student",
-    "picture": "https://media.licdn.com/dms/image/C5103AQFxNbfxSQ5n_Q/profile-displayphoto-shrink_200_200/0?e=1551916800&v=beta&t=obJ51oIbfGWVplMiO-1H5sLpy_s9r9AUaCPSqS4xT8k",
+    "picture": "media.licdn.com/dms/image/C5103AQFxNbfxSQ5n_Q/profile-displayphoto-shrink_200_200/0?e=1551916800&v=beta&t=obJ51oIbfGWVplMiO-1H5sLpy_s9r9AUaCPSqS4xT8k",
     "email": "me@alexiscouvreur.fr",
     "phone": "(+33)6 26 36 78 39",
     "website": "https://alexiscouvreur.fr",
-    "summary": "",
+    "summary": "French computer scientist student @ Polytech Nice Sophia-Antipolis, passionate computer engineering since I build my own computer and compiled my first programs.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -24,7 +24,7 @@
         "network": "LinkedIn",
         "username": "alexis-couvreur",
         "url": "https://www.linkedin.com/in/alexis-couvreur/"
-      }, 
+      },
       {
         "network": "GitHub",
         "username": "acouvreur",
@@ -38,11 +38,13 @@
       "position": "Software Architect Apprentice",
       "website": "https://supralog.com",
       "startDate": "2018-09-17",
-      "summary": "Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.",
+      "summary": "DevOps Engineer : improvements and harmonization of DevOps tools, study and creation of a continuous integration (CI) and continuous deployment (CI) to be used by all teams.",
       "highlights": [
-        "Build an algorithm for artist to detect if their music was violating copy right infringement laws",
-        "Successfully won Techcrunch Disrupt",
-        "Optimized an algorithm that holds the current world record for Weisman Scores"
+        "Configuration of Jenkins CI/CD tool and customization",
+        "Using Jenkins 'salves' for platform specific builds and workload delegation",
+        "Cloud architecture studies",
+        "Google Cloud Platform (GCP) PaaS & IaaS (with GKE) environments study and benchmark",
+        "Kubernetes for provisioning dynamic pods to Jenkins"
       ]
     },
     {
@@ -51,23 +53,22 @@
       "website": "https://www.i3s.unice.fr/",
       "startDate": "2018-06-18",
       "endDate": "2018-08-20",
-      "summary": "Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.",
+      "summary": "Blockchain inside the IoT world : Research about using the blockchain and their smartcontracts with sensor's data and actuator reconfiguration",
       "highlights": [
-        "Build an algorithm for artist to detect if their music was violating copy right infringement laws",
-        "Successfully won Techcrunch Disrupt",
-        "Optimized an algorithm that holds the current world record for Weisman Scores"
+        "Built custom and private Ethereum blockchain using raspberry pi",
+        "Created Ethereum smart contract with using solidity dedicated language"
       ]
     },
     {
       "company": "UltraProd",
       "position": "Software Developer Intern",
-      "website": "https://supralog.com",
+      "website": "https://www.ultra-prod.com/",
       "startDate": "2016-04-01",
       "endDate": "2016-07-01",
-      "summary": "Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.",
+      "summary": "Designed, developed and published a cross-platform mobile application using Cordova : VaiPharm",
       "highlights": [
-        "Build an algorithm for artist to detect if their music was violating copy right infringement laws",
-        "Successfully won Techcrunch Disrupt",
+        "Designed a cross-platform application from scratch",
+        "Developed ",
         "Optimized an algorithm that holds the current world record for Weisman Scores"
       ]
     }
@@ -104,21 +105,78 @@
   ],
   "skills": [
     {
-      "name": "Web Development",
+      "name": "Web Development - Server Side",
+      "level": "Master",
+      "keywords": [
+        "Nodejs",
+        "Java EE",
+        "PHP",
+        "Ruby on Rails"
+      ]
+    },{
+      "name": "Languages",
+      "level": "Master",
+      "keywords": [
+        "C",
+        "C++",
+        "Java",
+        "Ruby",
+        "Go",
+        "Javascript",
+        "SQL"
+      ]
+    },{
+      "name": "Web Development - Client Side",
       "level": "Master",
       "keywords": [
         "HTML",
         "CSS",
         "Javascript"
       ]
-    },
-    {
-      "name": "Compression",
+    },{
+      "name": "Cloud",
       "level": "Master",
       "keywords": [
-        "Mpeg",
-        "MP4",
-        "GIF"
+        "GCP - PaaS",
+        "GCP - IaaS",
+        "GCP - GKE",
+        "Azure IaaS",
+        "Cloud load testing"
+      ]
+    },
+    {
+      "name": "Docker",
+      "level": "Master",
+      "keywords": [
+        "Docker",
+        "Docker-compose",
+        "Docker swarm",
+        "Kubernetes",
+        "Minikube"
+      ]
+    },{
+      "name": "Scripting",
+      "level": "Master",
+      "keywords": [
+        "Bash",
+        "Powershell",
+        "Lua"
+      ]
+    },
+    {
+      "name": "DevOps",
+      "level": "Master",
+      "keywords": [
+        "Jenkins",
+        "Travis"
+      ]
+    },{
+      "name": "Blockchain",
+      "level": "Master",
+      "keywords": [
+        "Ethereum",
+        "Smartcontract",
+        "Solidity"
       ]
     }
   ],
@@ -134,10 +192,25 @@
   ],
   "interests": [
     {
-      "name": "Wildlife",
+      "name": "Sport",
       "keywords": [
-        "Ferrets",
-        "Unicorns"
+        "Gym",
+        "Running",
+        "Swimming"
+      ]
+    },{
+      "name": "Gaming",
+      "keywords": [
+        "Strategy",
+        "MOBA",
+        "Story driven"
+      ]
+    },{
+      "name": "Media",
+      "keywords": [
+        "Science-fiction",
+        "History",
+        "Fantasy"
       ]
     }
   ]
