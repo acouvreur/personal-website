@@ -2,11 +2,11 @@
   "basics": {
     "name": "Alexis Couvreur",
     "label": "Software Architect Student",
-    "picture": "media.licdn.com/dms/image/C5103AQFxNbfxSQ5n_Q/profile-displayphoto-shrink_200_200/0?e=1551916800&v=beta&t=obJ51oIbfGWVplMiO-1H5sLpy_s9r9AUaCPSqS4xT8k",
+    "picture": "avatars3.githubusercontent.com/u/22034450?s=460&v=4",
     "email": "me@alexiscouvreur.fr",
     "phone": "(+33)6 26 36 78 39",
     "website": "https://alexiscouvreur.fr",
-    "summary": "French computer scientist student @ Polytech Nice Sophia-Antipolis, passionate computer engineering since I build my own computer and compiled my first programs.",
+    "summary": "French computer scientist student @ Polytech Nice Sophia-Antipolis, passionate by computer engineering since I built my own computer and compiled my first programs.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -38,13 +38,13 @@
       "position": "Software Architect Apprentice",
       "website": "https://supralog.com",
       "startDate": "2018-09-17",
-      "summary": "DevOps Engineer : improvements and harmonization of DevOps tools, study and creation of a continuous integration (CI) and continuous deployment (CI) to be used by all teams.",
+      "summary": "DevOps Engineer : improvements and harmonization of DevOps tools, study and creation of a continuous integration (CI) and continuous deployment (CD) to be used by all teams.",
       "highlights": [
         "Configuration of Jenkins CI/CD tool and customization",
         "Using Jenkins 'salves' for platform specific builds and workload delegation",
         "Cloud architecture studies",
         "Google Cloud Platform (GCP) PaaS & IaaS (with GKE) environments study and benchmark",
-        "Kubernetes for provisioning dynamic pods to Jenkins"
+        "Kubernetes for provisioning dynamic agents to Jenkins"
       ]
     },
     {
@@ -68,8 +68,7 @@
       "summary": "Designed, developed and published a cross-platform mobile application using Cordova : VaiPharm",
       "highlights": [
         "Designed a cross-platform application from scratch",
-        "Developed ",
-        "Optimized an algorithm that holds the current world record for Weisman Scores"
+        "Developed an app with Apache Cordova"
       ]
     }
   ],
