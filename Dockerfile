@@ -1,13 +1,12 @@
-FROM node:12-alpine AS build
-
-# Global install
-USER root
+FROM node:8-alpine AS build
 
 WORKDIR /build
 
-RUN npm install -g resume-cli
+COPY package-lock.json .
+RUN npm ci
+
 COPY resume.json .
-RUN resume export -t elegant index.html
+RUN npm run build
 
 FROM nginx:alpine
 

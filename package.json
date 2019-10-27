@@ -1,0 +1,22 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "resume export -t elegant index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acouvreur/personal-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acouvreur/personal-website/issues"
+  },
+  "homepage": "https://github.com/acouvreur/personal-website#readme",
+  "dependencies": {
+    "jsonresume-theme-elegant": "^1.13.1",
+    "resume-cli": "^1.2.7"
+  }
+}
