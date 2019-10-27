@@ -1,9 +1,10 @@
-FROM mhart/alpine-node:10
+FROM node:12-alpine AS build
 
-WORKDIR /app
-COPY . .
+WORKDIR /build
 
-RUN npm install
+RUN npm install -g resume-cli
+COPY resume.json .
+RUN resume export -t elegant index.html
 
-EXPOSE 1337
-CMD ["node", "start.js"]
+FROM nginx:alpine
+COPY --from=build /build/index.html /usr/share/nginx/html/index.html
