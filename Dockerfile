@@ -2,7 +2,7 @@ FROM node:8-alpine AS build
 
 WORKDIR /build
 
-COPY package-lock.json .
+COPY package*.json .
 RUN npm ci
 
 COPY resume.json .
