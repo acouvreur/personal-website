@@ -2,11 +2,11 @@
   "meta": { "theme": "elegant" },
   "basics": {
     "name": "Alexis Couvreur",
-    "label": "Software Architect Student",
+    "label": "Software Engineer",
     "picture": "https://avatars3.githubusercontent.com/u/22034450",
     "email": "me@alexiscouvreur.fr",
     "website": "https://alexiscouvreur.fr",
-    "summary": "French software engineer graduated from Polytech Nice Sophia-Antipolis, passionate about computer engineering since I built my own computer and compiled my first programs. I can't stop searching about DIY to enhance my home made cluster of raspberry pis !",
+    "summary": "French Software Engineer graduated from Polytech Nice Sophia-Antipolis, passionate about computer engineering since I built my own computer and compiled my first programs. I can't stop searching about DIY to enhance my home made cluster of raspberry pis !",
     "location": {
       "address": "",
       "postalCode": "",
@@ -147,7 +147,7 @@
       "keywords": [
         "HTML",
         "CSS",
-        "Javascript"
+        "Javascript (React)"
       ]
     },{
       "name": "Cloud",
