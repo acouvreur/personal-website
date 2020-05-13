@@ -10,4 +10,4 @@ RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=build /build/index.html /usr/share/nginx/html/index.html
+COPY --from=build /build/dist/index.html /usr/share/nginx/html/index.html
