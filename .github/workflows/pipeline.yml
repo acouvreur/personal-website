@@ -1,0 +1,39 @@
+name: Build, test and deploy
+on:
+  push:
+    paths-ignore:
+      - "*.md"
+env:
+  DOCKER_REPOSITORY: acouvreur/personal-website
+  CI: true
+
+jobs:
+  build:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: install buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+          
+      - name: build the image
+      run: |
+        docker buildx build \
+          --tag your-username/multiarch-example:latest \
+          --platform linux/amd64,linux/arm/v7,linux/arm64 . 
+
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./build
