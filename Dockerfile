@@ -6,7 +6,6 @@ COPY package*.json ./
 RUN npm ci
 
 COPY resume.json .
-RUN ls -al
 RUN npm run build
 
 FROM nginx:alpine
