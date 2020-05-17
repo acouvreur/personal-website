@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "resume export -t elegant dist/index.html"
+    "build": "resume export -t elegant index.html"
   },
   "repository": {
     "type": "git",

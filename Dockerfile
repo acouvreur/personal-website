@@ -1,13 +1,14 @@
-FROM node:8-alpine AS build
+FROM node:12-alpine AS build
 
 WORKDIR /build
 
-COPY package*.json /build/
+COPY package*.json ./
 RUN npm ci
 
 COPY resume.json .
+RUN ls -al
 RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=build /build/dist/index.html /usr/share/nginx/html/index.html
+COPY --from=build /build/index.html /usr/share/nginx/html/index.html
