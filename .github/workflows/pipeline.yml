@@ -4,7 +4,7 @@ on:
     paths-ignore:
       - "*.md"
 env:
-  DOCKER_REPOSITORY: acouvreur/personal-website
+  DOCKER_REPOSITORY: acouvreur/my-website
   CI: true
 
 jobs:
@@ -14,28 +14,33 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Dependencies
+      - name: install Dependencies
         run: npm ci
 
-      - name: Build
+      - name: build
         run: npm run build
 
-      - name: install buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
-        with:
-          version: latest
-          
-      - name: build the image
-        run: docker buildx build --tag ${{ env.DOCKER_REPOSITORY }}:latest --platform linux/amd64,linux/arm/v7,linux/arm64 . 
-
-      - name: Moving index.html to a directory to be published
+      - name: moving index.html to a directory to be published
         run: mkdir dist && cp index.html dist/index.html
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./dist
+      - name: Removing temp dist
+        run: rm -rf dist
+
+      - name: install buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+      
+      - name: push the image
+        run: docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
+
+      - name: build the image
+        run: docker buildx build --push --tag ${{ env.DOCKER_REPOSITORY }}:latest --platform linux/amd64,linux/arm/v7,linux/arm64 . 
 
       - name: Update production website
         run: curl -X POST ${{ secrets.PORTAINER_UPDATE_SERVICE_WEBHOOK }}
