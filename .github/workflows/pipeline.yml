@@ -27,13 +27,13 @@ jobs:
           version: latest
           
       - name: build the image
-        run: |
-        docker buildx build \
-          --tag ${{ env.DOCKER_REPOSITORY }}:latest \
-          --platform linux/amd64,linux/arm/v7,linux/arm64 . 
+        run: docker buildx build --tag ${{ env.DOCKER_REPOSITORY }}:latest --platform linux/amd64,linux/arm/v7,linux/arm64 . 
 
       - name: Deploy to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./build
+          publish_dir: ./dist
+
+      - name: Update production website
+        run: curl -X POST ${{ secrets.PORTAINER_UPDATE_SERVICE_WEBHOOK }}
