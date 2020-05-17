@@ -1,12 +1,14 @@
 {
-  "meta": { "theme": "elegant" },
+  "meta": {
+    "theme": "elegant"
+  },
   "basics": {
     "name": "Alexis Couvreur",
     "label": "Software Engineer",
     "picture": "https://avatars3.githubusercontent.com/u/22034450",
     "email": "me@alexiscouvreur.fr",
-    "website": "https://alexiscouvreur.fr",
-    "summary": "French Software Engineer graduated from Polytech Nice Sophia-Antipolis, passionate about computer engineering since I built my own computer and compiled my first programs. I can't stop searching about DIY to enhance my home made cluster of raspberry pis !",
+    "website": "https://www.alexiscouvreur.fr",
+    "summary": "French Software Engineer graduated from Polytech Nice Sophia-Antipolis. DevOps evangelist. Docker and automation lover. Full stack skillset.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -38,7 +40,7 @@
       "position": "Software Engineer",
       "website": "https://supralog.com",
       "startDate": "2019-09-17",
-      "summary": "DevOps Evangelist : Sharing best practices to setup a project with a CI/CD and monitoring. Lead developper in new project.",
+      "summary": "Lead developer on a national tournament software federation. DevOps Evangelist : Sharing best practices to setup a project with a CI/CD and monitoring.",
       "highlights": [
         "Junior software architect",
         "Best practices CI/CD with Jenkins and dynamic agents through Kubernetes provider",
@@ -46,7 +48,7 @@
         "Cloud architecture studies, PaaS and FaaS",
         "Setup a Kubernetes On-prem with RBAC all security configurations",
         "Setup a Docker Swarm cluster with volume sharing using Convoy, rolling updates",
-        "Reverse proxy with Traefik v1.7 and v2.0"
+        "Reverse proxy with Traefik v1.7 and v2.x"
       ]
     },
     {
@@ -121,17 +123,18 @@
   ],
   "skills": [
     {
-      "name": "Web Development - Server Side",
-      "level": "Master",
+      "name": "Backend",
       "keywords": [
         "Nodejs",
         "Java EE",
-        "PHP",
-        "Ruby on Rails"
+        "Spring boot",
+        "Keycloak",
+        "OAuth",
+        "OpenID"
       ]
-    },{
+    },
+    {
       "name": "Languages",
-      "level": "Master",
       "keywords": [
         "C",
         "C++",
@@ -141,42 +144,29 @@
         "Javascript",
         "SQL"
       ]
-    },{
-      "name": "Web Development - Client Side",
-      "level": "Master",
+    },
+    {
+      "name": "Frontend",
       "keywords": [
         "HTML",
         "CSS",
-        "Javascript (React)"
-      ]
-    },{
-      "name": "Cloud",
-      "level": "Master",
-      "keywords": [
-        "GCP - PaaS",
-        "GCP - IaaS",
-        "GCP - GKE",
-        "Azure IaaS",
-        "Cloud load testing"
+        "Javascript",
+        "React"
       ]
     },
     {
-      "name": "Docker",
-      "level": "Master",
+      "name": "DevOps",
       "keywords": [
+        "Google Cloud Platform",
         "Docker",
-        "Docker-compose",
         "Docker swarm",
         "Kubernetes",
         "Traefik",
-        "Minikube"
+        "Jenkins, Actions, Pipelines",
+        "Continuous Integration"
       ]
     }
   ],
-  "awards": [],
-  "volunteer": [],
-  "publications": [],
-  "references": [],
   "languages": [
     {
       "language": "French",
@@ -189,27 +179,16 @@
   ],
   "interests": [
     {
-      "name": "Sport",
-      "keywords": [
-        "Gym",
-        "Running",
-        "Swimming",
-        "Chess ♟️"
-      ]
-    },{
-      "name": "Gaming",
-      "keywords": [
-        "Strategy",
-        "MOBA",
-        "Story driven"
-      ]
-    },{
-      "name": "Media",
-      "keywords": [
-        "Science-fiction",
-        "History",
-        "Fantasy"
-      ]
+      "name": "Sport"
+    },
+    {
+      "name": "Gaming"
+    },
+    {
+      "name": "Music"
+    },
+    {
+      "name": "Open Source"
     }
   ]
 }
