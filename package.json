@@ -17,6 +17,6 @@
   "homepage": "https://github.com/acouvreur/personal-website#readme",
   "dependencies": {
     "jsonresume-theme-elegant": "^1.13.2",
-    "resume-cli": "^1.2.8"
+    "resume-cli": "^3.0.0"
   }
 }
