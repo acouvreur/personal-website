@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/acouvreur/personal-website#readme",
   "dependencies": {
-    "jsonresume-theme-elegant": "^1.13.2",
-    "resume-cli": "^3.0.4"
+    "jsonresume-theme-elegant": "^1.16.1",
+    "resume-cli": "^3.0.7"
   }
 }
