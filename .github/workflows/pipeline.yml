@@ -1,46 +1,24 @@
-name: Build, test and deploy
-on:
-  push:
-    paths-ignore:
-      - "*.md"
+name: Build and Deploy
+on: [push]
+permissions:
+  contents: write
 env:
-  DOCKER_REPOSITORY: acouvreur/my-website
   CI: true
-
 jobs:
-  build:
-    name: Build Docker image
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
 
-      - name: install Dependencies
-        run: npm ci
+      - name: Install and Build 🔧
+        run: |
+          npm ci
+          npm run build
+          mkdir dist && cp index.html dist/index.html
 
-      - name: build
-        run: npm run build
-
-      - name: moving index.html to a directory to be published
-        run: mkdir dist && cp index.html dist/index.html
-      - name: Deploy to Github Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./dist
-      - name: Removing temp dist
-        run: rm -rf dist
-
-      - name: install buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
-        with:
-          version: latest
-      
-      - name: push the image
-        run: docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
-
-      - name: build the image
-        run: docker buildx build --push --tag ${{ env.DOCKER_REPOSITORY }}:latest --platform linux/amd64,linux/arm/v7,linux/arm64 . 
-
-      - name: Update production website
-        run: curl -X POST ${{ secrets.PORTAINER_UPDATE_SERVICE_WEBHOOK }}
+          folder: dist # The folder the action should deploy.
