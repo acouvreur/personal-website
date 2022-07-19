@@ -12,9 +12,9 @@
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Antibes",
-      "countryCode": "FR",
-      "region": "Provence-Alpes-Côte d'Azur"
+      "city": "Montreal",
+      "countryCode": "CA",
+      "region": "Quebec"
     },
     "profiles": [
       {
@@ -36,10 +36,19 @@
   },
   "work": [
     {
+      "company": "Banque Nationale du Canada",
+      "position": "Software Engineer",
+      "website": "https://www.bnc.ca/",
+      "startDate": "2022-07-01",
+      "summary": "Fullstack developer",
+      "highlights": []
+    },
+    {
       "company": "Supralog",
       "position": "Software Engineer",
       "website": "https://supralog.com",
       "startDate": "2019-09-17",
+      "endDate": "2022-05-31",
       "summary": "Lead developer on a national tournament software federation. DevOps Evangelist : Sharing best practices to setup a project with a CI/CD and monitoring.",
       "highlights": [
         "Junior software architect",
