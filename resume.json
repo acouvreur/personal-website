@@ -186,6 +186,27 @@
       "fluency": "Professional"
     }
   ],
+  "awards": [{
+    "title": "ONE Record Hackathon 2022 - DCSA Prize",
+    "date": "2022-05-15",
+    "awarder": "IATA",
+    "summary": "https://devpost.com/software/containermesh"
+  },{
+    "title": "ONE Record Hackathon 2021 - Developer Prize",
+    "date": "2021-09-15",
+    "awarder": "IATA",
+    "summary": "https://devpost.com/software/one-track-application"
+  },{
+    "title": "ONE Record Hackathon 2020 - Developer Prize",
+    "date": "2020-09-15",
+    "awarder": "IATA",
+    "summary": "https://devpost.com/software/one-track-by-the-french-team"
+  },{
+    "title": "Traefik Hackaethon 2020",
+    "date": "2020-10-15",
+    "awarder": "Traefik",
+    "summary": "https://github.com/acouvreur/traefik-ondemand-plugin"
+  }],
   "interests": [
     {
       "name": "Sport"
