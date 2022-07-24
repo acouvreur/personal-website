@@ -6,7 +6,7 @@
     "name": "Alexis Couvreur",
     "label": "Software Engineer",
     "picture": "https://avatars3.githubusercontent.com/u/22034450",
-    "email": "me@alexiscouvreur.fr",
+    "email": "alexiscouvreur.pro@gmail.com",
     "website": "https://www.alexiscouvreur.fr",
     "summary": "French Software Engineer graduated from Polytech Nice Sophia-Antipolis. DevOps evangelist. Docker and automation lover. Full stack skillset.",
     "location": {
@@ -36,15 +36,15 @@
   },
   "work": [
     {
-      "company": "Banque Nationale du Canada",
+      "name": "Banque Nationale du Canada",
       "position": "Software Engineer",
       "website": "https://www.bnc.ca/",
       "startDate": "2022-07-01",
-      "summary": "Fullstack developer",
+      "summary": "Fullstack developer transitioning services to EKS environment",
       "highlights": []
     },
     {
-      "company": "Supralog",
+      "name": "Supralog",
       "position": "Software Engineer",
       "website": "https://supralog.com",
       "startDate": "2019-09-17",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "company": "Supralog",
+      "name": "Supralog",
       "position": "Software Architect Apprentice",
       "website": "https://supralog.com",
       "startDate": "2018-09-17",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "company": "I3S/CNRS",
+      "name": "I3S/CNRS",
       "position": "Student Intern",
       "website": "https://www.i3s.unice.fr/",
       "startDate": "2018-06-18",
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "company": "UltraProd",
+      "name": "UltraProd",
       "position": "Software Developer Intern",
       "website": "https://www.ultra-prod.com/",
       "startDate": "2016-04-01",
