@@ -10,10 +10,18 @@ run = "go run ./tools/contributions/main.go"
 description = "Build the site the way CI does"
 run = "hugo --gc --minify"
 
+[tasks.og]
+description = "Render the social preview cards into public/ (needs a build first)"
+run = "go run ./tools/ogimages"
+
 [tasks.pdf]
-description = "Print the resume page to a downloadable PDF in public/"
+description = "Print the resume page to a PDF in public/ (needs a build first)"
+run = "go run ./tools/resumepdf"
+
+[tasks.dist]
+description = "Everything CI produces: the site, the social cards and the resume PDF"
 depends = ["build"]
-run = "go run ./tools/resumepdf/main.go"
+run = ["go run ./tools/ogimages", "go run ./tools/resumepdf"]
 
 [tasks.dev]
 description = "Serve locally, including drafts"

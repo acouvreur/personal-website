@@ -1,0 +1,26 @@
+{{- /*
+  Replaces Hugo's internal opengraph template so every page can point at the
+  card generated for it at <page>og.png by tools/ogimages.
+
+  The PNG does not exist when Hugo runs; it is written into public/ straight
+  afterwards. The URL is stable either way.
+*/ -}}
+{{- $card := printf "%sog.png" .Permalink -}}
+{{- $description := .Description | default .Summary | default site.Params.description | plainify | truncate 200 -}}
+
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+<meta property="og:title" content="{{ .Title | default site.Title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:locale" content="{{ site.Language.Locale }}">
+<meta property="og:image" content="{{ $card }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ .Title | default site.Title }}">
+{{- with .Date }}{{ if $.IsPage }}
+<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}{{ end }}
+{{- range .Params.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{- end }}

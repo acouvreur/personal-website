@@ -1,0 +1,66 @@
+name: Links
+
+on:
+  # Weekly rather than per-push. These links rot on their own schedule, not on
+  # the repository's, and a dead devpost URL should not block a deploy.
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "data/**"
+      - "content/**"
+      - "layouts/**"
+      - "lychee.toml"
+      - ".github/workflows/links.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check links
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          submodules: recursive
+
+      - uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
+        with:
+          install_args: "hugo"
+
+      - name: Build site
+        run: hugo --gc --minify
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --config lychee.toml --no-progress './public/**/*.html'
+          fail: false
+          output: lychee-report.md
+
+      # A broken link is a chore, not an incident. On the weekly run it files or
+      # updates a single issue; on a pull request the step summary is enough.
+      - name: Open an issue for broken links
+        if: steps.lychee.outputs.exit_code != 0 && github.event_name != 'pull_request'
+        uses: peter-evans/create-issue-from-file@e8ef132d6df98ed982188e460ebb3b5d4ef3a9cd # v5.0.1
+        with:
+          title: Broken links on the site
+          content-filepath: lychee-report.md
+          labels: chore
+
+      - name: Fail the pull request if links are broken
+        if: steps.lychee.outputs.exit_code != 0 && github.event_name == 'pull_request'
+        run: |
+          cat lychee-report.md >> "$GITHUB_STEP_SUMMARY"
+          exit 1

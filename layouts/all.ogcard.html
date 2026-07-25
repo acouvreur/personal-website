@@ -1,0 +1,95 @@
+{{- /*
+  The social preview card, rendered at <page>/og.html and screenshotted to
+  og.png by tools/ogimages. Never linked from the site.
+
+  Deliberately standalone: no theme CSS, no webfonts, no network. A screenshot
+  tool that has to wait for fonts to load produces cards that are subtly
+  different every run.
+*/ -}}
+{{- $basics := hugo.Data.resume.basics -}}
+{{- $isHome := .IsHome -}}
+{{- $title := cond $isHome $basics.name .Title -}}
+{{- $tagline := cond $isHome $basics.label (.Description | default site.Params.description) -}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ $title }}</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 72px 80px;
+    background: #ffffff;
+    color: #14171a;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 10px;
+    background: #2563eb;
+  }
+
+  .eyebrow {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #2563eb;
+  }
+
+  .title {
+    font-size: {{ cond (gt (len $title) 38) 62 76 }}px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.08;
+    max-width: 15ch;
+  }
+
+  .tagline {
+    font-size: 27px;
+    line-height: 1.45;
+    color: #5b6570;
+    max-width: 42ch;
+    margin-top: 22px;
+  }
+
+  .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 23px;
+    color: #5b6570;
+  }
+
+  .who { font-weight: 600; color: #14171a; }
+  .rule { flex: 1; height: 1px; background: #e5e7eb; margin: 0 26px; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">{{ cond $isHome "alexiscouvreur.fr" (printf "alexiscouvreur.fr / %s" (lower .Section | default "home")) }}</div>
+
+  <div>
+    <h1 class="title">{{ $title }}</h1>
+    {{ with $tagline }}<p class="tagline">{{ . | plainify | truncate 130 }}</p>{{ end }}
+  </div>
+
+  <div class="foot">
+    {{/* The home card already says the name in 76px type, so it shows the
+         GitHub handle down here instead of repeating itself. */}}
+    <span class="who">{{ cond $isHome "github.com/acouvreur" $basics.name }}</span>
+    <span class="rule"></span>
+    <span>{{ $basics.location.city }}, {{ $basics.location.region }}</span>
+  </div>
+</body>
+</html>

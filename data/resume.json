@@ -125,19 +125,18 @@
     {
       "name": "Sablier",
       "url": "https://sablierapp.dev/",
-      "repository": "https://github.com/sablierapp/sablier",
+      "repository": "sablierapp/sablier",
       "roles": ["Creator", "Maintainer"],
       "startDate": "2020-10-01",
-      "stars": 2823,
       "description": "Scale-to-zero for containers: start workloads on demand, shut them down when activity stops. Works with Docker, Swarm, Kubernetes, Podman and Proxmox LXC.",
       "keywords": ["Go", "Kubernetes", "Docker", "Podman", "Traefik", "Nginx"]
     },
     {
       "name": "Traefik ModSecurity Plugin",
       "url": "https://github.com/acouvreur/traefik-modsecurity-plugin",
+      "repository": "acouvreur/traefik-modsecurity-plugin",
       "roles": ["Creator", "Maintainer"],
       "startDate": "2021-12-01",
-      "stars": 176,
       "description": "Traefik middleware that proxies requests through an OWASP ModSecurity Core Rule Set container, so you get a WAF in front of any Traefik-routed service.",
       "keywords": ["Go", "Traefik", "OWASP", "ModSecurity", "Security"]
     }

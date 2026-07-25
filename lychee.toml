@@ -1,0 +1,30 @@
+# Link checking for the built site. Run through .github/workflows/links.yml.
+
+# Browser-ish identity: several sites (LinkedIn in particular) refuse anything
+# that looks automated.
+user_agent = "Mozilla/5.0 (compatible; lychee; +https://www.alexiscouvreur.fr)"
+accept = ["200", "203", "206", "429"]
+timeout = 20
+max_retries = 2
+max_concurrency = 8
+
+# The resume links out to a lot of hosts; be polite rather than fast.
+max_redirects = 5
+
+exclude = [
+  # LinkedIn answers automated requests with 999 no matter what, which is why
+  # the profile had to be read from screenshots in the first place.
+  "^https://www\\.linkedin\\.com/",
+  # Credly renders badges client side and 404s the bare URL to a crawler.
+  "^https://www\\.credly\\.com/",
+  # X blocks unauthenticated requests outright.
+  "^https://(x|twitter)\\.com/",
+  # Rate limits anonymous traffic hard enough to cause false failures.
+  "^https://github\\.com/.*/pulls\\?",
+  # mailto: has nothing to check.
+  "^mailto:",
+]
+
+# Anchors are not resolved: the site has none that matter, and checking them on
+# third-party pages produces noise rather than signal.
+include_fragments = false

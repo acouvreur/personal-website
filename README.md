@@ -11,8 +11,11 @@ serving both my resume and my blog.
 | `data/opensource.json` | Upstream contributions. **Generated**, see below. |
 | `content/blog/` | Blog posts. |
 | `layouts/` | Overrides on top of the [Ananke](https://github.com/theNewDynamic/gohugo-theme-ananke) theme (git submodule in `themes/`). |
-| `assets/ananke/css/alexis.css` | Site styling, layered over the theme. |
-| `tools/contributions/` | The generator behind `data/opensource.json`. |
+| `assets/ananke/css/alexis.css` | Site styling, layered over the theme. Light and dark. |
+| `assets/fonts/` | Self-hosted webfonts. Nothing loads from a CDN. |
+| `tools/contributions/` | Generates the open source data and star counts. |
+| `tools/ogimages/` | Screenshots the social preview cards. |
+| `tools/resumepdf/` | Prints the resume page to a PDF. |
 
 ## Local development
 
@@ -29,6 +32,17 @@ Build the way CI does:
 ```sh
 mise exec -- hugo --gc --minify
 ```
+
+## Social preview cards
+
+Every page carries its own `og:image`. Hugo renders a bare 1200x630 card at
+`<page>/og.html` through the `ogcard` output format, and `tools/ogimages`
+screenshots each one into `og.png` beside it before deleting the HTML.
+
+The cards use system fonts and make no network calls, so a screenshot is
+deterministic rather than a race against a webfont. Edit `layouts/all.ogcard.html`
+to change the design, then `mise run dist` and open a card's `og.html` in a
+browser to see it full size.
 
 ## The downloadable PDF
 
@@ -116,4 +130,26 @@ New posts start as `draft = true`; flip it to `false` to publish. `/resume/` is 
 ## Deployment
 
 Pushing to `main` triggers [`.github/workflows/github-pages.yml`](.github/workflows/github-pages.yml),
-which builds with Hugo and publishes to GitHub Pages. Pull requests run the build only, as a check.
+which builds with Hugo, renders the social cards and the resume PDF, and publishes
+to GitHub Pages. Pull requests run the build only, as a check.
+
+[`.github/workflows/links.yml`](.github/workflows/links.yml) checks external links
+with [lychee](https://lychee.cli.rs). It runs weekly rather than per-push, because
+the resume points at fifty-odd third-party URLs that rot on their own schedule and
+a dead devpost link should not block a deploy. A weekly failure opens one issue; on
+a pull request that touches content it fails the check instead. Hosts that block
+automated requests outright are excluded in `lychee.toml`.
+
+## Theme and fonts
+
+Colours are CSS custom properties, and dark mode is a single
+`prefers-color-scheme` block that reassigns them. There is no toggle, so no
+flash of the wrong theme and no JavaScript. `@media print` pins everything back
+to light, otherwise generating the PDF on a machine set to dark would produce a
+dark PDF.
+
+Fonts are self-hosted from `assets/fonts/`: variable woff2 files covering the
+whole weight range, split latin / latin-ext exactly as Google serves them. The
+`@font-face` rules come from `layouts/_partials/fonts.html`, listed first in
+`ananke.custom_css` so they land in the same stylesheet bundle. Nothing on the
+site contacts a third party.

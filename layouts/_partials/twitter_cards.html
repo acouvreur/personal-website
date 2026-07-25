@@ -1,0 +1,19 @@
+{{- /*
+  Replaces Hugo's internal twitter_cards template. The default falls back to a
+  small "summary" card when it finds no image; now that every page has one, the
+  large variant is always right.
+*/ -}}
+{{- $description := .Description | default .Summary | default site.Params.description | plainify | truncate 200 -}}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title | default site.Title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ .Permalink }}og.png">
+{{- /* Indexed rather than dotted: "x-twitter" has a hyphen in it. */ -}}
+{{- with site.Params.ananke.social -}}
+  {{- with index . "x-twitter" -}}
+    {{- with .username }}
+<meta name="twitter:creator" content="@{{ . }}">
+    {{- end -}}
+  {{- end -}}
+{{- end }}

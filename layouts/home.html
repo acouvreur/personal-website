@@ -32,10 +32,11 @@
 
 {{ with hugo.Data.resume.projects }}
   {{ $lead := index . 0 }}
+  {{ $stars := index hugo.Data.stars ($lead.repository | default "") }}
   <section class="mw8 center ph3 ph4-ns pb5">
     <div class="ac-highlight-grid">
       <div class="ac-highlight">
-        <span class="ac-highlight__stat">{{ lang.FormatNumber 0 $lead.stars }}&#9733;</span>
+        <span class="ac-highlight__stat">{{ lang.FormatNumber 0 $stars }}&#9733;</span>
         <p class="ac-highlight__label">
           Stars on
           <a class="ac-link" href="{{ $lead.url }}" rel="noopener" target="_blank">{{ $lead.name }}</a>,
@@ -93,4 +94,35 @@
 {{ with .Content }}
   <section class="mw8 center ph3 ph4-ns pb5 ac-prose">{{ . }}</section>
 {{ end }}
+
+<section class="ac-contact">
+  <div class="mw8 center ph3 ph4-ns pv5">
+    <p class="ac-eyebrow">Get in touch</p>
+    <h2 class="ac-contact__title mt0 mb3">Say hello</h2>
+
+    <div class="ac-contact__grid">
+      <div>
+        <p class="ac-contact__lede mt0 mb3">
+          Always happy to talk about Go, containers, Linux and open source.
+          A few things I'm open to:
+        </p>
+        <ul class="ac-contact__list">
+          <li>Speaking at meetups and conferences, in French or English</li>
+          <li>Consulting and short contract work</li>
+          <li>Anything around Sablier or the Traefik plugins I maintain</li>
+          <li>Or just saying hello</li>
+        </ul>
+      </div>
+
+      <div class="ac-contact__reach">
+        <a class="ac-contact__email" href="mailto:{{ $basics.email }}">{{ $basics.email }}</a>
+        <div class="ac-contact__profiles">
+          {{ range $basics.profiles }}
+            <a class="ac-link" href="{{ .url }}" rel="noopener" target="_blank">{{ .network }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {{ end }}

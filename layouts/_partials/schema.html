@@ -1,0 +1,87 @@
+{{- /*
+  Replaces Hugo's internal schema template with real JSON-LD.
+
+  The home page describes the Person, which is what search engines use to build
+  a knowledge panel for a name. Blog posts describe themselves as articles and
+  point back at the same Person, so the two are linked rather than floating
+  separately.
+
+  sameAs is the important field: it is how a search engine confirms that this
+  site, the GitHub account and the LinkedIn profile are one individual.
+*/ -}}
+{{- $basics := hugo.Data.resume.basics -}}
+
+{{- /* The label is a headline ("Co-founder at Reeveel · Software Engineer");
+       schema.org wants a bare title, so take it from the current role. */ -}}
+{{- $jobTitle := $basics.label -}}
+{{- with hugo.Data.resume.work -}}
+  {{- $jobTitle = (index . 0).position -}}
+{{- end -}}
+
+{{- $person := dict
+  "@type" "Person"
+  "@id" (printf "%s#person" site.BaseURL)
+  "name" $basics.name
+  "url" site.BaseURL
+  "email" (printf "mailto:%s" $basics.email)
+  "image" $basics.picture
+  "jobTitle" $jobTitle
+  "description" ($basics.summary | plainify)
+  "sameAs" (apply $basics.profiles "index" "." "url")
+-}}
+
+{{- with $basics.location -}}
+  {{- $person = merge $person (dict "address" (dict
+      "@type" "PostalAddress"
+      "addressLocality" .city
+      "addressRegion" .region
+      "addressCountry" .countryCode)) -}}
+{{- end -}}
+
+{{- /* Current employers, straight from the resume: anything with no end date. */ -}}
+{{- $current := where hugo.Data.resume.work "endDate" "==" nil -}}
+{{- with $current -}}
+  {{- $orgs := slice -}}
+  {{- range . -}}
+    {{- $orgs = $orgs | append (dict "@type" "Organization" "name" .name "url" .website) -}}
+  {{- end -}}
+  {{- $person = merge $person (dict "worksFor" $orgs) -}}
+{{- end -}}
+
+{{- /* The individual technologies, not the group headings they are filed under. */ -}}
+{{- $topics := slice -}}
+{{- range hugo.Data.resume.skills -}}
+  {{- range .keywords -}}
+    {{- $topics = $topics | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- with $topics -}}
+  {{- $person = merge $person (dict "knowsAbout" .) -}}
+{{- end -}}
+
+{{- $graph := slice $person -}}
+
+{{- if .IsPage -}}
+  {{- $article := dict
+    "@type" "BlogPosting"
+    "@id" (printf "%s#article" .Permalink)
+    "headline" .Title
+    "description" (.Description | default .Summary | plainify)
+    "url" .Permalink
+    "datePublished" (.Date.Format "2006-01-02")
+    "dateModified" (.Lastmod.Format "2006-01-02")
+    "image" (printf "%sog.png" .Permalink)
+    "author" (dict "@id" (printf "%s#person" site.BaseURL))
+    "publisher" (dict "@id" (printf "%s#person" site.BaseURL))
+    "mainEntityOfPage" .Permalink
+  -}}
+  {{- with .Params.tags -}}
+    {{- $article = merge $article (dict "keywords" (delimit . ", ")) -}}
+  {{- end -}}
+  {{- $graph = $graph | append $article -}}
+{{- end -}}
+
+{{- /* safeJS is required: inside a <script>, html/template treats the value as
+       JavaScript and would JSON-encode the already-encoded string a second
+       time, emitting a quoted blob instead of an object. */ -}}
+<script type="application/ld+json">{{ (dict "@context" "https://schema.org" "@graph" $graph) | jsonify | safeJS }}</script>

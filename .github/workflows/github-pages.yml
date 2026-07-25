@@ -39,10 +39,13 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_BASEURL: "${{ steps.pages.outputs.base_url }}/"
 
-      # Prints the built resume page with the Chrome preinstalled on the runner,
-      # writing the PDF into public/ so it ships inside the Pages artifact.
+      # Both of these drive the Chrome preinstalled on the runner and write into
+      # public/, so their output ships inside the Pages artifact.
+      - name: Render social cards
+        run: go run ./tools/ogimages
+
       - name: Print resume to PDF
-        run: go run ./tools/resumepdf/main.go
+        run: go run ./tools/resumepdf
 
       - name: Upload artifact
         if: github.event_name == 'push'

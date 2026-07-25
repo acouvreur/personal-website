@@ -1,4 +1,21 @@
+{{- /* Favicons. The SVG is the real one and covers every current browser; the
+       PNGs are fallbacks for Safari, iOS and anything that ignores SVG icons.
+
+       Hugo cannot rasterise SVG, so the PNGs are committed rather than built.
+       They were rendered from favicon.svg with headless Chromium. The
+       apple-touch-icon is deliberately full-bleed and opaque, because iOS
+       rounds the corners itself and composites transparency onto black. */ -}}
 <link rel="icon" type="image/svg+xml" href="{{ urls.RelURL "/favicon.svg" }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ urls.RelURL "/favicon-32.png" }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ urls.RelURL "/apple-touch-icon.png" }}">
+
+<meta name="theme-color" content="#2563eb">
+
+{{- /* Fonts are self-hosted (see _partials/fonts.html), so there is nothing to
+       preconnect to.
+
+       Deliberately no <link rel=preload> for them: the stylesheet is built by
+       esbuild, which rewrites the @font-face url() to its own content-hashed
+       copy. A preload written here would point at a different URL than the one
+       the CSS actually fetches, so it would ship every font twice and preload
+       files the page never asks for. font-display:swap covers the gap. */ -}}

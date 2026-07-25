@@ -10,6 +10,20 @@ enableRobotsTXT = true
 [taxonomies]
   tag = 'tags'
 
+# Every page also renders a bare 1200x630 card at <page>/og.html, which
+# tools/ogimages screenshots into the og.png referenced by the meta tags.
+[outputFormats]
+  [outputFormats.ogcard]
+    mediaType = 'text/html'
+    baseName = 'og'
+    isHTML = true
+    notAlternative = true
+
+[outputs]
+  home = ['html', 'rss', 'ogcard']
+  section = ['html', 'rss', 'ogcard']
+  page = ['html', 'ogcard']
+
 [languages]
 
   [languages.en]
@@ -24,7 +38,9 @@ enableRobotsTXT = true
       description = 'Software engineer in Montreal. DevOps, Kubernetes, Go and open source.'
 
       [languages.en.params.ananke]
-        custom_css = ['alexis.css']
+        # fonts.html is a partial that generates @font-face rules; it must come
+        # first so the faces are declared before anything uses them.
+        custom_css = ['fonts.html', 'alexis.css']
         show_recent_posts = false
 
         [languages.en.params.ananke.social.follow]

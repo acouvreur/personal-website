@@ -105,7 +105,9 @@
               <h3 class="ac-project__name mt0 mb0">
                 <a class="ac-link" href="{{ .url }}" rel="noopener" target="_blank">{{ .name }}</a>
               </h3>
-              {{ with .stars }}
+              {{/* Star counts come from data/stars.json, refreshed by the
+                   contributions tool, so they never go stale in the resume. */}}
+              {{ with index hugo.Data.stars (.repository | default "") }}
                 <span class="ac-stars" title="GitHub stars">&#9733; {{ lang.FormatNumber 0 . }}</span>
               {{ end }}
             </div>

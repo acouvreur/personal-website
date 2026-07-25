@@ -1,0 +1,32 @@
+{{- /*
+  Emits the @font-face rules for the self-hosted webfonts. Listed in
+  ananke.custom_css, where a .html entry is treated as a CSS-generating partial,
+  so these rules land inside the same concatenated stylesheet as everything else
+  and cost no extra request.
+
+  The files are variable fonts covering the whole weight range in one download,
+  and are split latin / latin-ext exactly as Google serves them: the accented
+  characters in the French talk titles live in latin-ext, and browsers only fetch
+  that file when a page actually uses one.
+
+  To refresh them, re-download the woff2 files listed in data/fonts.json from
+  fonts.googleapis.com with a modern browser user agent.
+*/ -}}
+{{- /* The url() is written relative to the built stylesheet (ananke/css/main.css)
+       rather than as a RelPermalink. esbuild resolves it back to assets/fonts/
+       and emits one content-hashed copy. Calling RelPermalink here instead would
+       publish a second, unreferenced copy of every file. */ -}}
+{{- range hugo.Data.fonts -}}
+  {{- $font := . -}}
+  {{- if not (resources.Get (printf "fonts/%s" $font.file)) -}}
+    {{- errorf "fonts: assets/fonts/%s is missing" $font.file -}}
+  {{- end -}}
+@font-face {
+  font-family: '{{ $font.family }}';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../../fonts/{{ $font.file }}') format('woff2');
+  unicode-range: {{ $font.range | safeCSS }};
+}
+{{ end -}}

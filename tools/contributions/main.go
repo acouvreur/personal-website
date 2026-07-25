@@ -134,6 +134,8 @@ type options struct {
 	closedCounts map[string]bool
 	out          string
 	prsOut       string
+	starsOut     string
+	resume       string
 	minMerged    int
 	minOpen      int
 }
@@ -146,6 +148,8 @@ func main() {
 		closedCounts = flag.String("closed-counts", defaultClosedCounts, "comma-separated owners or owner/name repositories where a closed PR counts as accepted")
 		out          = flag.String("out", filepath.Join("data", "opensource.json"), "per-repository totals to write")
 		prsOut       = flag.String("prs-out", filepath.Join("data", "pullrequests.json"), "full pull request list to write")
+		starsOut     = flag.String("stars-out", filepath.Join("data", "stars.json"), "star counts to write")
+		resume       = flag.String("resume", filepath.Join("data", "resume.json"), "resume to read featured project repositories from")
 		minMerged    = flag.Int("min-merged", 1, "minimum accepted PRs for a repository to appear in the totals")
 		minOpen      = flag.Int("min-open", 0, "if above zero, also include repositories with at least this many open PRs")
 	)
@@ -158,6 +162,8 @@ func main() {
 		closedCounts: toSet(splitList(*closedCounts)),
 		out:          *out,
 		prsOut:       *prsOut,
+		starsOut:     *starsOut,
+		resume:       *resume,
 		minMerged:    *minMerged,
 		minOpen:      *minOpen,
 	}
@@ -207,8 +213,66 @@ func run(opts options) error {
 		return err
 	}
 
-	report(opts, prs, entries, kept)
+	stars, err := opts.fetchStars()
+	if err != nil {
+		return err
+	}
+	if err := writeJSON(opts.starsOut, stars); err != nil {
+		return err
+	}
+
+	report(opts, prs, entries, stars, kept)
 	return nil
+}
+
+// fetchStars looks up the current star count for each repository the resume
+// features as a project. Keeping these out of resume.json means the one number
+// on the site that changes on its own is never typed by hand.
+func (o options) fetchStars() (map[string]int, error) {
+	repos, err := featuredRepos(o.resume)
+	if err != nil {
+		return nil, err
+	}
+
+	client := &http.Client{Timeout: 30 * time.Second}
+	token := githubToken()
+	stars := map[string]int{}
+
+	for _, repo := range repos {
+		var result struct {
+			Stargazers int `json:"stargazers_count"`
+		}
+		if err := get(client, "https://api.github.com/repos/"+repo, token, &result); err != nil {
+			return nil, fmt.Errorf("reading stars for %s: %w", repo, err)
+		}
+		stars[repo] = result.Stargazers
+	}
+	return stars, nil
+}
+
+// featuredRepos reads projects[].repository out of the resume.
+func featuredRepos(path string) ([]string, error) {
+	raw, err := os.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("reading %s: %w", path, err)
+	}
+	var resume struct {
+		Projects []struct {
+			Repository string `json:"repository"`
+		} `json:"projects"`
+	}
+	if err := json.Unmarshal(raw, &resume); err != nil {
+		return nil, fmt.Errorf("parsing %s: %w", path, err)
+	}
+
+	var repos []string
+	for _, project := range resume.Projects {
+		if project.Repository != "" {
+			repos = append(repos, project.Repository)
+		}
+	}
+	sort.Strings(repos)
+	return repos, nil
 }
 
 // summarise rolls the pull requests up per repository for the resume.
@@ -364,7 +428,7 @@ func day(timestamp string) string {
 	return timestamp[:10]
 }
 
-func report(opts options, prs []PullRequest, entries []Entry, kept int) {
+func report(opts options, prs []PullRequest, entries []Entry, stars map[string]int, kept int) {
 	counts := map[string]int{}
 	for _, pr := range prs {
 		counts[pr.State]++
@@ -375,6 +439,12 @@ func report(opts options, prs []PullRequest, entries []Entry, kept int) {
 	fmt.Printf("wrote %s: %d repositories", opts.out, len(entries))
 	if kept > 0 {
 		fmt.Printf(", kept %d hand-written summaries", kept)
+	}
+	fmt.Println()
+
+	fmt.Printf("wrote %s: %d projects", opts.starsOut, len(stars))
+	for repo, count := range stars {
+		fmt.Printf(", %s %d", repo, count)
 	}
 	fmt.Println()
 }
