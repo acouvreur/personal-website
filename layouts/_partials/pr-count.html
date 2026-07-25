@@ -1,0 +1,39 @@
+{{- /*
+  Renders a contribution tally as "17 merged PRs · 7 open".
+  Call with an entry from data/opensource.json.
+
+  "landed" is work an upstream applied on their side and then closed rather than
+  merged. It counts the same as merged, but says so plainly, because claiming a
+  merge that GitHub does not show would not survive a click.
+
+  Pass compact for the long tail of chips, where only the number carries meaning.
+*/ -}}
+{{- $merged := int (.merged | default 0) -}}
+{{- $landed := int (.landed | default 0) -}}
+{{- $open := int (.open | default 0) -}}
+{{- $accepted := add $merged $landed -}}
+
+{{- if .compact -}}
+  {{- if gt $accepted 0 -}}
+    {{- $accepted -}}
+  {{- else -}}
+    {{- printf "%d open" $open -}}
+  {{- end -}}
+{{- else -}}
+
+{{- $parts := slice -}}
+{{- if gt $merged 0 -}}
+  {{- $parts = $parts | append (printf "%d merged PR%s" $merged (cond (eq $merged 1) "" "s")) -}}
+{{- end -}}
+{{- if gt $landed 0 -}}
+  {{- /* Spell out "PRs" only when there is no merged count ahead of it. */ -}}
+  {{- $noun := cond (gt $merged 0) "landed" (printf "PR%s landed" (cond (eq $landed 1) "" "s")) -}}
+  {{- $parts = $parts | append (printf "%d %s" $landed $noun) -}}
+{{- end -}}
+{{- if gt $open 0 -}}
+  {{- $noun := cond (gt $accepted 0) "open" (printf "open PR%s" (cond (eq $open 1) "" "s")) -}}
+  {{- $parts = $parts | append (printf "%d %s" $open $noun) -}}
+{{- end -}}
+
+{{- delimit $parts " · " -}}
+{{- end -}}

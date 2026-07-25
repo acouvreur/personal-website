@@ -1,0 +1,100 @@
+[
+  {
+    "name": "tinygo-org/bluetooth",
+    "merged": 17,
+    "open": 7,
+    "badge": "TinyGo org member",
+    "summary": "Added the common GAP and GATT interfaces, L2CAP support, and a long run of macOS and Windows fixes. That work is how I ended up a member of the TinyGo organization."
+  },
+  {
+    "name": "cbrgm/githubevents",
+    "merged": 7
+  },
+  {
+    "name": "espressif/esp-iot-solution",
+    "merged": 0,
+    "landed": 5,
+    "open": 2,
+    "summary": "Work on the BLE connection manager and the Current Time Service in Espressif's ESP-IDF component library. Espressif pulls changes into their own tracker and closes the PR, so these show as closed on GitHub rather than merged."
+  },
+  {
+    "name": "saltosystems/winrt-go",
+    "merged": 5,
+    "open": 1
+  },
+  {
+    "name": "OpenAPITools/openapi-generator",
+    "merged": 5
+  },
+  {
+    "name": "testcontainers/testcontainers-go",
+    "merged": 5
+  },
+  {
+    "name": "enrichman/gh-iter",
+    "merged": 4
+  },
+  {
+    "name": "google/go-github",
+    "merged": 4
+  },
+  {
+    "name": "integrations/terraform-provider-github",
+    "merged": 2,
+    "open": 4
+  },
+  {
+    "name": "tinygo-org/cbgo",
+    "merged": 2
+  },
+  {
+    "name": "docker/cli",
+    "merged": 1,
+    "open": 1
+  },
+  {
+    "name": "HewlettPackard/terraschema",
+    "merged": 1
+  },
+  {
+    "name": "aquaproj/aqua-registry",
+    "merged": 1
+  },
+  {
+    "name": "aws/aws-sdk-java-v2",
+    "merged": 1
+  },
+  {
+    "name": "espressif/esp-idf",
+    "merged": 0,
+    "landed": 1
+  },
+  {
+    "name": "jenkinsci/kubernetes-plugin",
+    "merged": 1
+  },
+  {
+    "name": "jfrog/terraform-provider-platform",
+    "merged": 1
+  },
+  {
+    "name": "moby/moby",
+    "merged": 1
+  },
+  {
+    "name": "omissis/go-jsonschema",
+    "merged": 1
+  },
+  {
+    "name": "podman-container-tools/podman",
+    "merged": 1
+  },
+  {
+    "name": "tarampampam/tinifier",
+    "merged": 1
+  },
+  {
+    "name": "traefik/traefik",
+    "merged": 1
+  }
+]

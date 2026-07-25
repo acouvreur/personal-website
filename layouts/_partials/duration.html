@@ -1,0 +1,32 @@
+{{- /*
+  Renders the span between two dates as "4 yrs 2 mos".
+  Call with: (dict "start" "2022-06-01" "end" "2024-01-15")
+  Omit or pass a nil "end" for an ongoing role, and it counts up to today.
+
+  Counting is inclusive of the starting month (Jun 2022 -> Jul 2026 is 50 months,
+  not 49) and ignores the day of month. That is the convention LinkedIn uses, so
+  the durations here match the profile people cross-reference this against.
+*/ -}}
+{{- $start := time.AsTime .start -}}
+{{- $end := time.AsTime (.end | default (now.Format "2006-01-02")) -}}
+
+{{- $startYear := int ($start.Format "2006") -}}
+{{- $startMonth := int ($start.Format "1") -}}
+{{- $endYear := int ($end.Format "2006") -}}
+{{- $endMonth := int ($end.Format "1") -}}
+
+{{- $totalMonths := add (add (mul (sub $endYear $startYear) 12) (sub $endMonth $startMonth)) 1 -}}
+{{- $totalMonths = cond (lt $totalMonths 1) 1 $totalMonths -}}
+
+{{- $years := int (math.Floor (div $totalMonths 12)) -}}
+{{- $months := mod $totalMonths 12 -}}
+
+{{- $parts := slice -}}
+{{- with $years -}}
+  {{- $parts = $parts | append (printf "%d %s" . (cond (eq . 1) "yr" "yrs")) -}}
+{{- end -}}
+{{- with $months -}}
+  {{- $parts = $parts | append (printf "%d %s" . (cond (eq . 1) "mo" "mos")) -}}
+{{- end -}}
+
+{{- delimit $parts " " -}}

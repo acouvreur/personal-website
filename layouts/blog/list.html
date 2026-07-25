@@ -1,0 +1,39 @@
+{{ define "header" }}
+  {{ partials.Include "site-chrome.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<div class="mw8 center ph3 ph4-ns pv5">
+
+  <div class="mb5">
+    <h1 class="ac-page-title mt0 mb2">{{ .Title }}</h1>
+    {{ with .Content }}<div class="ac-page-intro">{{ . }}</div>{{ end }}
+  </div>
+
+  {{ $pages := .Paginator.Pages }}
+  {{ if $pages }}
+    <div class="ac-post-list">
+      {{ range $pages }}
+        <article class="ac-post-row">
+          <div class="ac-meta mb2">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "January 2, 2006" }}</time>
+            {{ range .Params.tags }}<span class="ac-tag">{{ . }}</span>{{ end }}
+          </div>
+          <h2 class="ac-post-row__title mt0 mb2">
+            <a class="ac-title-link no-underline" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+          <p class="ac-post-row__summary mt0 mb3">
+            {{ with .Params.description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 240 }}{{ end }}
+          </p>
+          <a class="ac-read-more no-underline" href="{{ .RelPermalink }}">Read more <span aria-hidden="true">&rarr;</span></a>
+        </article>
+      {{ end }}
+    </div>
+
+    {{ partial "pagination.html" . }}
+  {{ else }}
+    <p class="ac-muted">Nothing here yet. Working on it.</p>
+  {{ end }}
+
+</div>
+{{ end }}

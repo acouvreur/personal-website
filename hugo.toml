@@ -1,0 +1,56 @@
+baseURL = 'https://www.alexiscouvreur.fr/'
+theme = 'ananke'
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  tag = 'tags'
+
+[languages]
+
+  [languages.en]
+    locale = 'en-us'
+    title = 'Alexis Couvreur'
+    weight = 1
+
+    [languages.en.params]
+      background_color_class = 'bg-white'
+      body_classes = 'bg-white'
+      author = 'Alexis Couvreur'
+      description = 'Software engineer in Montreal. DevOps, Kubernetes, Go and open source.'
+
+      [languages.en.params.ananke]
+        custom_css = ['alexis.css']
+        show_recent_posts = false
+
+        [languages.en.params.ananke.social.follow]
+          networks = ['github', 'linkedin', 'x-twitter', 'rss']
+
+        [languages.en.params.ananke.social.github]
+          username = 'acouvreur'
+
+        [languages.en.params.ananke.social.linkedin]
+          username = 'alexis-couvreur'
+
+        [languages.en.params.ananke.social.x-twitter]
+          username = 'Zittoone'
+
+        [languages.en.params.ananke.social.rss]
+          profilelink = '/blog/index.xml'
+
+    [[languages.en.menus.main]]
+      name = 'Resume'
+      url = '/resume/'
+      weight = 10
+    [[languages.en.menus.main]]
+      name = 'Blog'
+      url = '/blog/'
+      weight = 20
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

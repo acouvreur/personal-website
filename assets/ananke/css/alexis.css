@@ -1,0 +1,573 @@
+/* =============================================================
+   alexiscouvreur.fr styles, layered over the ananke theme defaults
+   Fonts : Space Grotesk (headings) + Inter (body)
+   ============================================================= */
+
+:root {
+  --ac-bg:      #ffffff;
+  --ac-soft:    #f7f8fa;
+  --ac-border:  #e5e7eb;
+  --ac-text:    #14171a;
+  --ac-muted:   #5b6570;
+  --ac-accent:  #2563eb;
+  --ac-accent-dark: #1d4ed8;
+}
+
+/* ----- Sticky footer ----------------------------------------- */
+body {
+  min-height: 100vh;
+  display: flex !important;
+  flex-direction: column;
+}
+
+body > main { flex: 1 0 auto; }
+body > footer { flex-shrink: 0; }
+
+/* ----- Typography -------------------------------------------- */
+body,
+.avenir,
+input, textarea, select, button {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.f1, .f2, .athelas {
+  font-family: 'Space Grotesk', 'Inter', sans-serif !important;
+  letter-spacing: -0.02em;
+}
+
+body {
+  background-color: var(--ac-bg) !important;
+  color: var(--ac-text) !important;
+}
+
+/* ----- Header / nav ------------------------------------------ */
+.ac-header { background: var(--ac-bg); }
+
+.ac-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+  color: var(--ac-text);
+}
+
+.ac-nav-link {
+  color: var(--ac-muted);
+  font-weight: 500;
+  transition: color .15s ease;
+}
+
+.ac-nav-link:hover,
+.ac-nav-link--active { color: var(--ac-accent); }
+
+.ananke-socials a { color: var(--ac-muted); fill: var(--ac-muted); }
+
+/* ----- Footer ------------------------------------------------ */
+.ac-footer { background: var(--ac-soft); }
+.ac-footer-link { color: var(--ac-muted); font-weight: 500; }
+.ac-footer-link:hover { color: var(--ac-accent); }
+
+/* ----- Shared bits ------------------------------------------- */
+.ac-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--ac-accent);
+  margin: 0 0 .75rem;
+}
+
+.ac-page-title { font-size: 2.6rem; font-weight: 700; line-height: 1.1; }
+.ac-page-intro { color: var(--ac-muted); font-size: 1.05rem; line-height: 1.7; max-width: 34rem; }
+.ac-muted { color: var(--ac-muted); }
+
+.ac-section-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+
+.ac-link { color: var(--ac-accent); text-decoration: none; }
+.ac-link:hover { text-decoration: underline; }
+
+.ac-read-more {
+  color: var(--ac-accent);
+  font-weight: 500;
+  font-size: .9rem;
+}
+.ac-read-more:hover { color: var(--ac-accent-dark); }
+
+.ac-title-link { color: var(--ac-text); }
+.ac-title-link:hover { color: var(--ac-accent); }
+
+.ac-meta {
+  font-size: .8rem;
+  color: var(--ac-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+}
+.ac-meta-sep { color: var(--ac-border); }
+
+.ac-tag,
+.ac-chip {
+  display: inline-block;
+  background: var(--ac-soft);
+  border: 1px solid var(--ac-border);
+  border-radius: 999px;
+  padding: .15rem .6rem;
+  font-size: .72rem;
+  color: var(--ac-muted);
+}
+
+.ac-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+.ac-btn {
+  display: inline-block;
+  padding: .6rem 1.25rem;
+  border-radius: 6px;
+  border: 1px solid var(--ac-border);
+  font-weight: 500;
+  font-size: .95rem;
+  color: var(--ac-text);
+  background: var(--ac-bg);
+  transition: all .15s ease;
+}
+.ac-btn:hover { border-color: var(--ac-accent); color: var(--ac-accent); }
+
+.ac-btn--primary {
+  background: var(--ac-accent);
+  border-color: var(--ac-accent);
+  color: #fff;
+}
+.ac-btn--primary:hover {
+  background: var(--ac-accent-dark);
+  border-color: var(--ac-accent-dark);
+  color: #fff;
+}
+
+.ac-btn--sm { padding: .4rem .85rem; font-size: .85rem; }
+
+.ac-cta-row { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* ----- Home hero --------------------------------------------- */
+.ac-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+}
+
+.ac-hero__title { font-size: 3.2rem; font-weight: 700; line-height: 1.05; }
+.ac-hero__summary { font-size: 1.15rem; line-height: 1.7; color: var(--ac-muted); max-width: 36rem; }
+.ac-hero__location { font-size: .9rem; color: var(--ac-muted); }
+
+.ac-hero__avatar img {
+  border-radius: 50%;
+  border: 1px solid var(--ac-border);
+  display: block;
+}
+
+@media screen and (max-width: 60em) {
+  .ac-hero__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .ac-hero__title { font-size: 2.4rem; }
+  .ac-page-title { font-size: 2rem; }
+}
+
+/* ----- Post lists / cards ------------------------------------ */
+.ac-post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.ac-card__title { font-size: 1.15rem; font-weight: 600; line-height: 1.3; }
+.ac-card__summary { color: var(--ac-muted); font-size: .92rem; line-height: 1.6; }
+
+.ac-post-list { display: flex; flex-direction: column; }
+
+.ac-post-row {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--ac-border);
+}
+.ac-post-row:last-child { border-bottom: 0; margin-bottom: 0; }
+
+.ac-post-row__title { font-size: 1.6rem; font-weight: 600; line-height: 1.25; }
+.ac-post-row__summary { color: var(--ac-muted); line-height: 1.7; max-width: 40rem; }
+
+/* ----- Single post ------------------------------------------- */
+.ac-post-title { font-size: 2.5rem; font-weight: 700; line-height: 1.15; }
+.ac-post-lede { font-size: 1.1rem; color: var(--ac-muted); line-height: 1.6; }
+
+.ac-post-nav { display: flex; justify-content: space-between; gap: 1rem; }
+.ac-post-nav__next { margin-left: auto; text-align: right; }
+
+.ac-prose { line-height: 1.75; font-size: 1.05rem; }
+.ac-prose h2 { margin-top: 2.5rem; font-size: 1.6rem; }
+.ac-prose h3 { margin-top: 2rem; font-size: 1.25rem; }
+.ac-prose a { color: var(--ac-accent); }
+.ac-prose img { max-width: 100%; height: auto; }
+.ac-prose pre {
+  background: var(--ac-soft);
+  border: 1px solid var(--ac-border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+.ac-prose blockquote {
+  border-left: 3px solid var(--ac-accent);
+  margin-left: 0;
+  padding-left: 1rem;
+  color: var(--ac-muted);
+}
+
+/* ----- Resume ------------------------------------------------ */
+.ac-resume__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.ac-resume__label { font-size: 1.15rem; color: var(--ac-accent); font-weight: 500; }
+
+.ac-resume__avatar {
+  border-radius: 50%;
+  border: 1px solid var(--ac-border);
+}
+
+.ac-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1rem;
+  font-size: .9rem;
+  color: var(--ac-muted);
+}
+
+.ac-resume__summary {
+  margin: 1.5rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ac-text);
+  max-width: 40rem;
+}
+
+.ac-resume__section { margin-top: 2.75rem; }
+.ac-resume__subsection { margin-top: 2rem; }
+
+/* Section headings read as labels, not competing headlines. */
+.ac-resume__section .ac-section-heading {
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ac-muted);
+  padding-bottom: .5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--ac-border);
+}
+
+.ac-subsection-heading {
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ac-muted);
+  margin: 0 0 .9rem;
+}
+
+.ac-subsection-note {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: .7;
+  margin-left: .5rem;
+}
+
+.ac-resume__split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0 3rem;
+}
+
+.ac-timeline { display: flex; flex-direction: column; gap: 1.75rem; }
+.ac-timeline--tight { gap: 1rem; }
+
+.ac-entry {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 1.25rem;
+}
+
+.ac-entry__period {
+  font-size: .8rem;
+  color: var(--ac-muted);
+  font-variant-numeric: tabular-nums;
+  padding-top: .28rem;
+}
+
+/* Title carries role + company on one line, so the eye lands once. */
+.ac-entry__title { font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
+.ac-entry__title--sm { font-size: .95rem; }
+.ac-entry__at { font-weight: 400; color: var(--ac-muted); }
+.ac-entry__org { font-size: .95rem; color: var(--ac-muted); }
+.ac-entry__summary { line-height: 1.6; color: var(--ac-text); font-size: .95rem; max-width: 42rem; }
+.ac-entry__place { font-size: .82rem; color: var(--ac-muted); }
+
+.ac-highlights {
+  margin: 0;
+  padding-left: 1.05rem;
+  color: var(--ac-muted);
+  font-size: .9rem;
+  line-height: 1.5;
+  max-width: 44rem;
+}
+.ac-highlights li { margin-bottom: .35rem; }
+.ac-highlights li::marker { color: var(--ac-border); }
+
+/* Skills as label + one dense line each, sharing the timeline's gutter. */
+.ac-skill-row {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 1.25rem;
+  padding: .3rem 0;
+}
+
+.ac-skill-row__name {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--ac-text);
+}
+
+.ac-skill-row__items {
+  font-size: .85rem;
+  line-height: 1.6;
+  color: var(--ac-muted);
+}
+
+.ac-entry__duration {
+  display: block;
+  font-size: .75rem;
+  color: var(--ac-muted);
+  opacity: .75;
+  margin-top: .15rem;
+}
+
+.ac-badge {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--ac-accent);
+  background: rgba(37, 99, 235, .09);
+  border: 1px solid rgba(37, 99, 235, .25);
+  border-radius: 999px;
+  padding: .1rem .55rem;
+  margin-left: .5rem;
+  vertical-align: 1px;
+}
+
+.ac-line-meta {
+  display: block;
+  font-size: .8rem;
+  color: var(--ac-muted);
+  margin-top: .1rem;
+}
+
+/* ----- Resume: projects -------------------------------------- */
+.ac-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+
+.ac-project {
+  border: 1px solid var(--ac-border);
+  border-radius: 8px;
+  padding: 1.15rem 1.25rem;
+  background: var(--ac-bg);
+}
+
+.ac-project__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: .3rem;
+}
+
+.ac-project__name { font-size: 1.05rem; font-weight: 600; }
+
+.ac-stars {
+  font-size: .78rem;
+  color: var(--ac-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ac-project__roles {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--ac-muted);
+}
+
+.ac-project__desc { font-size: .9rem; line-height: 1.6; color: var(--ac-text); }
+
+/* ----- Resume: upstream contributions ------------------------ */
+.ac-contrib-list { list-style: none; padding: 0; margin: 0; }
+
+.ac-contrib {
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--ac-border);
+}
+.ac-contrib:last-child { border-bottom: 0; }
+
+.ac-contrib__name {
+  font-weight: 600;
+  font-size: .95rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.ac-contrib__count {
+  font-size: .78rem;
+  color: var(--ac-muted);
+  margin-left: .6rem;
+}
+
+.ac-contrib__summary {
+  font-size: .88rem;
+  line-height: 1.55;
+  color: var(--ac-muted);
+  max-width: 46rem;
+}
+
+/* The long tail of upstream repos collapses into scannable links. */
+.ac-chips--links { gap: .45rem; }
+
+.ac-chip--link {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .74rem;
+  text-decoration: none;
+  transition: border-color .15s ease, color .15s ease;
+}
+.ac-chip--link:hover { border-color: var(--ac-accent); color: var(--ac-accent); }
+.ac-chip__count { opacity: .6; }
+
+.ac-plain-list--spaced li { margin-bottom: .85rem; line-height: 1.45; }
+.ac-plain-list--spaced li:last-child { margin-bottom: 0; }
+
+/* ----- Home: highlight strip --------------------------------- */
+.ac-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.ac-highlight {
+  border: 1px solid var(--ac-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.ac-highlight__stat {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ac-accent);
+  display: block;
+  margin-bottom: .4rem;
+}
+
+.ac-highlight__label { font-size: .92rem; color: var(--ac-muted); line-height: 1.55; margin: 0; }
+
+.ac-plain-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--ac-muted);
+  line-height: 1.9;
+  font-size: .95rem;
+}
+
+@media screen and (max-width: 45em) {
+  .ac-entry,
+  .ac-skill-row { grid-template-columns: 1fr; gap: .4rem; }
+  .ac-skill-row { padding: .35rem 0; }
+}
+
+/* ----- Print (Ctrl-P on /resume/ gives a clean PDF) ----------- */
+@page {
+  size: A4;
+  margin: 11mm 13mm;
+}
+
+@media print {
+  body > header,
+  body > footer,
+  .ac-post-nav,
+  .ac-print-hide,
+  .ananke-socials { display: none !important; }
+
+  body { font-size: 9.5pt; }
+  main.pb7 { padding-bottom: 0 !important; }
+
+  .ac-resume { max-width: 100%; padding: 0 !important; margin: 0 !important; }
+
+  /* Nothing straddles a page break except the chip list, which has no internal
+     structure worth protecting. */
+  .ac-entry,
+  .ac-project,
+  .ac-contrib,
+  .ac-skill-row,
+  .ac-plain-list--spaced li { break-inside: avoid; }
+  .ac-resume__section > .ac-section-heading { break-after: avoid; }
+
+  .ac-page-title { font-size: 18pt; }
+  .ac-resume__label { font-size: 10.5pt; }
+  .ac-resume__summary { font-size: 9.5pt; line-height: 1.45; margin-top: .7rem; max-width: none; }
+  .ac-resume__avatar { width: 74px; height: 74px; }
+  .ac-contact-list { font-size: 8.5pt; }
+
+  .ac-resume__section { margin-top: 1rem; }
+  .ac-resume__subsection { margin-top: .8rem; }
+  .ac-resume__section .ac-section-heading { margin-bottom: .5rem; padding-bottom: .25rem; }
+
+  .ac-timeline { gap: .75rem; }
+  .ac-timeline--tight { gap: .45rem; }
+  .ac-entry { grid-template-columns: 8rem 1fr; gap: .8rem; }
+  .ac-entry__title { font-size: 10pt; }
+  .ac-entry__summary { font-size: 9pt; line-height: 1.4; margin-bottom: .25rem !important; }
+  .ac-highlights { font-size: 8.8pt; line-height: 1.38; }
+  .ac-highlights li { margin-bottom: .1rem; }
+
+  .ac-skill-row { grid-template-columns: 8rem 1fr; gap: .8rem; padding: .12rem 0; }
+  .ac-skill-row__name,
+  .ac-skill-row__items { font-size: 8.8pt; line-height: 1.4; }
+
+  .ac-project-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .ac-project { padding: .5rem .6rem; }
+  .ac-project__desc { font-size: 8.5pt; line-height: 1.4; }
+
+  .ac-contrib { padding: .3rem 0; }
+  .ac-contrib__summary { font-size: 8.5pt; line-height: 1.4; }
+  .ac-chip { font-size: 7.4pt; padding: .05rem .4rem; }
+
+  .ac-plain-list,
+  .ac-plain-list--spaced li { font-size: 8.8pt; line-height: 1.4; }
+  .ac-plain-list--spaced li { margin-bottom: .35rem; }
+
+  /* Links stay coloured: the PDF keeps its clickable annotations, and this shade
+     still reads fine for anyone who prints it on paper. */
+  .ac-link { color: #1d4ed8; }
+}

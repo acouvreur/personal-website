@@ -1,0 +1,33 @@
+{{ define "header" }}
+  {{ partials.Include "site-chrome.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<article class="mw7 center ph3 ph4-ns pv5">
+
+  <header class="mb4 pb4 bb b--black-10">
+    <div class="ac-meta mb3">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "January 2, 2006" }}</time>
+      <span class="ac-meta-sep">&middot;</span>
+      <span>{{ lang.Translate "readingTime" .ReadingTime }}</span>
+      {{ range .Params.tags }}<span class="ac-tag">{{ . }}</span>{{ end }}
+    </div>
+    <h1 class="ac-post-title mt0 mb3">{{ .Title }}</h1>
+    {{ with .Params.description }}<p class="ac-post-lede mt0 mb0">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="ac-prose">
+    {{ .Content }}
+  </div>
+
+  <nav class="ac-post-nav mt5 pt4 bt b--black-10">
+    {{ with .PrevInSection }}
+      <a class="ac-read-more no-underline" href="{{ .RelPermalink }}"><span aria-hidden="true">&larr;</span> {{ .Title }}</a>
+    {{ end }}
+    {{ with .NextInSection }}
+      <a class="ac-read-more no-underline ac-post-nav__next" href="{{ .RelPermalink }}">{{ .Title }} <span aria-hidden="true">&rarr;</span></a>
+    {{ end }}
+  </nav>
+
+</article>
+{{ end }}

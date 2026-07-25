@@ -1,0 +1,274 @@
+{{ define "header" }}
+  {{ partials.Include "site-chrome.html" . }}
+{{ end }}
+
+{{ define "main" }}
+{{ $r := hugo.Data.resume }}
+{{ $basics := $r.basics }}
+
+<div class="ac-resume mw8 center ph3 ph4-ns pv5">
+
+  {{/* ---------- Identity ---------- */}}
+  <header class="ac-resume__header">
+    <div>
+      <h1 class="ac-page-title mt0 mb1">{{ $basics.name }}</h1>
+      <p class="ac-resume__label mt0 mb3">{{ $basics.label }}</p>
+
+      <ul class="ac-contact-list">
+        {{ with $basics.location }}
+          <li>{{ .city }}{{ with .region }}, {{ . }}{{ end }}{{ with .countryCode }} ({{ . }}){{ end }}</li>
+        {{ end }}
+        {{ with $basics.email }}
+          <li><a class="ac-link" href="mailto:{{ . }}">{{ . }}</a></li>
+        {{ end }}
+        {{ range $basics.profiles }}
+          <li><a class="ac-link" href="{{ .url }}" rel="noopener" target="_blank">{{ .network }}</a></li>
+        {{ end }}
+      </ul>
+
+      {{/* Written into public/ after the Hugo build by tools/resumepdf. */}}
+      <a class="ac-btn ac-btn--sm ac-print-hide no-underline mt3 dib"
+         href="{{ urls.RelURL "/alexis-couvreur-resume.pdf" }}" download>
+        Download as PDF
+      </a>
+    </div>
+
+    {{ with $basics.picture }}
+      <img class="ac-resume__avatar" src="{{ . }}" alt="{{ $basics.name }}" loading="lazy" width="120" height="120">
+    {{ end }}
+  </header>
+
+  {{ with $basics.summary }}
+    <p class="ac-resume__summary">{{ . }}</p>
+  {{ end }}
+
+  {{/* ---------- Skills: up front, so the page can be scanned in seconds ---------- */}}
+  {{ with $r.skills }}
+    <section class="ac-resume__section">
+      <h2 class="ac-section-heading">Skills</h2>
+      {{ range . }}
+        <div class="ac-skill-row">
+          <div class="ac-skill-row__name">{{ .name }}</div>
+          <div class="ac-skill-row__items">{{ delimit .keywords " · " }}</div>
+        </div>
+      {{ end }}
+    </section>
+  {{ end }}
+
+  {{/* ---------- Experience ---------- */}}
+  {{ with $r.work }}
+    <section class="ac-resume__section">
+      <h2 class="ac-section-heading">Experience</h2>
+      <div class="ac-timeline">
+        {{ range . }}
+          {{ $job := . }}
+          <article class="ac-entry">
+            <div class="ac-entry__period">
+              {{ time.Format "Jan 2006" .startDate }} &ndash;
+              {{ with .endDate }}{{ time.Format "Jan 2006" . }}{{ else }}Present{{ end }}
+              <span class="ac-entry__duration">
+                {{ partial "duration.html" (dict "start" .startDate "end" .endDate) }}
+              </span>
+            </div>
+            <div class="ac-entry__body">
+              <h3 class="ac-entry__title mt0 mb1">
+                {{ .position }}
+                <span class="ac-entry__at">at</span>
+                {{ with $job.website }}
+                  <a class="ac-link" href="{{ . }}" rel="noopener" target="_blank">{{ $job.name }}</a>
+                {{ else }}
+                  {{ $job.name }}
+                {{ end }}
+              </h3>
+              {{ with .location }}<p class="ac-entry__place mt0 mb2">{{ . }}</p>{{ end }}
+              {{ with .summary }}<p class="ac-entry__summary mt0 mb2">{{ . }}</p>{{ end }}
+              {{ with .highlights }}
+                <ul class="ac-highlights">
+                  {{ range . }}<li>{{ . }}</li>{{ end }}
+                </ul>
+              {{ end }}
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+
+  {{/* ---------- Open source: projects owned, then upstream work ---------- */}}
+  {{ with $r.projects }}
+    <section class="ac-resume__section">
+      <h2 class="ac-section-heading">Open Source</h2>
+      <div class="ac-project-grid">
+        {{ range . }}
+          <article class="ac-project">
+            <div class="ac-project__head">
+              <h3 class="ac-project__name mt0 mb0">
+                <a class="ac-link" href="{{ .url }}" rel="noopener" target="_blank">{{ .name }}</a>
+              </h3>
+              {{ with .stars }}
+                <span class="ac-stars" title="GitHub stars">&#9733; {{ lang.FormatNumber 0 . }}</span>
+              {{ end }}
+            </div>
+            {{ with .roles }}
+              <p class="ac-project__roles mt0 mb2">{{ delimit . " &middot; " | safeHTML }}</p>
+            {{ end }}
+            <p class="ac-project__desc mt0 mb2">{{ .description }}</p>
+            {{ with .keywords }}
+              <div class="ac-chips">{{ range . }}<span class="ac-chip">{{ . }}</span>{{ end }}</div>
+            {{ end }}
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+
+  {{/* Upstream: the ones with a written summary get a line each, the rest stay as
+       links. The data comes from `go run ./tools/contributions/main.go` and is
+       only hand-edited for the summary and badge fields. */}}
+  {{ with hugo.Data.opensource }}
+    {{ $featured := where . "summary" "!=" nil }}
+    {{ $rest := where . "summary" "==" nil }}
+
+    {{/* Every link lands on that repo's PR list, filtered to this author. */}}
+    {{ $ghUser := (index (where $basics.profiles "network" "GitHub") 0).username }}
+    {{ $prQuery := printf "/pulls?q=is%%3Apr+author%%3A%s" $ghUser }}
+
+    <section class="ac-resume__subsection">
+      <h3 class="ac-subsection-heading">
+        Upstream contributions
+        <span class="ac-subsection-note">{{ len . }} repositories</span>
+      </h3>
+
+      {{ with $featured }}
+        <ul class="ac-contrib-list">
+          {{ range . }}
+            <li class="ac-contrib">
+              <a class="ac-link ac-contrib__name" href="https://github.com/{{ .name }}{{ $prQuery }}" rel="noopener" target="_blank">{{ .name }}</a>
+              <span class="ac-contrib__count">{{ partial "pr-count.html" . }}</span>
+              {{ with .badge }}<span class="ac-badge">{{ . }}</span>{{ end }}
+              <p class="ac-contrib__summary mt1 mb0">{{ .summary }}</p>
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+
+      {{ with $rest }}
+        <div class="ac-chips ac-chips--links mt3">
+          {{ range . }}
+            <a class="ac-chip ac-chip--link" href="https://github.com/{{ .name }}{{ $prQuery }}"
+               rel="noopener" target="_blank" title="{{ .name }}, {{ partial "pr-count.html" . }}">
+              {{ .name }} <span class="ac-chip__count">{{ partial "pr-count.html" (merge . (dict "compact" true)) }}</span>
+            </a>
+          {{ end }}
+        </div>
+      {{ end }}
+    </section>
+  {{ end }}
+
+  {{/* ---------- Talks & certifications, side by side ---------- */}}
+  <div class="ac-resume__split">
+    {{ with $r.talks }}
+      <section class="ac-resume__section">
+        <h2 class="ac-section-heading">Talks</h2>
+        <ul class="ac-plain-list ac-plain-list--spaced">
+          {{ range . }}
+            <li>
+              <a class="ac-link" href="{{ .url }}" rel="noopener" target="_blank">{{ .title }}</a>
+              <span class="ac-line-meta">
+                {{ .event }} &middot; {{ time.Format "Jan 2006" .date }}{{ with .language }} &middot; {{ . }}{{ end }}
+              </span>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+
+    {{ with $r.certificates }}
+      <section class="ac-resume__section">
+        <h2 class="ac-section-heading">Certifications</h2>
+        <ul class="ac-plain-list ac-plain-list--spaced">
+          {{ range . }}
+            {{ $cert := . }}
+            <li>
+              {{ with $cert.url }}
+                <a class="ac-link" href="{{ . }}" rel="noopener" target="_blank">{{ $cert.name }}</a>
+              {{ else }}
+                {{ $cert.name }}
+              {{ end }}
+              <span class="ac-line-meta">
+                {{ .issuer }} &middot; {{ time.Format "Jan 2006" .date }}{{ with .expires }} &middot; expires {{ time.Format "Jan 2006" . }}{{ end }}
+              </span>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  </div>
+
+  {{/* ---------- Education ---------- */}}
+  {{ with $r.education }}
+    <section class="ac-resume__section">
+      <h2 class="ac-section-heading">Education</h2>
+      <div class="ac-timeline ac-timeline--tight">
+        {{ range . }}
+          <article class="ac-entry">
+            <div class="ac-entry__period">
+              {{ time.Format "2006" .startDate }}{{ with .endDate }}&ndash;{{ time.Format "2006" . }}{{ end }}
+            </div>
+            <div class="ac-entry__body">
+              <h3 class="ac-entry__title ac-entry__title--sm mt0 mb1">{{ .studyType }}{{ with .area }}, {{ . }}{{ end }}</h3>
+              <p class="ac-entry__place mt0 mb0">
+                {{ .institution }}{{ with .honors }} &middot; {{ . }}{{ end }}
+              </p>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+
+  {{/* ---------- Awards ---------- */}}
+  {{ with $r.awards }}
+    <section class="ac-resume__section">
+      <h2 class="ac-section-heading">Hackathons &amp; Awards</h2>
+      <ul class="ac-plain-list ac-plain-list--spaced">
+        {{ range . }}
+          {{ $award := . }}
+          <li>
+            {{ if and $award.summary (strings.HasPrefix $award.summary "http") }}
+              <a class="ac-link" href="{{ $award.summary }}" rel="noopener" target="_blank">{{ $award.title }}</a>
+            {{ else }}
+              {{ $award.title }}
+            {{ end }}
+            <span class="ac-line-meta">{{ .awarder }} &middot; {{ time.Format "Jan 2006" .date }}</span>
+          </li>
+        {{ end }}
+      </ul>
+    </section>
+  {{ end }}
+
+  {{/* ---------- Languages & interests ---------- */}}
+  <div class="ac-resume__split">
+    {{ with $r.languages }}
+      <section class="ac-resume__section">
+        <h2 class="ac-section-heading">Spoken Languages</h2>
+        <ul class="ac-plain-list">
+          {{ range . }}<li><strong>{{ .language }}</strong> &mdash; {{ .fluency }}</li>{{ end }}
+        </ul>
+      </section>
+    {{ end }}
+
+    {{ with $r.interests }}
+      <section class="ac-resume__section">
+        <h2 class="ac-section-heading">Interests</h2>
+        <div class="ac-chips">
+          {{ range . }}<span class="ac-chip">{{ .name }}</span>{{ end }}
+        </div>
+      </section>
+    {{ end }}
+  </div>
+
+  {{ with .Content }}<div class="ac-prose ac-resume__section">{{ . }}</div>{{ end }}
+
+</div>
+{{ end }}

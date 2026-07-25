@@ -1,0 +1,20 @@
+[tools]
+hugo = "0.163.1"
+go = "1.22"
+
+[tasks.contributions]
+description = "Regenerate data/opensource.json from the GitHub API"
+run = "go run ./tools/contributions/main.go"
+
+[tasks.build]
+description = "Build the site the way CI does"
+run = "hugo --gc --minify"
+
+[tasks.pdf]
+description = "Print the resume page to a downloadable PDF in public/"
+depends = ["build"]
+run = "go run ./tools/resumepdf/main.go"
+
+[tasks.dev]
+description = "Serve locally, including drafts"
+run = "hugo server -D"

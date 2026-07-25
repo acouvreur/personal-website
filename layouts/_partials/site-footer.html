@@ -1,0 +1,10 @@
+<footer class="ac-footer bt b--black-10 bottom-0 w-100 pa3" role="contentinfo">
+  <div class="mw8 center ph3 ph4-ns">
+    <div class="flex flex-wrap justify-between items-center pv3">
+      <a class="f6 no-underline ac-footer-link" href="{{ .Site.Home.Permalink }}">
+        &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+      </a>
+      <div>{{ partials.IncludeCached "social/follow.html" . }}</div>
+    </div>
+  </div>
+</footer>

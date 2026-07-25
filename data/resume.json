@@ -1,0 +1,344 @@
+{
+  "meta": {
+    "theme": "elegant"
+  },
+  "basics": {
+    "name": "Alexis Couvreur",
+    "label": "Co-founder at Reeveel · Software Engineer",
+    "picture": "https://avatars.githubusercontent.com/u/22034450",
+    "email": "alexiscouvreur.pro@gmail.com",
+    "website": "https://www.alexiscouvreur.fr",
+    "summary": "I'm a software engineer based in Montreal, at home across the whole stack: frontend, backend, and the Linux underneath it all. I'm the technical lead on my teams, working closely with architects and leading the technical decisions. I maintain Sablier and contribute to TinyGo, Docker and a fair number of other Go projects. Open source is the part I care about most, inside companies as much as outside them.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Montreal",
+      "countryCode": "CA",
+      "region": "Quebec"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "acouvreur",
+        "url": "https://github.com/acouvreur"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "alexis-couvreur",
+        "url": "https://www.linkedin.com/in/alexis-couvreur/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Reeveel",
+      "position": "Co-founder",
+      "website": "https://getreeveel.com",
+      "location": "Montreal, Quebec, Canada",
+      "startDate": "2025-09-01",
+      "summary": "A startup building a new kind of digital frame for modern living spaces. I'm the CTO and I lead the engineering team.",
+      "highlights": [
+        "Own the whole stack: firmware in C, a React Native app, Go APIs, a CLI and the SDKs",
+        "Built it local-first, so the frame works over Bluetooth with no account and no cloud",
+        "Set up the engineering side: infrastructure as code, CI/CD, signed and attested builds",
+        "Pushed the BLE fixes we needed back upstream to TinyGo and Espressif"
+      ]
+    },
+    {
+      "name": "Behaviour Interactive",
+      "position": "Frontend Consultant",
+      "website": "https://deadbydaylight.com/creator-program/",
+      "location": "Montreal, Quebec, Canada",
+      "startDate": "2025-05-01",
+      "endDate": "2025-06-30",
+      "summary": "Built the public Creator Program page for Dead by Daylight, the studio's partnership program for streamers and video creators.",
+      "highlights": [
+        "Shipped the whole page: creator benefits, program pillars, the Iridescent and Gold tiers with their eligibility rules, and the FAQ",
+        "Worked directly with the Dead by Daylight team on a two-month engagement"
+      ]
+    },
+    {
+      "name": "Banque Nationale du Canada",
+      "position": "Platform Engineer",
+      "website": "https://www.bnc.ca/",
+      "location": "Montreal, Quebec, Canada",
+      "startDate": "2022-06-01",
+      "summary": "I run the developer platform that thousands of engineers at the bank use every day: GitHub, Artifactory, and the golden path between them.",
+      "highlights": [
+        "Technical lead on the platform team, working with the architects on standards and on where the platform goes next",
+        "Run GitHub and Artifactory for thousands of engineers, with every org, repo and permission declared in Terraform",
+        "Wrote the golden pipeline teams build on: build, test, publish, plus security gates, SBOM, provenance and signing",
+        "Kept the whole thing secretless. Artifactory and CI authenticate over OIDC, so there are no long-lived credentials to rotate",
+        "Wrote the Go tooling that provisions repos and reconciles drift against what Terraform declares",
+        "Started the bank's inner source community and still lead it: governance, coaching, onboarding",
+        "Sent our fixes to the GitHub Terraform provider upstream instead of keeping a fork"
+      ]
+    },
+    {
+      "name": "Supralog",
+      "position": "Software Engineer",
+      "website": "https://supralog.com",
+      "location": "Antibes, France",
+      "startDate": "2019-09-17",
+      "endDate": "2022-05-31",
+      "summary": "Lead developer on software for a national tournament federation, and the DevOps referent for the other teams.",
+      "highlights": [
+        "Jenkins CI/CD with Kubernetes agents spun up on demand, and an on-prem cluster locked down with RBAC",
+        "Real-time monitoring with Telegraf, InfluxDB, Grafana, Prometheus and Alertmanager",
+        "Docker Swarm cluster with shared volumes and rolling updates, fronted by Traefik"
+      ]
+    },
+    {
+      "name": "Supralog",
+      "position": "Software Apprentice",
+      "website": "https://supralog.com",
+      "location": "Antibes, France",
+      "startDate": "2018-09-17",
+      "endDate": "2019-09-16",
+      "summary": "Built the shared CI/CD platform that every engineering team ended up using.",
+      "highlights": [
+        "Jenkins pipelines with platform-specific agents provisioned on demand from Kubernetes",
+        "Studied and benchmarked Google Cloud PaaS and IaaS (GKE) for the teams"
+      ]
+    },
+    {
+      "name": "I3S/CNRS",
+      "position": "Intern",
+      "website": "https://www.i3s.unice.fr/",
+      "location": "Sophia Antipolis, France",
+      "startDate": "2018-06-18",
+      "endDate": "2018-08-20",
+      "summary": "Research on blockchain for IoT. Ran a private Ethereum network on Raspberry Pi and wrote Solidity contracts that handled sensor data and reconfigured actuators.",
+      "highlights": []
+    },
+    {
+      "name": "Ultra Prod SAS",
+      "position": "Software Developer Intern",
+      "website": "https://www.ultra-prod.com/",
+      "startDate": "2016-04-01",
+      "endDate": "2016-07-01",
+      "summary": "Designed, built and shipped VaiPharm, a cross-platform mobile app built with Apache Cordova.",
+      "highlights": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "Sablier",
+      "url": "https://sablierapp.dev/",
+      "repository": "https://github.com/sablierapp/sablier",
+      "roles": ["Creator", "Maintainer"],
+      "startDate": "2020-10-01",
+      "stars": 2823,
+      "description": "Scale-to-zero for containers: start workloads on demand, shut them down when activity stops. Works with Docker, Swarm, Kubernetes, Podman and Proxmox LXC.",
+      "keywords": ["Go", "Kubernetes", "Docker", "Podman", "Traefik", "Nginx"]
+    },
+    {
+      "name": "Traefik ModSecurity Plugin",
+      "url": "https://github.com/acouvreur/traefik-modsecurity-plugin",
+      "roles": ["Creator", "Maintainer"],
+      "startDate": "2021-12-01",
+      "stars": 176,
+      "description": "Traefik middleware that proxies requests through an OWASP ModSecurity Core Rule Set container, so you get a WAF in front of any Traefik-routed service.",
+      "keywords": ["Go", "Traefik", "OWASP", "ModSecurity", "Security"]
+    }
+  ],
+  "talks": [
+    {
+      "title": "WireMock OpenAPI Generator",
+      "event": "JUG Montreal",
+      "date": "2024-02-15",
+      "language": "French",
+      "url": "https://www.youtube.com/watch?v=0jhONfBrcKw"
+    },
+    {
+      "title": "Cloud Native Users and Contributor Stories",
+      "event": "CNCF Montreal",
+      "date": "2023-06-15",
+      "language": "English",
+      "url": "https://community.cncf.io/events/details/cncf-montreal-presents-q2-cncf-montreal-cloud-native-users-and-contributor-stories/"
+    },
+    {
+      "title": "Scale to Zero with Sablier",
+      "event": "JUG Montreal",
+      "date": "2023-04-15",
+      "language": "French",
+      "url": "https://www.youtube.com/watch?v=0cPt_w7NIs0"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Certified Cloud Practitioner",
+      "date": "2025-12-01",
+      "expires": "2028-12-01",
+      "issuer": "Amazon Web Services",
+      "url": "https://www.credly.com/badges/ecac3dbd-4408-4ff5-8982-94e995a8ac10/public_url"
+    },
+    {
+      "name": "GitHub Administration",
+      "date": "2025-02-01",
+      "expires": "2028-02-01",
+      "issuer": "GitHub",
+      "url": "https://www.credly.com/badges/49659c2b-ab14-4f08-a64c-c32ac9511c61/public_url"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Polytech Nice Sophia",
+      "area": "Software Architecture",
+      "studyType": "M.Sc",
+      "honors": "Graduated with high honours",
+      "startDate": "2018-09-01",
+      "endDate": "2019-09-15"
+    },
+    {
+      "institution": "Université Côte d'Azur",
+      "area": "Information Technology",
+      "studyType": "M.Sc",
+      "startDate": "2017-09-01",
+      "endDate": "2018-06-01"
+    },
+    {
+      "institution": "Aix-Marseille Université",
+      "area": "Information Technology",
+      "studyType": "Licence",
+      "startDate": "2016-09-01",
+      "endDate": "2017-06-01"
+    },
+    {
+      "institution": "Université Nice Sophia Antipolis (membre d'Université Côte d'Azur)",
+      "area": "Information Technology",
+      "studyType": "DUT Informatique",
+      "startDate": "2014-09-01",
+      "endDate": "2016-07-01"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Languages",
+      "keywords": ["Go", "C", "Java", "TypeScript", "JavaScript", "SQL", "Bash"]
+    },
+    {
+      "name": "Frontend",
+      "keywords": ["React", "React Native", "TypeScript", "HTML & CSS", "design systems", "WASM"]
+    },
+    {
+      "name": "Backend & APIs",
+      "keywords": [
+        "Go",
+        "Node.js",
+        "Spring Boot",
+        "REST APIs",
+        "SDK design",
+        "Keycloak",
+        "OAuth & OIDC"
+      ]
+    },
+    {
+      "name": "Linux & Systems",
+      "keywords": [
+        "Linux",
+        "systemd",
+        "networking & TLS",
+        "Nginx",
+        "Traefik",
+        "self-hosting",
+        "Prometheus",
+        "Grafana",
+        "InfluxDB"
+      ]
+    },
+    {
+      "name": "Platform & CI/CD",
+      "keywords": [
+        "Kubernetes",
+        "Docker",
+        "Docker Swarm",
+        "Podman",
+        "Terraform",
+        "GitHub Enterprise & Actions",
+        "JFrog Artifactory",
+        "Jenkins",
+        "AWS",
+        "Google Cloud"
+      ]
+    },
+    {
+      "name": "Security & Supply Chain",
+      "keywords": [
+        "OIDC federation",
+        "secretless authentication",
+        "SBOM",
+        "build provenance",
+        "artifact signing",
+        "SAST & dependency scanning",
+        "OWASP ModSecurity"
+      ]
+    },
+    {
+      "name": "Embedded & IoT",
+      "keywords": ["TinyGo", "Bluetooth Low Energy", "ESP-IDF", "embedded C", "Raspberry Pi"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "French",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional"
+    }
+  ],
+  "awards": [
+    {
+      "title": "ONE Record Hackathon 2023",
+      "date": "2023-06-15",
+      "awarder": "IATA",
+      "summary": "https://devpost.com/software/one-solutions"
+    },
+    {
+      "title": "ONE Record Hackathon 2022 - DCSA Prize",
+      "date": "2022-05-15",
+      "awarder": "IATA",
+      "summary": "https://devpost.com/software/containermesh"
+    },
+    {
+      "title": "ONE Record Hackathon 2021 - Developer Prize",
+      "date": "2021-09-15",
+      "awarder": "IATA",
+      "summary": "https://devpost.com/software/one-track-application"
+    },
+    {
+      "title": "Twitch Channel Points Hackathon",
+      "date": "2021-03-15",
+      "awarder": "Twitch",
+      "summary": "https://devpost.com/software/awesome-channel-points-manager"
+    },
+    {
+      "title": "ONE Record Hackathon 2020 - Developer Prize",
+      "date": "2020-09-15",
+      "awarder": "IATA",
+      "summary": "https://devpost.com/software/one-track-by-the-french-team"
+    },
+    {
+      "title": "Traefik Hackaethon 2020 - 3rd place",
+      "date": "2020-10-15",
+      "awarder": "Traefik",
+      "summary": "https://traefik.io/blog/traefik-hackaethon-2020-middleware-plugins-brain-dump/"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Open Source"
+    },
+    {
+      "name": "Sport"
+    },
+    {
+      "name": "Gaming"
+    },
+    {
+      "name": "Music"
+    }
+  ]
+}

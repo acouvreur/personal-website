@@ -1,0 +1,96 @@
+{{ define "header" }}
+  {{ partials.Include "site-chrome.html" . }}
+{{ end }}
+
+{{ define "main" }}
+{{ $basics := hugo.Data.resume.basics }}
+
+<section class="ac-hero mw8 center ph3 ph4-ns pv5">
+  <div class="ac-hero__grid">
+    <div class="ac-hero__text">
+      <p class="ac-eyebrow">{{ $basics.label }}</p>
+      <h1 class="ac-hero__title mt0 mb3">{{ $basics.name }}</h1>
+      <p class="ac-hero__summary mt0 mb4">{{ $basics.summary }}</p>
+
+      <p class="ac-hero__location mt0 mb4">
+        {{ with $basics.location }}{{ .city }}{{ with .region }}, {{ . }}{{ end }}{{ end }}
+      </p>
+
+      <div class="ac-cta-row">
+        <a class="ac-btn ac-btn--primary no-underline" href="{{ urls.RelURL "/resume/" }}">View resume</a>
+        <a class="ac-btn no-underline" href="{{ urls.RelURL "/blog/" }}">Read the blog</a>
+      </div>
+    </div>
+
+    {{ with $basics.picture }}
+      <div class="ac-hero__avatar">
+        <img src="{{ . }}" alt="{{ $basics.name }}" loading="lazy" width="220" height="220">
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+{{ with hugo.Data.resume.projects }}
+  {{ $lead := index . 0 }}
+  <section class="mw8 center ph3 ph4-ns pb5">
+    <div class="ac-highlight-grid">
+      <div class="ac-highlight">
+        <span class="ac-highlight__stat">{{ lang.FormatNumber 0 $lead.stars }}&#9733;</span>
+        <p class="ac-highlight__label">
+          Stars on
+          <a class="ac-link" href="{{ $lead.url }}" rel="noopener" target="_blank">{{ $lead.name }}</a>,
+          my scale-to-zero project for Docker, Kubernetes and Podman.
+        </p>
+      </div>
+      {{ with hugo.Data.opensource }}
+        <div class="ac-highlight">
+          <span class="ac-highlight__stat">{{ len . }}</span>
+          <p class="ac-highlight__label">
+            Projects I've contributed to, among them TinyGo, Traefik, Docker and Terraform.
+          </p>
+        </div>
+      {{ end }}
+      {{ with hugo.Data.resume.talks }}
+        <div class="ac-highlight">
+          <span class="ac-highlight__stat">{{ len . }}</span>
+          <p class="ac-highlight__label">
+            Talks at JUG Montreal and CNCF Montreal, in French and in English.
+          </p>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+
+{{ $posts := where site.RegularPages "Section" "blog" }}
+{{ with $posts }}
+  <section class="mw8 center ph3 ph4-ns pb5">
+    <div class="flex items-baseline justify-between bb b--black-10 pb2 mb4">
+      <h2 class="ac-section-heading mt0 mb0">Latest posts</h2>
+      <a class="ac-read-more no-underline" href="{{ urls.RelURL "/blog/" }}">All posts <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <div class="ac-post-grid">
+      {{ range first 3 . }}
+        <article class="ac-card">
+          <div class="ac-meta mb2">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "January 2, 2006" }}</time>
+            {{ range first 2 .Params.tags }}<span class="ac-tag">{{ . }}</span>{{ end }}
+          </div>
+          <h3 class="ac-card__title mt0 mb2">
+            <a class="ac-title-link no-underline" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          <p class="ac-card__summary mt0 mb3">
+            {{ with .Params.description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}
+          </p>
+          <a class="ac-read-more no-underline" href="{{ .RelPermalink }}">Read more <span aria-hidden="true">&rarr;</span></a>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+
+{{ with .Content }}
+  <section class="mw8 center ph3 ph4-ns pb5 ac-prose">{{ . }}</section>
+{{ end }}
+{{ end }}
