@@ -1,25 +1,30 @@
-// Command contributions regenerates the upstream open source contributions that
-// the resume renders, so those counts are never hand-maintained.
+// Command contributions regenerates the open source contribution data the site
+// renders, so none of it is hand-maintained.
 //
 //	go run ./tools/contributions/main.go
 //
 // It asks the GitHub search API for the pull requests the user authored, drops
-// the ones in repositories they own or co-own, aggregates what is left by
-// repository, and writes data/opensource.json.
+// the ones in repositories they own or co-own, and writes two files:
 //
-// PRs are counted in three buckets. "merged" is the plain case. "landed" covers
+//	data/pullrequests.json   every pull request, for the /opensource/ page
+//	data/opensource.json     per-repository totals, for the resume
+//
+// Two searches cover it. A closed PR carries merged_at, so "is:closed" tells
+// merged and declined apart on its own, and "is:open" brings in the rest.
+//
+// PRs are classified in four states. "merged" is the plain case. "landed" covers
 // upstreams that apply a change on their side and close the PR instead of
-// merging it, which GitHub reports as closed-and-not-merged and which would
-// otherwise read as rejected work; list those under -closed-counts and their
-// closed PRs are counted as accepted. "open" is carried alongside and only
-// affects inclusion if you pass -min-open.
+// merging it, which GitHub reports as closed-and-unmerged and which would
+// otherwise read as rejected work; list those under -closed-counts. "open"
+// speaks for itself, and "closed" is everything genuinely declined.
 //
 // Restricting -closed-counts to named upstreams matters: everywhere else, a
-// closed unmerged PR really was turned down, and should not be advertised.
+// closed unmerged PR really was turned down, and should not be counted as work
+// that shipped.
 //
-// Editorial fields ("summary", "badge") are NOT generated. They are read back
-// out of the existing file and carried over, so regenerating never destroys the
-// prose. Every other field is replaced.
+// Editorial fields ("summary", "badge") in data/opensource.json are NOT
+// generated. They are read back out of the existing file and carried over, so
+// regenerating never destroys the prose. Every other field is replaced.
 //
 // Authentication: GITHUB_TOKEN or GH_TOKEN if set, otherwise `gh auth token`.
 // Unauthenticated requests work but are rate limited to 10 searches per minute.
@@ -34,6 +39,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -46,7 +52,7 @@ const (
 	maxResults = 1000
 )
 
-// Coursework and hackathon repositories. They are genuine merged PRs, which is
+// Coursework and hackathon repositories. They hold genuine merged PRs, which is
 // exactly why a count alone cannot filter them out. They outrank single-PR
 // contributions to Docker or Kubernetes that carry far more weight on a resume.
 const defaultExcludedRepos = "pns-soa-h/uberoo," +
@@ -59,7 +65,37 @@ const defaultExcludedRepos = "pns-soa-h/uberoo," +
 // PR really did get incorporated.
 const defaultClosedCounts = "espressif"
 
-// Entry is one repository's worth of upstream work, as the Hugo template reads it.
+// Pull request states, most to least favourable.
+const (
+	stateMerged = "merged"
+	stateLanded = "landed"
+	stateOpen   = "open"
+	stateClosed = "closed"
+)
+
+// conventionalPrefix pulls the type out of titles like "fix(darwin): ..." or
+// "feat!: ...". Anything that does not follow the convention becomes "other".
+var conventionalPrefix = regexp.MustCompile(`^([a-zA-Z]+)(\([^)]*\))?!?:`)
+
+var knownTypes = map[string]bool{
+	"feat": true, "fix": true, "docs": true, "refactor": true, "test": true,
+	"chore": true, "perf": true, "build": true, "ci": true, "style": true,
+	"revert": true,
+}
+
+// PullRequest is one contribution, as the /opensource/ page reads it.
+type PullRequest struct {
+	Repo    string `json:"repo"`
+	Number  int    `json:"number"`
+	Title   string `json:"title"`
+	URL     string `json:"url"`
+	State   string `json:"state"`
+	Type    string `json:"type"`
+	Created string `json:"created"`
+	Closed  string `json:"closed,omitempty"`
+}
+
+// Entry is one repository's worth of upstream work, as the resume reads it.
 type Entry struct {
 	Name   string `json:"name"`
 	Merged int    `json:"merged"`
@@ -79,7 +115,15 @@ type searchResponse struct {
 	TotalCount        int  `json:"total_count"`
 	IncompleteResults bool `json:"incomplete_results"`
 	Items             []struct {
+		Number        int    `json:"number"`
+		Title         string `json:"title"`
+		HTMLURL       string `json:"html_url"`
 		RepositoryURL string `json:"repository_url"`
+		CreatedAt     string `json:"created_at"`
+		ClosedAt      string `json:"closed_at"`
+		PullRequest   struct {
+			MergedAt string `json:"merged_at"`
+		} `json:"pull_request"`
 	} `json:"items"`
 }
 
@@ -89,6 +133,7 @@ type options struct {
 	excludeRepos map[string]bool
 	closedCounts map[string]bool
 	out          string
+	prsOut       string
 	minMerged    int
 	minOpen      int
 }
@@ -99,8 +144,9 @@ func main() {
 		excludeOrgs  = flag.String("exclude-org", "reeveel,sablierapp", "comma-separated orgs to treat as own work, not upstream")
 		excludeRepos = flag.String("exclude-repo", defaultExcludedRepos, "comma-separated owner/name repositories to omit")
 		closedCounts = flag.String("closed-counts", defaultClosedCounts, "comma-separated owners or owner/name repositories where a closed PR counts as accepted")
-		out          = flag.String("out", filepath.Join("data", "opensource.json"), "file to write")
-		minMerged    = flag.Int("min-merged", 1, "minimum accepted PRs for a repository to be included")
+		out          = flag.String("out", filepath.Join("data", "opensource.json"), "per-repository totals to write")
+		prsOut       = flag.String("prs-out", filepath.Join("data", "pullrequests.json"), "full pull request list to write")
+		minMerged    = flag.Int("min-merged", 1, "minimum accepted PRs for a repository to appear in the totals")
 		minOpen      = flag.Int("min-open", 0, "if above zero, also include repositories with at least this many open PRs")
 	)
 	flag.Parse()
@@ -111,6 +157,7 @@ func main() {
 		excludeRepos: toSet(splitList(*excludeRepos)),
 		closedCounts: toSet(splitList(*closedCounts)),
 		out:          *out,
+		prsOut:       *prsOut,
 		minMerged:    *minMerged,
 		minOpen:      *minOpen,
 	}
@@ -122,38 +169,75 @@ func main() {
 }
 
 func run(opts options) error {
-	merged, err := fetchCounts(opts, "is:merged")
+	// A merged PR is also a closed one, so these two searches cover every state.
+	closed, err := opts.fetch("is:closed")
 	if err != nil {
-		return fmt.Errorf("counting merged pull requests: %w", err)
+		return fmt.Errorf("searching closed pull requests: %w", err)
 	}
-	// GitHub counts a merged PR as closed too, so this is a superset of merged.
-	closed, err := fetchCounts(opts, "is:closed")
+	open, err := opts.fetch("is:open")
 	if err != nil {
-		return fmt.Errorf("counting closed pull requests: %w", err)
-	}
-	open, err := fetchCounts(opts, "is:open")
-	if err != nil {
-		return fmt.Errorf("counting open pull requests: %w", err)
-	}
-	if len(merged) == 0 && len(closed) == 0 && len(open) == 0 {
-		return fmt.Errorf("no pull requests found for %q, refusing to write an empty file", opts.user)
+		return fmt.Errorf("searching open pull requests: %w", err)
 	}
 
-	entries := make([]Entry, 0, len(merged))
-	for name := range union(merged, closed, open) {
-		entry := Entry{Name: name, Merged: merged[name], Open: open[name]}
-		// Everywhere else a closed unmerged PR was declined, so it stays uncounted.
-		if opts.countsClosed(name) {
-			entry.Landed = closed[name] - merged[name]
-		}
-		if !opts.includes(entry) {
-			continue
-		}
-		entries = append(entries, entry)
+	prs := append(closed, open...)
+	if len(prs) == 0 {
+		return fmt.Errorf("no pull requests found for %q, refusing to write empty files", opts.user)
 	}
 
-	// Busiest repositories first, alphabetical within a tie, so the file is
+	// Newest first, and by repository then number within a day, so the file is
 	// stable across runs and diffs stay readable.
+	sort.Slice(prs, func(i, j int) bool {
+		switch {
+		case prs[i].Created != prs[j].Created:
+			return prs[i].Created > prs[j].Created
+		case prs[i].Repo != prs[j].Repo:
+			return prs[i].Repo < prs[j].Repo
+		default:
+			return prs[i].Number > prs[j].Number
+		}
+	})
+
+	if err := writeJSON(opts.prsOut, prs); err != nil {
+		return err
+	}
+
+	entries := opts.summarise(prs)
+	kept := carryOverProse(opts.out, entries)
+	if err := writeJSON(opts.out, entries); err != nil {
+		return err
+	}
+
+	report(opts, prs, entries, kept)
+	return nil
+}
+
+// summarise rolls the pull requests up per repository for the resume.
+func (o options) summarise(prs []PullRequest) []Entry {
+	byRepo := map[string]*Entry{}
+	for _, pr := range prs {
+		entry, ok := byRepo[pr.Repo]
+		if !ok {
+			entry = &Entry{Name: pr.Repo}
+			byRepo[pr.Repo] = entry
+		}
+		switch pr.State {
+		case stateMerged:
+			entry.Merged++
+		case stateLanded:
+			entry.Landed++
+		case stateOpen:
+			entry.Open++
+		}
+		// Declined PRs are deliberately not counted anywhere.
+	}
+
+	entries := make([]Entry, 0, len(byRepo))
+	for _, entry := range byRepo {
+		if o.includes(*entry) {
+			entries = append(entries, *entry)
+		}
+	}
+
 	sort.Slice(entries, func(i, j int) bool {
 		switch {
 		case entries[i].Accepted() != entries[j].Accepted():
@@ -164,23 +248,7 @@ func run(opts options) error {
 			return entries[i].Name < entries[j].Name
 		}
 	})
-
-	kept := carryOverProse(opts.out, entries)
-
-	if err := writeJSON(opts.out, entries); err != nil {
-		return err
-	}
-
-	totalMerged, totalLanded := totals(entries)
-	fmt.Printf("wrote %s: %d repositories, %d merged PRs", opts.out, len(entries), totalMerged)
-	if totalLanded > 0 {
-		fmt.Printf(", %d landed without a merge", totalLanded)
-	}
-	if kept > 0 {
-		fmt.Printf(", kept %d hand-written summaries", kept)
-	}
-	fmt.Println()
-	return nil
+	return entries
 }
 
 func (o options) includes(e Entry) bool {
@@ -203,23 +271,22 @@ func (o options) countsClosed(repo string) bool {
 	return found && o.closedCounts[owner]
 }
 
-// fetchCounts pages through the search API and tallies PRs per repository for
-// one state qualifier, such as "is:merged".
-func fetchCounts(opts options, state string) (map[string]int, error) {
+// fetch pages through the search API for one state qualifier.
+func (o options) fetch(state string) ([]PullRequest, error) {
 	query := []string{
-		"author:" + opts.user,
+		"author:" + o.user,
 		"type:pr",
 		state,
 		// Contributions to one's own repositories are projects, not upstream work.
-		"-user:" + opts.user,
+		"-user:" + o.user,
 	}
-	for _, org := range opts.excludeOrgs {
+	for _, org := range o.excludeOrgs {
 		query = append(query, "-org:"+org)
 	}
 
 	client := &http.Client{Timeout: 30 * time.Second}
 	token := githubToken()
-	counts := map[string]int{}
+	var prs []PullRequest
 
 	for page := 1; (page-1)*perPage < maxResults; page++ {
 		params := url.Values{}
@@ -233,9 +300,20 @@ func fetchCounts(opts options, state string) (map[string]int, error) {
 		}
 
 		for _, item := range result.Items {
-			if repo := repoFromAPIURL(item.RepositoryURL); repo != "" {
-				counts[repo]++
+			repo := repoFromAPIURL(item.RepositoryURL)
+			if repo == "" || o.excludeRepos[repo] {
+				continue
 			}
+			prs = append(prs, PullRequest{
+				Repo:    repo,
+				Number:  item.Number,
+				Title:   item.Title,
+				URL:     item.HTMLURL,
+				State:   o.classify(repo, state, item.PullRequest.MergedAt),
+				Type:    typeOf(item.Title),
+				Created: day(item.CreatedAt),
+				Closed:  day(item.ClosedAt),
+			})
 		}
 
 		if len(result.Items) < perPage {
@@ -249,7 +327,56 @@ func fetchCounts(opts options, state string) (map[string]int, error) {
 		time.Sleep(2 * time.Second)
 	}
 
-	return counts, nil
+	return prs, nil
+}
+
+func (o options) classify(repo, state, mergedAt string) string {
+	if state == "is:open" {
+		return stateOpen
+	}
+	if mergedAt != "" {
+		return stateMerged
+	}
+	if o.countsClosed(repo) {
+		return stateLanded
+	}
+	return stateClosed
+}
+
+// typeOf reads the conventional commit type off a pull request title.
+func typeOf(title string) string {
+	match := conventionalPrefix.FindStringSubmatch(title)
+	if match == nil {
+		return "other"
+	}
+	prefix := strings.ToLower(match[1])
+	if !knownTypes[prefix] {
+		return "other"
+	}
+	return prefix
+}
+
+// day trims an RFC 3339 timestamp down to its date.
+func day(timestamp string) string {
+	if len(timestamp) < 10 {
+		return ""
+	}
+	return timestamp[:10]
+}
+
+func report(opts options, prs []PullRequest, entries []Entry, kept int) {
+	counts := map[string]int{}
+	for _, pr := range prs {
+		counts[pr.State]++
+	}
+	fmt.Printf("wrote %s: %d pull requests (%d merged, %d landed, %d open, %d declined)\n",
+		opts.prsOut, len(prs), counts[stateMerged], counts[stateLanded], counts[stateOpen], counts[stateClosed])
+
+	fmt.Printf("wrote %s: %d repositories", opts.out, len(entries))
+	if kept > 0 {
+		fmt.Printf(", kept %d hand-written summaries", kept)
+	}
+	fmt.Println()
 }
 
 func get(client *http.Client, endpoint, token string, into any) error {
@@ -314,13 +441,13 @@ func carryOverProse(path string, entries []Entry) int {
 	return kept
 }
 
-func writeJSON(path string, entries []Entry) error {
+func writeJSON(path string, value any) error {
 	if dir := filepath.Dir(path); dir != "." {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			return err
 		}
 	}
-	encoded, err := json.MarshalIndent(entries, "", "  ")
+	encoded, err := json.MarshalIndent(value, "", "  ")
 	if err != nil {
 		return err
 	}
@@ -350,16 +477,6 @@ func githubToken() string {
 	return strings.TrimSpace(string(out))
 }
 
-func union(maps ...map[string]int) map[string]bool {
-	all := map[string]bool{}
-	for _, m := range maps {
-		for key := range m {
-			all[key] = true
-		}
-	}
-	return all
-}
-
 func splitList(csv string) []string {
 	var out []string
 	for _, part := range strings.Split(csv, ",") {
@@ -376,12 +493,4 @@ func toSet(items []string) map[string]bool {
 		set[item] = true
 	}
 	return set
-}
-
-func totals(entries []Entry) (merged, landed int) {
-	for _, entry := range entries {
-		merged += entry.Merged
-		landed += entry.Landed
-	}
-	return merged, landed
 }

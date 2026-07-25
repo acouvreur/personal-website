@@ -64,17 +64,29 @@ so the PR counts are never typed by hand:
 mise run contributions      # or: go run ./tools/contributions/main.go
 ```
 
-It skips repositories you own (`-user`) or co-own (`-exclude-org`), and writes
-`data/opensource.json` sorted by how much landed.
+It skips repositories you own (`-user`) or co-own (`-exclude-org`) and writes two
+files:
 
-PRs go into three buckets. **merged** is the plain case. **landed** is for upstreams
+| File | Feeds | Contents |
+| --- | --- | --- |
+| `data/pullrequests.json` | `/opensource/` | Every pull request, one record each |
+| `data/opensource.json` | `/resume/`, home page | Per-repository totals |
+
+Two searches cover it: a closed PR carries `merged_at`, so `is:closed` tells merged
+and declined apart on its own, and `is:open` brings in the rest.
+
+PRs land in four states. **merged** is the plain case. **landed** is for upstreams
 that apply a change on their side and close the PR instead of merging it, which
 GitHub reports as closed-and-unmerged and would otherwise read as rejected work;
-Espressif does this, and stamps each one with an internal tracker ID. **open** is
-carried along but only affects inclusion via `-min-open`.
+Espressif does this, and stamps each one with an internal tracker ID. **open**
+speaks for itself, and **closed** is everything genuinely declined, which is shown
+on `/opensource/` but counted nowhere.
 
 Only repositories listed in `-closed-counts` get the landed treatment. Everywhere
-else a closed unmerged PR really was declined, and stays uncounted.
+else a closed unmerged PR really was declined.
+
+Each PR also gets a `type` read off its conventional commit prefix (`fix(darwin):`
+becomes `fix`), which is what the type filter on `/opensource/` runs on.
 
 Two things it does **not** touch: the `summary` and `badge` fields. Those are
 editorial, so the generator reads them out of the existing file and writes them

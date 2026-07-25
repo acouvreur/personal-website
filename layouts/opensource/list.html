@@ -1,0 +1,186 @@
+{{ define "header" }}
+  {{ partials.Include "site-chrome.html" . }}
+{{ end }}
+
+{{ define "main" }}
+{{ $prs := hugo.Data.pullrequests }}
+
+{{/* Option lists come from the data itself, so a new repository or a new
+     conventional commit type shows up in the filters without a code change. */}}
+{{ $repos := apply $prs "index" "." "repo" | uniq | sort }}
+{{ $types := apply $prs "index" "." "type" | uniq | sort }}
+{{ $years := slice }}
+{{ range $prs }}
+  {{ $years = $years | append (substr .created 0 4) }}
+{{ end }}
+{{ $years = $years | uniq | sort | collections.Reverse }}
+
+{{ $accepted := len (where $prs "state" "in" (slice "merged" "landed")) }}
+
+<div class="mw8 center ph3 ph4-ns pv5">
+
+  <div class="mb4">
+    <h1 class="ac-page-title mt0 mb2">{{ .Title }}</h1>
+    {{ with .Content }}<div class="ac-page-intro">{{ . }}</div>{{ end }}
+  </div>
+
+  <div class="ac-stat-row mb4">
+    <div class="ac-stat"><span class="ac-stat__n">{{ len $prs }}</span> pull requests</div>
+    <div class="ac-stat"><span class="ac-stat__n">{{ $accepted }}</span> accepted</div>
+    <div class="ac-stat"><span class="ac-stat__n">{{ len $repos }}</span> repositories</div>
+    <div class="ac-stat"><span class="ac-stat__n">{{ len $years }}</span> years</div>
+  </div>
+
+  <form class="ac-filters" id="pr-filters" role="search" aria-label="Filter pull requests">
+    <label class="ac-field ac-field--grow">
+      <span class="ac-field__label">Search</span>
+      <input type="search" id="f-text" placeholder="Title or repository" autocomplete="off">
+    </label>
+
+    <label class="ac-field">
+      <span class="ac-field__label">Repository</span>
+      <select id="f-repo">
+        <option value="">All</option>
+        {{ range $repos }}<option value="{{ . }}">{{ . }}</option>{{ end }}
+      </select>
+    </label>
+
+    <label class="ac-field">
+      <span class="ac-field__label">Type</span>
+      <select id="f-type">
+        <option value="">All</option>
+        {{ range $types }}<option value="{{ . }}">{{ . }}</option>{{ end }}
+      </select>
+    </label>
+
+    <label class="ac-field">
+      <span class="ac-field__label">State</span>
+      <select id="f-state">
+        <option value="">All</option>
+        <option value="merged">Merged</option>
+        <option value="landed">Landed</option>
+        <option value="open">Open</option>
+        <option value="closed">Declined</option>
+      </select>
+    </label>
+
+    <label class="ac-field">
+      <span class="ac-field__label">Year</span>
+      <select id="f-year">
+        <option value="">All</option>
+        {{ range $years }}<option value="{{ . }}">{{ . }}</option>{{ end }}
+      </select>
+    </label>
+
+    <label class="ac-field">
+      <span class="ac-field__label">Sort</span>
+      <select id="f-sort">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="repo">By repository</option>
+      </select>
+    </label>
+
+    <button type="button" class="ac-btn ac-btn--sm" id="f-reset">Reset</button>
+  </form>
+
+  <p class="ac-filter-count" id="pr-count" role="status" aria-live="polite"></p>
+
+  <ol class="ac-pr-list" id="pr-list">
+    {{ range $prs }}
+      <li class="ac-pr"
+          data-repo="{{ .repo }}"
+          data-type="{{ .type }}"
+          data-state="{{ .state }}"
+          data-year="{{ substr .created 0 4 }}"
+          data-date="{{ .created }}"
+          data-search="{{ lower (printf "%s %s" .title .repo) }}">
+        <div class="ac-pr__main">
+          <a class="ac-pr__title" href="{{ .url }}" rel="noopener" target="_blank">{{ .title }}</a>
+          <div class="ac-pr__meta">
+            <span class="ac-pr__repo">{{ .repo }}</span>
+            <span class="ac-pr__num">#{{ .number }}</span>
+            <span class="ac-meta-sep">&middot;</span>
+            <time datetime="{{ .created }}">{{ time.Format "Jan 2, 2006" .created }}</time>
+          </div>
+        </div>
+        <div class="ac-pr__tags">
+          <span class="ac-state ac-state--{{ .state }}">{{ cond (eq .state "closed") "declined" .state }}</span>
+          <span class="ac-chip">{{ .type }}</span>
+        </div>
+      </li>
+    {{ end }}
+  </ol>
+
+  <p class="ac-pr-empty" id="pr-empty" hidden>Nothing matches those filters.</p>
+</div>
+
+<script>
+  (function () {
+    var list = document.getElementById('pr-list');
+    if (!list) return;
+
+    var rows = Array.prototype.slice.call(list.children);
+    var count = document.getElementById('pr-count');
+    var empty = document.getElementById('pr-empty');
+    var fields = {
+      text: document.getElementById('f-text'),
+      repo: document.getElementById('f-repo'),
+      type: document.getElementById('f-type'),
+      state: document.getElementById('f-state'),
+      year: document.getElementById('f-year'),
+      sort: document.getElementById('f-sort')
+    };
+
+    var sorters = {
+      newest: function (a, b) { return b.dataset.date.localeCompare(a.dataset.date); },
+      oldest: function (a, b) { return a.dataset.date.localeCompare(b.dataset.date); },
+      repo: function (a, b) {
+        return a.dataset.repo.localeCompare(b.dataset.repo) ||
+               b.dataset.date.localeCompare(a.dataset.date);
+      }
+    };
+
+    function apply() {
+      var text = fields.text.value.trim().toLowerCase();
+      var shown = 0;
+
+      rows.forEach(function (row) {
+        var visible =
+          (!text || row.dataset.search.indexOf(text) !== -1) &&
+          (!fields.repo.value || row.dataset.repo === fields.repo.value) &&
+          (!fields.type.value || row.dataset.type === fields.type.value) &&
+          (!fields.state.value || row.dataset.state === fields.state.value) &&
+          (!fields.year.value || row.dataset.year === fields.year.value);
+
+        row.hidden = !visible;
+        if (visible) shown++;
+      });
+
+      // Reordering only the visible rows keeps the DOM work proportional to
+      // what is actually on screen.
+      var ordered = rows.filter(function (row) { return !row.hidden; });
+      ordered.sort(sorters[fields.sort.value] || sorters.newest);
+      ordered.forEach(function (row) { list.appendChild(row); });
+
+      count.textContent = shown === rows.length
+        ? shown + ' pull requests'
+        : shown + ' of ' + rows.length + ' pull requests';
+      empty.hidden = shown !== 0;
+    }
+
+    Object.keys(fields).forEach(function (key) {
+      fields[key].addEventListener(key === 'text' ? 'input' : 'change', apply);
+    });
+
+    document.getElementById('f-reset').addEventListener('click', function () {
+      Object.keys(fields).forEach(function (key) {
+        fields[key].value = key === 'sort' ? 'newest' : '';
+      });
+      apply();
+    });
+
+    apply();
+  })();
+</script>
+{{ end }}

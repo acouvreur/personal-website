@@ -47,9 +47,13 @@ enableRobotsTXT = true
       url = '/resume/'
       weight = 10
     [[languages.en.menus.main]]
+      name = 'Open Source'
+      url = '/opensource/'
+      weight = 20
+    [[languages.en.menus.main]]
       name = 'Talks'
       url = '/talks/'
-      weight = 20
+      weight = 25
     [[languages.en.menus.main]]
       name = 'Blog'
       url = '/blog/'

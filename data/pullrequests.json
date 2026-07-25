@@ -1,0 +1,1066 @@
+[
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 754,
+    "title": "feat(ble_conn_mgr): add esp_ble_conn_whitelist_sync_bonds() [draft, #752]",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/754",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-07-21"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 750,
+    "title": "fix(ble_conn_mgr): post ESP_BLE_CONN_EVENT_STARTED on host sync",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/750",
+    "state": "open",
+    "type": "fix",
+    "created": "2026-07-21"
+  },
+  {
+    "repo": "espressif/esp-nimble",
+    "number": 128,
+    "title": "nimble/host: guard ble_gattc_cache_refresh() with BLE_GATTC",
+    "url": "https://github.com/espressif/esp-nimble/pull/128",
+    "state": "open",
+    "type": "other",
+    "created": "2026-06-26"
+  },
+  {
+    "repo": "golang/image",
+    "number": 34,
+    "title": "bmp: add 1, 2 and 4 bits-per-pixel palettes decode documentation",
+    "url": "https://github.com/golang/image/pull/34",
+    "state": "open",
+    "type": "other",
+    "created": "2026-06-19"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 3492,
+    "title": "feat: add ID in data_source_github_repository_teams",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/3492",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-06-17"
+  },
+  {
+    "repo": "zitadel/terraform-provider-zitadel",
+    "number": 405,
+    "title": "fix!: set client_secret field WriteOnly",
+    "url": "https://github.com/zitadel/terraform-provider-zitadel/pull/405",
+    "state": "closed",
+    "type": "fix",
+    "created": "2026-06-07",
+    "closed": "2026-06-08"
+  },
+  {
+    "repo": "aquaproj/aqua-registry",
+    "number": 54868,
+    "title": "fix(FiloSottile/age): add support for darwin/amd64",
+    "url": "https://github.com/aquaproj/aqua-registry/pull/54868",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-06-06",
+    "closed": "2026-06-07"
+  },
+  {
+    "repo": "docker/cli",
+    "number": 7031,
+    "title": "feat: add blkio device options to docker container update",
+    "url": "https://github.com/docker/cli/pull/7031",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-06-06"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 453,
+    "title": "fix(windows): close leaked resources",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/453",
+    "state": "open",
+    "type": "fix",
+    "created": "2026-05-20"
+  },
+  {
+    "repo": "moby/moby",
+    "number": 52651,
+    "title": "daemon: support per-device blkio throttle in ContainerUpdate",
+    "url": "https://github.com/moby/moby/pull/52651",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-05-19",
+    "closed": "2026-06-12"
+  },
+  {
+    "repo": "Azure/setup-kubectl",
+    "number": 261,
+    "title": "feat: add version-file input to read kubectl version from .tool-versions",
+    "url": "https://github.com/Azure/setup-kubectl/pull/261",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-05-13"
+  },
+  {
+    "repo": "Azure/setup-kubectl",
+    "number": 260,
+    "title": "feat: add downloadBaseURL input to support custom download mirrors",
+    "url": "https://github.com/Azure/setup-kubectl/pull/260",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-05-13"
+  },
+  {
+    "repo": "compose-spec/compose-go",
+    "number": 871,
+    "title": "refactor: migrate from logrus to log/slog",
+    "url": "https://github.com/compose-spec/compose-go/pull/871",
+    "state": "closed",
+    "type": "refactor",
+    "created": "2026-05-13",
+    "closed": "2026-07-22"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 120,
+    "title": "feat: add GattStatus event handler",
+    "url": "https://github.com/saltosystems/winrt-go/pull/120",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-05-10",
+    "closed": "2026-05-13"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 447,
+    "title": "fix(windows): add HRESULT error message",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/447",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-05-10",
+    "closed": "2026-06-13"
+  },
+  {
+    "repo": "testcontainers/testcontainers-go",
+    "number": 3672,
+    "title": "fix: close temp file handle before removal ",
+    "url": "https://github.com/testcontainers/testcontainers-go/pull/3672",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-05-07",
+    "closed": "2026-05-07"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 3396,
+    "title": "fix: support repository rename in resource_github_actions_repository_…",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/3396",
+    "state": "open",
+    "type": "fix",
+    "created": "2026-05-05"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 3394,
+    "title": "fix: import or update autolinks on creation",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/3394",
+    "state": "closed",
+    "type": "fix",
+    "created": "2026-05-04",
+    "closed": "2026-07-22"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 3393,
+    "title": "fix: support changed username",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/3393",
+    "state": "open",
+    "type": "fix",
+    "created": "2026-05-04"
+  },
+  {
+    "repo": "espressif/esp-nimble",
+    "number": 124,
+    "title": "fix(l2cap): log level for SDU length error",
+    "url": "https://github.com/espressif/esp-nimble/pull/124",
+    "state": "open",
+    "type": "fix",
+    "created": "2026-04-27"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 444,
+    "title": "feat!: add err parameter to connectHandler",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/444",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-04-26"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 3,
+    "title": "feat: add L2CAPChannel Read/Write error",
+    "url": "https://github.com/tinygo-org/cbgo/pull/3",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-04-25",
+    "closed": "2026-04-25"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 436,
+    "title": "feat: add WASM/WebBluetooth support",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/436",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-04-10"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 435,
+    "title": "fix(darwin): write without response canSendWriteWithoutResponse",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/435",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-04-04",
+    "closed": "2026-04-11"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 434,
+    "title": "feat(darwin): add L2CAP support",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/434",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-04-04"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 433,
+    "title": "fix(darwin): add DidUpdateNotificationState when enabling notifications",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/433",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-04-02",
+    "closed": "2026-04-09"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 2,
+    "title": "feat: add L2CAP support",
+    "url": "https://github.com/tinygo-org/cbgo/pull/2",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-04-02",
+    "closed": "2026-04-04"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 432,
+    "title": "feat: addGATTCService and GATTCCharacteristic common interface",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/432",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-31",
+    "closed": "2026-04-05"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 431,
+    "title": "feat: add BLEAdapter common interface",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/431",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-31",
+    "closed": "2026-04-03"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 430,
+    "title": "fix(darwin): add DidFailToConnectPeripheral handler",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/430",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-03-30",
+    "closed": "2026-04-10"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 680,
+    "title": "feat(ble): add CTS read callbacks",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/680",
+    "state": "landed",
+    "type": "feat",
+    "created": "2026-03-23",
+    "closed": "2026-03-31"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 429,
+    "title": "feat(gap): add GAPDevice as base interface",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/429",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-23",
+    "closed": "2026-03-23"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 428,
+    "title": "fix(darwin): Device.DiscoverServices() filters discovered services",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/428",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-03-21",
+    "closed": "2026-03-24"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 427,
+    "title": "fix(windows): add missing service UUIDs in scan results",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/427",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-03-20",
+    "closed": "2026-04-11"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 426,
+    "title": "feat(gap): add Device.Connected()",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/426",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-19",
+    "closed": "2026-03-24"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 119,
+    "title": "fix: add missing GetConnectionParameters",
+    "url": "https://github.com/saltosystems/winrt-go/pull/119",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-03-17",
+    "closed": "2026-03-17"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 118,
+    "title": "feat: generate IAsyncInfo",
+    "url": "https://github.com/saltosystems/winrt-go/pull/118",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-17",
+    "closed": "2026-03-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 425,
+    "title": "feat(windows): add error code from async operation",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/425",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-17",
+    "closed": "2026-04-10"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 424,
+    "title": "feat: add PHY type",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/424",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-17",
+    "closed": "2026-03-19"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 423,
+    "title": "Add connection latency windows",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/423",
+    "state": "open",
+    "type": "other",
+    "created": "2026-03-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 422,
+    "title": "feat(gap): add ConnectionLatency in ConnectionParams",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/422",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-03-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 421,
+    "title": "feat: add attribute protocol errors",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/421",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-16",
+    "closed": "2026-03-18"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 117,
+    "title": "feat: add L2CAP CoC generated files",
+    "url": "https://github.com/saltosystems/winrt-go/pull/117",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-03-15"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 116,
+    "title": "fix: return error from QueryInterface",
+    "url": "https://github.com/saltosystems/winrt-go/pull/116",
+    "state": "closed",
+    "type": "fix",
+    "created": "2026-03-13",
+    "closed": "2026-03-13"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 114,
+    "title": "feat: add GetConnectionPhy implementation",
+    "url": "https://github.com/saltosystems/winrt-go/pull/114",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-08",
+    "closed": "2026-03-09"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 113,
+    "title": "feat: add RequestPreferredConnectionParameters implementation",
+    "url": "https://github.com/saltosystems/winrt-go/pull/113",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-03-08",
+    "closed": "2026-03-09"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 675,
+    "title": "fix(ble_services/cts): set Reference Time characteristic to read (AEGHB-1436)",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/675",
+    "state": "landed",
+    "type": "fix",
+    "created": "2026-03-05",
+    "closed": "2026-03-19"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 417,
+    "title": "fix: Darwin services ordering in DiscoverServices",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/417",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-03-04",
+    "closed": "2026-03-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 415,
+    "title": "fix: Windows services ordering in DiscoverServices",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/415",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-03-03",
+    "closed": "2026-03-16"
+  },
+  {
+    "repo": "goreleaser/goreleaser-action",
+    "number": 542,
+    "title": "feat: add `version-file` input",
+    "url": "https://github.com/goreleaser/goreleaser-action/pull/542",
+    "state": "closed",
+    "type": "feat",
+    "created": "2026-02-24",
+    "closed": "2026-04-24"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 410,
+    "title": "fix: Windows characteristic ordering in DiscoverCharacteristics",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/410",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-02-09",
+    "closed": "2026-03-01"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 662,
+    "title": "fix(ble_conn_mgr): widen characteristic flag field from uint8_t to uint16_t (AEGHB-1415)",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/662",
+    "state": "landed",
+    "type": "fix",
+    "created": "2026-02-08",
+    "closed": "2026-02-11"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 661,
+    "title": "fix(ble_conn_mgr): normalize SM capability bitmask to 0/1 for 1-bit ble_hs_cfg fields (AEGHB-1416)",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/661",
+    "state": "landed",
+    "type": "fix",
+    "created": "2026-02-08",
+    "closed": "2026-02-11"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 3132,
+    "title": "fix(environments): swallow 404 not found errors",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/3132",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-01-27",
+    "closed": "2026-02-03"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 3106,
+    "title": "fix(parseID): separator in value",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/3106",
+    "state": "closed",
+    "type": "fix",
+    "created": "2026-01-21",
+    "closed": "2026-01-27"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 641,
+    "title": "refactor(bluetooth): remove extra semicolon (AEGHB-1376)",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/641",
+    "state": "landed",
+    "type": "refactor",
+    "created": "2026-01-15",
+    "closed": "2026-02-10"
+  },
+  {
+    "repo": "espressif/esp-idf",
+    "number": 18015,
+    "title": "feat(bluetooth): add common data types (IDFGH-16961)",
+    "url": "https://github.com/espressif/esp-idf/pull/18015",
+    "state": "landed",
+    "type": "feat",
+    "created": "2025-12-14",
+    "closed": "2026-01-05"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 2876,
+    "title": "fix!: github_repository_collaborators ID is now set the repository ID",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/2876",
+    "state": "open",
+    "type": "fix",
+    "created": "2025-11-07"
+  },
+  {
+    "repo": "google/go-github",
+    "number": 3785,
+    "title": "feat: Add support for private registries endpoints",
+    "url": "https://github.com/google/go-github/pull/3785",
+    "state": "merged",
+    "type": "feat",
+    "created": "2025-10-22",
+    "closed": "2025-10-23"
+  },
+  {
+    "repo": "migueleliasweb/go-github-mock",
+    "number": 88,
+    "title": "chore: use conventional generated header",
+    "url": "https://github.com/migueleliasweb/go-github-mock/pull/88",
+    "state": "open",
+    "type": "chore",
+    "created": "2025-10-09"
+  },
+  {
+    "repo": "migueleliasweb/go-github-mock",
+    "number": 87,
+    "title": "chore: add dependabot",
+    "url": "https://github.com/migueleliasweb/go-github-mock/pull/87",
+    "state": "closed",
+    "type": "chore",
+    "created": "2025-10-09",
+    "closed": "2025-10-19"
+  },
+  {
+    "repo": "migueleliasweb/go-github-mock",
+    "number": 86,
+    "title": "chore: bump go-github to v75",
+    "url": "https://github.com/migueleliasweb/go-github-mock/pull/86",
+    "state": "open",
+    "type": "chore",
+    "created": "2025-10-09"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 387,
+    "title": "feat(darwin): add `WithContext` operations",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/387",
+    "state": "open",
+    "type": "feat",
+    "created": "2025-10-04"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 386,
+    "title": "fix(darwin): WriteWithoutResponse checks CanSendWriteWithoutResponse before request",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/386",
+    "state": "merged",
+    "type": "fix",
+    "created": "2025-10-04",
+    "closed": "2026-03-24"
+  },
+  {
+    "repo": "enrichman/gh-iter",
+    "number": 15,
+    "title": "Release up to v74",
+    "url": "https://github.com/enrichman/gh-iter/pull/15",
+    "state": "merged",
+    "type": "other",
+    "created": "2025-08-06",
+    "closed": "2025-08-12"
+  },
+  {
+    "repo": "santhosh-tekuri/jsonschema",
+    "number": 219,
+    "title": "feat: add github output value",
+    "url": "https://github.com/santhosh-tekuri/jsonschema/pull/219",
+    "state": "open",
+    "type": "feat",
+    "created": "2025-04-09"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 143,
+    "title": "feat: add custom property event handlers",
+    "url": "https://github.com/cbrgm/githubevents/pull/143",
+    "state": "merged",
+    "type": "feat",
+    "created": "2025-04-01",
+    "closed": "2025-04-01"
+  },
+  {
+    "repo": "testcontainers/testcontainers-go",
+    "number": 3074,
+    "title": "docs: add dependabot configuration",
+    "url": "https://github.com/testcontainers/testcontainers-go/pull/3074",
+    "state": "merged",
+    "type": "docs",
+    "created": "2025-03-31",
+    "closed": "2025-04-01"
+  },
+  {
+    "repo": "testcontainers/testcontainers-go",
+    "number": 3073,
+    "title": "fix(dind): use docker image load",
+    "url": "https://github.com/testcontainers/testcontainers-go/pull/3073",
+    "state": "merged",
+    "type": "fix",
+    "created": "2025-03-31",
+    "closed": "2025-03-31"
+  },
+  {
+    "repo": "testcontainers/testcontainers-go",
+    "number": 3069,
+    "title": "chore(dind): instance of Docker in Docker",
+    "url": "https://github.com/testcontainers/testcontainers-go/pull/3069",
+    "state": "merged",
+    "type": "chore",
+    "created": "2025-03-29",
+    "closed": "2025-03-30"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 139,
+    "title": "fix(error): properly forward the source error on error handler",
+    "url": "https://github.com/cbrgm/githubevents/pull/139",
+    "state": "merged",
+    "type": "fix",
+    "created": "2025-03-20",
+    "closed": "2025-03-21"
+  },
+  {
+    "repo": "codecov/codecov-action",
+    "number": 1792,
+    "title": "Fix OIDC token cut",
+    "url": "https://github.com/codecov/codecov-action/pull/1792",
+    "state": "closed",
+    "type": "other",
+    "created": "2025-03-12",
+    "closed": "2025-05-15"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 137,
+    "title": "fix: recover from panic in handlers",
+    "url": "https://github.com/cbrgm/githubevents/pull/137",
+    "state": "merged",
+    "type": "fix",
+    "created": "2025-03-06",
+    "closed": "2025-03-06"
+  },
+  {
+    "repo": "testcontainers/testcontainers-go",
+    "number": 3004,
+    "title": "feat(modules): add dind module",
+    "url": "https://github.com/testcontainers/testcontainers-go/pull/3004",
+    "state": "merged",
+    "type": "feat",
+    "created": "2025-03-03",
+    "closed": "2025-03-10"
+  },
+  {
+    "repo": "HewlettPackard/terraschema",
+    "number": 40,
+    "title": "feat: add `property` flag to generate property on root object schema",
+    "url": "https://github.com/HewlettPackard/terraschema/pull/40",
+    "state": "closed",
+    "type": "feat",
+    "created": "2025-02-28",
+    "closed": "2025-03-03"
+  },
+  {
+    "repo": "HewlettPackard/terraschema",
+    "number": 39,
+    "title": "feat: add `schema-id` option to generate the schema with a custom ID",
+    "url": "https://github.com/HewlettPackard/terraschema/pull/39",
+    "state": "closed",
+    "type": "feat",
+    "created": "2025-02-28",
+    "closed": "2025-02-28"
+  },
+  {
+    "repo": "HewlettPackard/terraschema",
+    "number": 33,
+    "title": "fix: remove extra `additionalProperties` on nested objects",
+    "url": "https://github.com/HewlettPackard/terraschema/pull/33",
+    "state": "closed",
+    "type": "fix",
+    "created": "2025-02-25",
+    "closed": "2025-02-26"
+  },
+  {
+    "repo": "omissis/go-jsonschema",
+    "number": 404,
+    "title": "fix: use default output when no schema output is defined",
+    "url": "https://github.com/omissis/go-jsonschema/pull/404",
+    "state": "merged",
+    "type": "fix",
+    "created": "2025-02-24",
+    "closed": "2025-05-03"
+  },
+  {
+    "repo": "HewlettPackard/terraschema",
+    "number": 31,
+    "title": "feat: add `ignore-variable` flag",
+    "url": "https://github.com/HewlettPackard/terraschema/pull/31",
+    "state": "closed",
+    "type": "feat",
+    "created": "2025-02-23",
+    "closed": "2025-02-26"
+  },
+  {
+    "repo": "HewlettPackard/terraschema",
+    "number": 30,
+    "title": "fix: add top level `type` property",
+    "url": "https://github.com/HewlettPackard/terraschema/pull/30",
+    "state": "merged",
+    "type": "fix",
+    "created": "2025-02-22",
+    "closed": "2025-02-26"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 124,
+    "title": "Add otel",
+    "url": "https://github.com/cbrgm/githubevents/pull/124",
+    "state": "closed",
+    "type": "other",
+    "created": "2025-02-13",
+    "closed": "2025-05-13"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 122,
+    "title": "feat!: add \"ctx context.Context\" to all event handlers",
+    "url": "https://github.com/cbrgm/githubevents/pull/122",
+    "state": "merged",
+    "type": "feat",
+    "created": "2025-02-13",
+    "closed": "2025-03-04"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 120,
+    "title": "chore(gen): use conventional generated header",
+    "url": "https://github.com/cbrgm/githubevents/pull/120",
+    "state": "merged",
+    "type": "chore",
+    "created": "2025-02-13",
+    "closed": "2025-02-14"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 119,
+    "title": "refactor(templates): use .tmpl extension",
+    "url": "https://github.com/cbrgm/githubevents/pull/119",
+    "state": "closed",
+    "type": "refactor",
+    "created": "2025-02-13",
+    "closed": "2025-02-13"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 118,
+    "title": "refactor(templates): use .tmpl extension",
+    "url": "https://github.com/cbrgm/githubevents/pull/118",
+    "state": "merged",
+    "type": "refactor",
+    "created": "2025-02-13",
+    "closed": "2025-02-13"
+  },
+  {
+    "repo": "cbrgm/githubevents",
+    "number": 116,
+    "title": "feat: add \"HandleEvent\" function",
+    "url": "https://github.com/cbrgm/githubevents/pull/116",
+    "state": "merged",
+    "type": "feat",
+    "created": "2025-02-12",
+    "closed": "2025-02-13"
+  },
+  {
+    "repo": "enrichman/gh-iter",
+    "number": 13,
+    "title": "chore(deps): bump google/go-github to v69",
+    "url": "https://github.com/enrichman/gh-iter/pull/13",
+    "state": "merged",
+    "type": "chore",
+    "created": "2025-02-12",
+    "closed": "2025-02-19"
+  },
+  {
+    "repo": "enrichman/gh-iter",
+    "number": 10,
+    "title": "Add googgle go GitHub v68",
+    "url": "https://github.com/enrichman/gh-iter/pull/10",
+    "state": "merged",
+    "type": "other",
+    "created": "2025-01-30",
+    "closed": "2025-01-30"
+  },
+  {
+    "repo": "enrichman/gh-iter",
+    "number": 9,
+    "title": "chore(deps): bump google/go-github to v67",
+    "url": "https://github.com/enrichman/gh-iter/pull/9",
+    "state": "merged",
+    "type": "chore",
+    "created": "2025-01-30",
+    "closed": "2025-01-30"
+  },
+  {
+    "repo": "google/go-github",
+    "number": 3396,
+    "title": "docs: Add clarifications for mergeable field in pull requests",
+    "url": "https://github.com/google/go-github/pull/3396",
+    "state": "merged",
+    "type": "docs",
+    "created": "2024-12-21",
+    "closed": "2025-01-30"
+  },
+  {
+    "repo": "google/go-github",
+    "number": 3395,
+    "title": "fix!: Remove unused `Stats` field from  `Commit` struct",
+    "url": "https://github.com/google/go-github/pull/3395",
+    "state": "merged",
+    "type": "fix",
+    "created": "2024-12-18",
+    "closed": "2024-12-18"
+  },
+  {
+    "repo": "google/go-github",
+    "number": 3379,
+    "title": "feat: Add custom_property events",
+    "url": "https://github.com/google/go-github/pull/3379",
+    "state": "merged",
+    "type": "feat",
+    "created": "2024-12-10",
+    "closed": "2024-12-10"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 2483,
+    "title": "fix: graceful handling of 404 in github_actions_repository_oidc_subject_claim_customization_template",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/2483",
+    "state": "merged",
+    "type": "fix",
+    "created": "2024-11-28",
+    "closed": "2025-02-27"
+  },
+  {
+    "repo": "jfrog/terraform-provider-platform",
+    "number": 163,
+    "title": "fix(oidc): add GitHub actions `issuer` customization for enterprise",
+    "url": "https://github.com/jfrog/terraform-provider-platform/pull/163",
+    "state": "merged",
+    "type": "fix",
+    "created": "2024-11-26",
+    "closed": "2024-11-26"
+  },
+  {
+    "repo": "OpenAPITools/openapi-generator",
+    "number": 19052,
+    "title": "Add Alexis Couvreur as author of Java WireMock stub server",
+    "url": "https://github.com/OpenAPITools/openapi-generator/pull/19052",
+    "state": "merged",
+    "type": "other",
+    "created": "2024-07-02",
+    "closed": "2024-07-03"
+  },
+  {
+    "repo": "spring-projects/spring-boot",
+    "number": 41251,
+    "title": "@NestedConfigurationProperty doesn't work on records",
+    "url": "https://github.com/spring-projects/spring-boot/pull/41251",
+    "state": "closed",
+    "type": "other",
+    "created": "2024-06-26",
+    "closed": "2024-07-04"
+  },
+  {
+    "repo": "traefik/traefik",
+    "number": 10645,
+    "title": "Allow discovering non-running Docker containers ",
+    "url": "https://github.com/traefik/traefik/pull/10645",
+    "state": "merged",
+    "type": "other",
+    "created": "2024-04-21",
+    "closed": "2025-10-24"
+  },
+  {
+    "repo": "OpenAPITools/openapi-generator",
+    "number": 17614,
+    "title": "feat: add `java-wiremock` generator",
+    "url": "https://github.com/OpenAPITools/openapi-generator/pull/17614",
+    "state": "merged",
+    "type": "feat",
+    "created": "2024-01-14",
+    "closed": "2024-01-16"
+  },
+  {
+    "repo": "OpenAPITools/openapi-generator",
+    "number": 17603,
+    "title": "fix: DefaultCodegen now generates an exemple for each status codes",
+    "url": "https://github.com/OpenAPITools/openapi-generator/pull/17603",
+    "state": "merged",
+    "type": "fix",
+    "created": "2024-01-13",
+    "closed": "2024-01-13"
+  },
+  {
+    "repo": "OpenAPITools/openapi-generator",
+    "number": 17499,
+    "title": "fix: ExampleGenerator correctly generates allOf composed schemas",
+    "url": "https://github.com/OpenAPITools/openapi-generator/pull/17499",
+    "state": "merged",
+    "type": "fix",
+    "created": "2023-12-29",
+    "closed": "2024-01-10"
+  },
+  {
+    "repo": "OpenAPITools/openapi-generator",
+    "number": 17495,
+    "title": "fix: ExampleGenerator correctly produces YYYY-MM-dd format for `date` with examples",
+    "url": "https://github.com/OpenAPITools/openapi-generator/pull/17495",
+    "state": "merged",
+    "type": "fix",
+    "created": "2023-12-29",
+    "closed": "2024-01-10"
+  },
+  {
+    "repo": "aws/aws-sdk-java-v2",
+    "number": 4011,
+    "title": "Add `StreamSpecification` to `CreateTableEnhancedRequest`",
+    "url": "https://github.com/aws/aws-sdk-java-v2/pull/4011",
+    "state": "merged",
+    "type": "other",
+    "created": "2023-05-15",
+    "closed": "2023-06-26"
+  },
+  {
+    "repo": "podman-container-tools/podman",
+    "number": 18009,
+    "title": "[CI:DOCS] docs: add `starting` to `HealthCheckResults.Status`",
+    "url": "https://github.com/podman-container-tools/podman/pull/18009",
+    "state": "merged",
+    "type": "other",
+    "created": "2023-04-02",
+    "closed": "2023-04-03"
+  },
+  {
+    "repo": "tarampampam/tinifier",
+    "number": 109,
+    "title": "ci: fix dockerhub documentation publication",
+    "url": "https://github.com/tarampampam/tinifier/pull/109",
+    "state": "merged",
+    "type": "ci",
+    "created": "2022-11-11",
+    "closed": "2022-11-11"
+  },
+  {
+    "repo": "docker/cli",
+    "number": 3130,
+    "title": "feat(zsh): add context argument completion",
+    "url": "https://github.com/docker/cli/pull/3130",
+    "state": "merged",
+    "type": "feat",
+    "created": "2021-06-10",
+    "closed": "2022-10-13"
+  },
+  {
+    "repo": "skeleton-software-community/skeleton-generator",
+    "number": 5,
+    "title": "Add Dockerfile",
+    "url": "https://github.com/skeleton-software-community/skeleton-generator/pull/5",
+    "state": "open",
+    "type": "other",
+    "created": "2020-11-02"
+  },
+  {
+    "repo": "guillaumebriday/traefik-custom-error-pages",
+    "number": 15,
+    "title": "Added multiarch docker build",
+    "url": "https://github.com/guillaumebriday/traefik-custom-error-pages/pull/15",
+    "state": "open",
+    "type": "other",
+    "created": "2020-09-27"
+  },
+  {
+    "repo": "jenkinsci/kubernetes-plugin",
+    "number": 420,
+    "title": "Added missing --cert-type option for certificate check",
+    "url": "https://github.com/jenkinsci/kubernetes-plugin/pull/420",
+    "state": "merged",
+    "type": "other",
+    "created": "2019-01-24",
+    "closed": "2019-01-28"
+  },
+  {
+    "repo": "vodkhard/vdk_inventory",
+    "number": 9,
+    "title": "Friendly behavior when the user never owned the item",
+    "url": "https://github.com/vodkhard/vdk_inventory/pull/9",
+    "state": "open",
+    "type": "other",
+    "created": "2017-06-14"
+  }
+]
