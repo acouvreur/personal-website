@@ -1,0 +1,87 @@
+{{ define "header" }}
+  {{ partials.Include "site-chrome.html" . }}
+{{ end }}
+
+{{ define "main" }}
+{{ $talks := hugo.Data.resume.talks }}
+
+<div class="mw8 center ph3 ph4-ns pv5">
+
+  <div class="mb5">
+    <h1 class="ac-page-title mt0 mb2">{{ .Title }}</h1>
+    {{ with .Content }}<div class="ac-page-intro">{{ . }}</div>{{ end }}
+  </div>
+
+  <div class="ac-talk-list">
+    {{ range $talks }}
+      {{ $talk := . }}
+      <article class="ac-talk">
+
+        {{ with $talk.video }}
+          {{/* Poster frame plus a play button. The YouTube player is only
+               fetched once the visitor actually asks for it. */}}
+          <div class="ac-video" data-video="{{ . }}" data-title="{{ $talk.title }}">
+            <button class="ac-video__play" type="button">
+              <img class="ac-video__poster"
+                   src="{{ partial "video-thumb.html" . }}"
+                   alt="" loading="lazy" width="960" height="540">
+              <span class="ac-video__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="ac-video__label">Play “{{ $talk.title }}”</span>
+            </button>
+          </div>
+        {{ end }}
+
+        <div class="ac-talk__body">
+          <div class="ac-meta mb2">
+            <time datetime="{{ $talk.date }}">{{ time.Format "January 2, 2006" $talk.date }}</time>
+            <span class="ac-meta-sep">&middot;</span>
+            <span>{{ $talk.event }}</span>
+            {{ with $talk.language }}
+              <span class="ac-tag">{{ . }}</span>
+            {{ end }}
+          </div>
+
+          <h2 class="ac-talk__title mt0 mb2">{{ $talk.title }}</h2>
+
+          {{ with $talk.description }}
+            <p class="ac-talk__summary mt0 mb2">{{ . }}</p>
+          {{ end }}
+
+          {{ with $talk.note }}
+            <p class="ac-talk__note mt0 mb3">{{ . }}</p>
+          {{ end }}
+
+          {{ with $talk.url }}
+            <a class="ac-read-more no-underline" href="{{ . }}" rel="noopener" target="_blank">
+              {{ if $talk.video }}Watch on YouTube{{ else }}Event page{{ end }}
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          {{ end }}
+        </div>
+
+      </article>
+    {{ end }}
+  </div>
+
+</div>
+
+<script>
+  // Swap the poster for the real player on first click, so the page costs
+  // nothing until someone wants to watch.
+  document.querySelectorAll('.ac-video').forEach(function (holder) {
+    holder.addEventListener('click', function () {
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + holder.dataset.video + '?autoplay=1&rel=0';
+      frame.title = holder.dataset.title || 'Talk recording';
+      frame.loading = 'lazy';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+      frame.allowFullscreen = true;
+      frame.className = 'ac-video__frame';
+      holder.replaceChildren(frame);
+      holder.classList.add('is-playing');
+    }, { once: true });
+  });
+</script>
+{{ end }}

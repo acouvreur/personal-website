@@ -1,0 +1,20 @@
+{{- /*
+  Returns a local URL for a YouTube video's poster frame, given the video ID.
+
+  The image is pulled once at build time and re-encoded, so visiting the talks
+  page makes no request to YouTube at all until someone presses play. If the
+  fetch fails the remote URL is returned instead, because a slow poster frame is
+  a much smaller problem than a broken build.
+*/ -}}
+{{- $remote := printf "https://i.ytimg.com/vi/%s/maxresdefault.jpg" . -}}
+{{- $src := $remote -}}
+
+{{- with try (resources.GetRemote $remote) -}}
+  {{- with .Err -}}
+    {{- warnf "talks: could not fetch poster frame %s: %s" $remote . -}}
+  {{- else with .Value -}}
+    {{- $src = (.Process "resize 960x webp q82").RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $src -}}

@@ -466,6 +466,93 @@ body {
 .ac-plain-list--spaced li { margin-bottom: .85rem; line-height: 1.45; }
 .ac-plain-list--spaced li:last-child { margin-bottom: 0; }
 
+/* ----- Talks page -------------------------------------------- */
+.ac-talk-list { display: flex; flex-direction: column; gap: 3.5rem; }
+
+.ac-talk {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Talks without a recording have no poster, so the text takes the full width. */
+.ac-talk:not(:has(.ac-video)) { grid-template-columns: 1fr; }
+
+.ac-talk__title { font-size: 1.5rem; font-weight: 600; line-height: 1.25; }
+.ac-talk__summary { color: var(--ac-muted); line-height: 1.65; }
+.ac-talk__note { font-size: .85rem; color: var(--ac-muted); opacity: .8; }
+
+.ac-video {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--ac-border);
+  background: var(--ac-soft);
+  aspect-ratio: 16 / 9;
+}
+
+.ac-video__play {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.ac-video__poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease, filter .35s ease;
+}
+
+.ac-video__play:hover .ac-video__poster { transform: scale(1.03); filter: brightness(.85); }
+
+.ac-video__badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(20, 23, 26, .78);
+  color: #fff;
+  padding-left: 3px;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.ac-video__play:hover .ac-video__badge {
+  background: var(--ac-accent);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.ac-video__play:focus-visible { outline: 3px solid var(--ac-accent); outline-offset: 2px; }
+
+/* Names the button for screen readers without showing the text twice. */
+.ac-video__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.ac-video__frame { display: block; width: 100%; height: 100%; border: 0; }
+
+@media screen and (max-width: 60em) {
+  .ac-talk { grid-template-columns: 1fr; gap: 1.25rem; }
+  .ac-talk-list { gap: 2.5rem; }
+}
+
 /* ----- Home: highlight strip --------------------------------- */
 .ac-highlight-grid {
   display: grid;

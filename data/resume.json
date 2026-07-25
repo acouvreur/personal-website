@@ -144,25 +144,33 @@
   ],
   "talks": [
     {
-      "title": "WireMock OpenAPI Generator",
-      "event": "JUG Montreal",
-      "date": "2024-02-15",
+      "title": "Comment générer des stubs WireMock avec OpenAPI Generator",
+      "event": "Montréal JUG",
+      "note": "Lightning Présentations Éclairs, épisode 3, chez GoLogic",
+      "date": "2024-01-24",
       "language": "French",
-      "url": "https://www.youtube.com/watch?v=0jhONfBrcKw"
+      "video": "0jhONfBrcKw",
+      "url": "https://www.youtube.com/watch?v=0jhONfBrcKw",
+      "description": "A lightning talk on generating WireMock stubs straight from an OpenAPI spec, with a generator I wrote myself and got shipped in openapi-generator 7.3.0."
     },
     {
       "title": "Cloud Native Users and Contributor Stories",
       "event": "CNCF Montreal",
-      "date": "2023-06-15",
+      "note": "Q2 meetup at the Google Montreal office",
+      "date": "2023-06-21",
       "language": "English",
-      "url": "https://community.cncf.io/events/details/cncf-montreal-presents-q2-cncf-montreal-cloud-native-users-and-contributor-stories/"
+      "url": "https://community.cncf.io/events/details/cncf-montreal-presents-q2-cncf-montreal-cloud-native-users-and-contributor-stories/",
+      "description": "One of the evening's lightning sessions, an end user story on building with and contributing to cloud native tooling."
     },
     {
-      "title": "Scale to Zero with Sablier",
-      "event": "JUG Montreal",
-      "date": "2023-04-15",
+      "title": "Sablier, scale to zero",
+      "event": "Montréal JUG",
+      "note": "Recorded at GoLogic",
+      "date": "2023-03-29",
       "language": "French",
-      "url": "https://www.youtube.com/watch?v=0cPt_w7NIs0"
+      "video": "0cPt_w7NIs0",
+      "url": "https://www.youtube.com/watch?v=0cPt_w7NIs0",
+      "description": "How Sablier starts containers on demand and shuts them down once nothing is using them, and how it slots in behind Nginx, Traefik and other reverse proxies."
     }
   ],
   "certificates": [

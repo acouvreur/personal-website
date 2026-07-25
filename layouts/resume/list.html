@@ -169,7 +169,10 @@
   <div class="ac-resume__split">
     {{ with $r.talks }}
       <section class="ac-resume__section">
-        <h2 class="ac-section-heading">Talks</h2>
+        <h2 class="ac-section-heading">
+          Talks
+          <a class="ac-subsection-note ac-link ac-print-hide" href="{{ urls.RelURL "/talks/" }}">watch them</a>
+        </h2>
         <ul class="ac-plain-list ac-plain-list--spaced">
           {{ range . }}
             <li>
