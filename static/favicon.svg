@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="14" fill="#2563eb"/>
-  <text x="32" y="44" font-family="'Space Grotesk',-apple-system,sans-serif" font-size="34" font-weight="700" fill="#ffffff" text-anchor="middle">AC</text>
+  <rect width="64" height="64" rx="14" fill="#0d1117"/>
+  <!-- Hourglass, for Sablier. Colour follows the site palette. -->
+  <g fill="none" stroke="#4c8dff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14h24M20 50h24"/>
+    <path d="M23 14c0 9 9 13 9 18s-9 9-9 18"/>
+    <path d="M41 14c0 9-9 13-9 18s9 9 9 18"/>
+  </g>
+  <!-- Sand already fallen. -->
+  <path d="M26 46c1.6-5 9.2-6.6 12 0z" fill="#4c8dff"/>
 </svg>

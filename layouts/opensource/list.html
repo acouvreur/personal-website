@@ -98,7 +98,9 @@
         <div class="ac-pr__main">
           <a class="ac-pr__title" href="{{ .url }}" rel="noopener" target="_blank">{{ .title }}</a>
           <div class="ac-pr__meta">
-            <span class="ac-pr__repo">{{ .repo }}</span>
+            <span class="ac-pr__repo">
+              {{ partial "brand-icon.html" (dict "repo" .repo) }}{{ .repo }}
+            </span>
             <span class="ac-pr__num">#{{ .number }}</span>
             <span class="ac-meta-sep">&middot;</span>
             <time datetime="{{ .created }}">{{ time.Format "Jan 2, 2006" .created }}</time>

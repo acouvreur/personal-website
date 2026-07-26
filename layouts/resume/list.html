@@ -6,7 +6,21 @@
 {{ $r := hugo.Data.resume }}
 {{ $basics := $r.basics }}
 
-<div class="ac-resume mw8 center ph3 ph4-ns pv5">
+{{/* The resume is presented as a sheet of paper on a desk rather than as another
+     page of the site. body_classes in the front matter carries .ac-paper, which
+     is what scopes the treatment and pins this page to the light theme. */}}
+<div class="ac-desk">
+
+  {{/* Sits on the desk rather than on the sheet: it is a control for handling
+       the document, not part of the document. The PDF itself is written into
+       public/ after the Hugo build by tools/resumepdf. */}}
+  <div class="ac-desk__bar ac-print-hide">
+    <a class="ac-btn ac-btn--sm no-underline" href="{{ urls.RelURL "/alexis-couvreur-resume.pdf" }}" download>
+      Download as PDF
+    </a>
+  </div>
+
+<article class="ac-resume ac-sheet">
 
   {{/* ---------- Identity ---------- */}}
   <header class="ac-resume__header">
@@ -26,11 +40,6 @@
         {{ end }}
       </ul>
 
-      {{/* Written into public/ after the Hugo build by tools/resumepdf. */}}
-      <a class="ac-btn ac-btn--sm ac-print-hide no-underline mt3 dib"
-         href="{{ urls.RelURL "/alexis-couvreur-resume.pdf" }}" download>
-        Download as PDF
-      </a>
     </div>
 
     {{ with $basics.picture }}
@@ -38,9 +47,9 @@
     {{ end }}
   </header>
 
-  {{ with $basics.summary }}
-    <p class="ac-resume__summary">{{ . }}</p>
-  {{ end }}
+  <div class="ac-resume__summary">
+    {{ partial "summary.html" . }}
+  </div>
 
   {{/* ---------- Skills: up front, so the page can be scanned in seconds ---------- */}}
   {{ with $r.skills }}
@@ -116,7 +125,13 @@
             {{ end }}
             <p class="ac-project__desc mt0 mb2">{{ .description }}</p>
             {{ with .keywords }}
-              <div class="ac-chips">{{ range . }}<span class="ac-chip">{{ . }}</span>{{ end }}</div>
+              <div class="ac-chips">
+                {{ range . }}
+                  <span class="ac-chip">
+                    {{ partial "brand-icon.html" (dict "keyword" .) }}{{ . }}
+                  </span>
+                {{ end }}
+              </div>
             {{ end }}
           </article>
         {{ end }}
@@ -146,6 +161,7 @@
         <ul class="ac-contrib-list">
           {{ range . }}
             <li class="ac-contrib">
+              {{ partial "brand-icon.html" (dict "repo" .name "class" "ac-icon--lead") }}
               <a class="ac-link ac-contrib__name" href="https://github.com/{{ .name }}{{ $prQuery }}" rel="noopener" target="_blank">{{ .name }}</a>
               <span class="ac-contrib__count">{{ partial "pr-count.html" . }}</span>
               {{ with .badge }}<span class="ac-badge">{{ . }}</span>{{ end }}
@@ -160,7 +176,8 @@
           {{ range . }}
             <a class="ac-chip ac-chip--link" href="https://github.com/{{ .name }}{{ $prQuery }}"
                rel="noopener" target="_blank" title="{{ .name }}, {{ partial "pr-count.html" . }}">
-              {{ .name }} <span class="ac-chip__count">{{ partial "pr-count.html" (merge . (dict "compact" true)) }}</span>
+              {{ partial "brand-icon.html" (dict "repo" .name) }}{{ .name }}
+              <span class="ac-chip__count">{{ partial "pr-count.html" (merge . (dict "compact" true)) }}</span>
             </a>
           {{ end }}
         </div>
@@ -168,8 +185,11 @@
     </section>
   {{ end }}
 
-  {{/* ---------- Talks & certifications, side by side ---------- */}}
-  <div class="ac-resume__split">
+  {{/* ---------- Talks & certifications, side by side ----------
+       Starts a fresh sheet in print. The marker sits here, but the break
+       itself lands on the first section inside: Chromium honours break-before
+       on a grid item and ignores it on the grid container or a wrapper. */}}
+  <div class="ac-resume__split ac-break-before">
     {{ with $r.talks }}
       <section class="ac-resume__section">
         <h2 class="ac-section-heading">
@@ -276,5 +296,6 @@
 
   {{ with .Content }}<div class="ac-prose ac-resume__section">{{ . }}</div>{{ end }}
 
+</article>
 </div>
 {{ end }}

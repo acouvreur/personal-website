@@ -3,56 +3,13 @@
    Fonts : Space Grotesk (headings) + Inter (body)
    ============================================================= */
 
-:root {
-  color-scheme: light dark;
+/* Colour tokens live in a palette file (assets/ananke/css/palette-*.css) listed
+   ahead of this one in ananke.custom_css, so the whole scheme swaps in one line
+   of config. Everything below refers to the tokens and never to a literal.
 
-  --ac-bg:      #ffffff;
-  --ac-soft:    #f7f8fa;
-  --ac-border:  #e5e7eb;
-  --ac-text:    #14171a;
-  --ac-muted:   #5b6570;
-  --ac-accent:  #2563eb;
-  --ac-accent-dark: #1d4ed8;
-
-  /* Pull request states, tinted to sit on a light background. */
-  --ac-merged:  #6f42c1;
-  --ac-landed:  #1a7f37;
-  --ac-open:    #0969da;
-  --ac-closed:  #6e7781;
-
-  --ac-on-accent: #ffffff;
-}
-
-/* Follows the operating system. There is no toggle, so there is no flash of the
-   wrong theme on load and no JavaScript involved. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ac-bg:      #0d1117;
-    --ac-soft:    #161b22;
-    --ac-border:  #2a313c;
-    --ac-text:    #e6edf3;
-    --ac-muted:   #9198a1;
-    --ac-accent:  #4c8dff;
-    --ac-accent-dark: #79b0ff;
-
-    --ac-merged:  #a371f7;
-    --ac-landed:  #3fb950;
-    --ac-open:    #4493f8;
-    --ac-closed:  #8b949e;
-
-    /* The accent is light in dark mode, so filled buttons need dark text. */
-    --ac-on-accent: #0d1117;
-  }
-
-  /* Tachyons hardcodes these and the theme sprinkles them through the markup. */
-  .b--black-10 { border-color: var(--ac-border) !important; }
-  .bg-near-white, .bg-white { background-color: var(--ac-soft) !important; }
-
-  /* Poster frames and avatars are photographic; take the glare off them. */
-  .ac-video__poster,
-  .ac-resume__avatar,
-  .ac-hero__avatar img { filter: brightness(.92); }
-}
+   The site is light only. The resume is presented as a sheet of paper and the
+   PDF and social cards are printed artefacts, so a dark variant would have been
+   the odd one out on three of four surfaces rather than the default. */
 
 /* ----- Sticky footer ----------------------------------------- */
 body {
@@ -183,6 +140,39 @@ body {
 
 .ac-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
 
+/* ----- Brand marks -------------------------------------------- */
+/* Monochrome and inheriting currentColor, so one rule covers both themes and
+   every mark carries the same visual weight regardless of its original shape. */
+.ac-icon {
+  width: 1.05em;
+  height: 1.05em;
+  vertical-align: -0.15em;
+  flex: 0 0 auto;
+  margin-right: .34em;
+  opacity: .65;
+  transition: opacity .15s ease;
+}
+
+/* Larger and stronger where it leads a row rather than decorating a chip. */
+.ac-icon--lead {
+  width: 1.2em;
+  height: 1.2em;
+  opacity: .75;
+}
+
+/* The repo name sits at .78rem, where a 1em mark reads as noise. Give it its
+   own floor so the brand stays legible next to small monospace text. */
+.ac-pr__repo {
+  display: inline-flex;
+  align-items: center;
+}
+.ac-pr__repo .ac-icon { width: 14px; height: 14px; }
+
+a:hover .ac-icon,
+.ac-chip:hover .ac-icon,
+.ac-contrib:hover .ac-icon,
+.ac-pr:hover .ac-icon { opacity: 1; }
+
 .ac-btn {
   display: inline-block;
   padding: .6rem 1.25rem;
@@ -220,7 +210,29 @@ body {
 }
 
 .ac-hero__title { font-size: 3.2rem; font-weight: 700; line-height: 1.05; }
-.ac-hero__summary { font-size: 1.15rem; line-height: 1.7; color: var(--ac-muted); max-width: 36rem; }
+
+.ac-hero__summary { font-size: 1.1rem; line-height: 1.7; color: var(--ac-muted); max-width: 36rem; }
+.ac-hero__summary p { margin: 0 0 1rem; }
+.ac-hero__summary p:last-child { margin-bottom: 0; }
+
+/* The first line is the claim, so give it a little more presence than the two
+   that follow it. */
+.ac-hero__summary p:first-child { font-size: 1.22rem; color: var(--ac-text); }
+
+.ac-hero__summary a { color: var(--ac-accent); text-decoration: none; }
+.ac-hero__summary a:hover { text-decoration: underline; }
+
+/* Emphasised words keep the text colour and take an accent rule underneath, so
+   they read as highlights rather than as links, which are coloured instead. */
+.ac-hero__summary strong,
+.ac-resume__summary strong {
+  font-weight: 500;
+  color: var(--ac-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ac-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
 .ac-hero__location { font-size: .9rem; color: var(--ac-muted); }
 
 .ac-hero__avatar img {
@@ -283,6 +295,58 @@ body {
   color: var(--ac-muted);
 }
 
+/* ----- Resume as a sheet of paper ----------------------------- */
+/*
+  The resume is the one page that is a document rather than a web page, so it is
+  presented as a sheet on a desk: a white page with square corners lifted off a
+  neutral canvas. Scoped by body_classes in the page's front matter.
+*/
+body.ac-paper {
+  --ac-canvas: #e7e9ee;
+  background-color: var(--ac-canvas) !important;
+}
+
+/* The chrome recedes into the desk so the sheet is the only white thing. */
+body.ac-paper .ac-header,
+body.ac-paper .ac-footer { background: var(--ac-canvas); }
+
+.ac-desk { padding: 2.5rem 1rem 4.5rem; }
+
+/* Toolbar above the sheet, aligned to its right edge. */
+.ac-desk__bar {
+  max-width: 58rem;
+  margin: 0 auto .85rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ac-sheet {
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 3.5rem 4rem 4rem;
+  background: var(--ac-bg);
+  border: 1px solid #dfe3e9;
+  /* Square corners: paper does not have rounded ones. Two shadows, a tight one
+     for the contact edge and a wide soft one for the lift. */
+  box-shadow:
+    0 1px 2px rgba(16, 24, 40, .06),
+    0 16px 40px -12px rgba(16, 24, 40, .18);
+}
+
+@media screen and (max-width: 60em) {
+  .ac-desk { padding: 1rem .75rem 2.5rem; }
+  .ac-sheet { padding: 2rem 1.5rem 2.5rem; }
+}
+
+@media screen and (max-width: 30em) {
+  /* Below a certain width the desk metaphor costs more than it gives: the
+     margins eat the content. Let the sheet run edge to edge, but keep the
+     toolbar inset so the button is not flush against the screen edge. */
+  .ac-desk { padding: 0; }
+  .ac-sheet { border-left: 0; border-right: 0; box-shadow: none; }
+  .ac-desk__bar { padding: 1rem 1rem 0; margin-bottom: .6rem; }
+}
+
 /* ----- Resume ------------------------------------------------ */
 .ac-resume__header {
   display: flex;
@@ -312,11 +376,16 @@ body {
 
 .ac-resume__summary {
   margin: 1.5rem 0 0;
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.65;
   color: var(--ac-text);
-  max-width: 40rem;
+  max-width: 42rem;
 }
+
+.ac-resume__summary p { margin: 0 0 .6rem; }
+.ac-resume__summary p:last-child { margin-bottom: 0; }
+.ac-resume__summary a { color: var(--ac-accent); text-decoration: none; }
+.ac-resume__summary a:hover { text-decoration: underline; }
 
 .ac-resume__section { margin-top: 2.75rem; }
 .ac-resume__subsection { margin-top: 2rem; }
@@ -821,6 +890,38 @@ body {
 
 .ac-highlight__label { font-size: .92rem; color: var(--ac-muted); line-height: 1.55; margin: 0; }
 
+/* Whole-card links. Laid out as a column so the call to action sits at the
+   bottom edge however tall the label wraps. */
+.ac-highlight--link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s ease, transform .15s ease;
+}
+
+.ac-highlight--link:hover,
+.ac-highlight--link:focus-visible { border-color: var(--ac-accent); transform: translateY(-2px); }
+
+.ac-highlight--link:focus-visible { outline: 2px solid var(--ac-accent); outline-offset: 2px; }
+
+.ac-highlight__go {
+  margin-top: auto;
+  padding-top: .9rem;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--ac-accent);
+}
+
+.ac-highlight__go span { display: inline-block; transition: transform .15s ease; }
+.ac-highlight--link:hover .ac-highlight__go span { transform: translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ac-highlight--link,
+  .ac-highlight__go span { transition: none; }
+  .ac-highlight--link:hover { transform: none; }
+}
+
 .ac-plain-list {
   list-style: none;
   padding: 0;
@@ -843,28 +944,48 @@ body {
 }
 
 @media print {
-  /* Paper is light even when the screen is not. Without this, generating the
-     PDF on a machine set to dark mode produces a dark PDF. */
-  :root {
-    color-scheme: light;
-    --ac-bg:      #ffffff;
-    --ac-soft:    #f7f8fa;
-    --ac-border:  #e5e7eb;
-    --ac-text:    #14171a;
-    --ac-muted:   #5b6570;
-    --ac-accent:  #1d4ed8;
-  }
-
+  /* Paper is pinned to light in the palette file, so a dark-mode machine still
+     produces a light PDF. Only layout differences live here. */
   body > header,
   body > footer,
   .ac-post-nav,
   .ac-print-hide,
   .ananke-socials { display: none !important; }
 
-  body { font-size: 9.5pt; }
+  /* The sticky-footer rule makes body a flex container. Chromium ignores
+     break-before on descendants inside a flex formatting context, so without
+     this reset the page break below silently does nothing. */
+  body {
+    display: block !important;
+    min-height: 0;
+    font-size: 9.5pt;
+  }
   main.pb7 { padding-bottom: 0 !important; }
 
-  .ac-resume { max-width: 100%; padding: 0 !important; margin: 0 !important; }
+  /* On paper the sheet metaphor is redundant: the page already is one. */
+  .ac-desk { padding: 0 !important; }
+  .ac-resume,
+  .ac-sheet {
+    max-width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Forces a fresh sheet before the marked group.
+     The break has to land on the first grid ITEM, not on the grid container
+     and not on a wrapper around it: Chromium honours break-before on a grid
+     item and silently ignores it on the other two. Verified by page count,
+     four pages with this selector versus three with either alternative.
+     page-break-before is the legacy spelling, for other browsers. */
+  .ac-break-before > .ac-resume__section:first-child {
+    page-break-before: always;
+    break-before: page;
+  }
+  /* A new page supplies its own space, so the sections landing on it do not
+     also need a top margin. */
+  .ac-break-before > .ac-resume__section { margin-top: 0; }
 
   /* Nothing straddles a page break except the chip list, which has no internal
      structure worth protecting. */
@@ -875,11 +996,19 @@ body {
   .ac-plain-list--spaced li { break-inside: avoid; }
   .ac-resume__section > .ac-section-heading { break-after: avoid; }
 
-  .ac-page-title { font-size: 18pt; }
-  .ac-resume__label { font-size: 10.5pt; }
-  .ac-resume__summary { font-size: 9.5pt; line-height: 1.45; margin-top: .7rem; max-width: none; }
-  .ac-resume__avatar { width: 74px; height: 74px; }
-  .ac-contact-list { font-size: 8.5pt; }
+  /* The identity block is the least informative part of the page, so on paper it
+     gets the least room. The summary is three paragraphs now, not one, and its
+     per-paragraph margins are what made this section run tall. */
+  .ac-page-title { font-size: 17pt; }
+  .ac-resume__label { font-size: 10pt; margin-bottom: .35rem !important; }
+  .ac-resume__header { gap: 1.25rem; }
+  .ac-resume__avatar { width: 66px; height: 66px; }
+  .ac-contact-list { font-size: 8.5pt; gap: .2rem .8rem; }
+
+  .ac-resume__summary { font-size: 8.8pt; line-height: 1.4; margin-top: .55rem; max-width: none; }
+  .ac-resume__summary p { margin-bottom: .28rem; }
+  /* Emphasis underlines cost a line's worth of leading each on paper. */
+  .ac-resume__summary strong { text-decoration: none; font-weight: 600; }
 
   .ac-resume__section { margin-top: 1rem; }
   .ac-resume__subsection { margin-top: .8rem; }

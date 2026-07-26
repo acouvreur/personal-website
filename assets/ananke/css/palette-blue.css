@@ -1,0 +1,43 @@
+/* =============================================================
+   Palette: blue.
+
+   The site is light only, so this file holds one set of tokens plus a
+   print override. Everything else in alexis.css refers to these and
+   never to a literal colour, which is what makes a palette swappable.
+
+   Swap palettes in hugo.toml -> ananke.custom_css.
+   ============================================================= */
+
+:root {
+  color-scheme: light;
+
+  --ac-bg:      #ffffff;
+  --ac-soft:    #f7f8fa;
+  --ac-border:  #e5e7eb;
+  --ac-text:    #14171a;
+  --ac-muted:   #5b6570;
+  --ac-accent:  #2563eb;
+  --ac-accent-dark: #1d4ed8;
+  --ac-on-accent: #ffffff;
+
+  /* Pull request states. Semantic rather than brand: these follow GitHub's
+     conventions on purpose, because a reader already knows what they mean. */
+  --ac-merged:  #6f42c1;
+  --ac-landed:  #1a7f37;
+  --ac-open:    #0969da;
+  --ac-closed:  #6e7781;
+}
+
+/* Paper is light even when the screen is not, or generating the PDF on a
+   machine set to dark mode produces a dark PDF. */
+@media print {
+  :root {
+    color-scheme: light;
+    --ac-bg:      #ffffff;
+    --ac-soft:    #f7f8fa;
+    --ac-border:  #e5e7eb;
+    --ac-text:    #14171a;
+    --ac-muted:   #5b6570;
+    --ac-accent:  #1d4ed8;
+  }
+}

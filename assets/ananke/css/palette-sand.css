@@ -1,0 +1,48 @@
+/* =============================================================
+   Palette: sand.
+
+   Named for Sablier, which is French for hourglass and is the project
+   this site is best known for. The accent is the sand in the glass, so
+   the colour carries a meaning rather than being the blue everyone
+   else reached for.
+
+   Greys are warm rather than neutral: the dark canvas is a brown-black,
+   not GitHub's blue-black, so the amber sits in the same family as its
+   background instead of fighting it.
+
+   Swap palettes in hugo.toml -> ananke.custom_css.
+   ============================================================= */
+
+:root {
+  color-scheme: light;
+
+  --ac-bg:      #fdfcfa;
+  --ac-soft:    #f5f1e9;
+  --ac-border:  #e4dbcb;
+  --ac-text:    #1a1613;
+  --ac-muted:   #6b6157;
+  /* Deep amber rather than bright: bright sand on white fails contrast,
+     and this still reads as warm next to the near-black text. */
+  --ac-accent:  #a85a11;
+  --ac-accent-dark: #8a4709;
+  --ac-on-accent: #ffffff;
+
+  /* Pull request states. Semantic rather than brand: these follow GitHub's
+     conventions on purpose, because a reader already knows what they mean. */
+  --ac-merged:  #6f42c1;
+  --ac-landed:  #1a7f37;
+  --ac-open:    #0969da;
+  --ac-closed:  #6e7781;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+    --ac-bg:      #ffffff;
+    --ac-soft:    #f5f1e9;
+    --ac-border:  #e4dbcb;
+    --ac-text:    #1a1613;
+    --ac-muted:   #6b6157;
+    --ac-accent:  #8a4709;
+  }
+}

@@ -8,7 +8,11 @@
     "picture": "https://avatars.githubusercontent.com/u/22034450",
     "email": "alexiscouvreur.pro@gmail.com",
     "website": "https://www.alexiscouvreur.fr",
-    "summary": "I'm a software engineer based in Montreal, at home across the whole stack: frontend, backend, and the Linux underneath it all. I'm the technical lead on my teams, working closely with architects and leading the technical decisions. I maintain Sablier and contribute to TinyGo, Docker and a fair number of other Go projects. Open source is the part I care about most, inside companies as much as outside them.",
+    "summary": [
+      "I'm a software engineer based in Montreal, working in **platform engineering** and **DevSecOps**. **Backend** is my home ground, and I work the whole depth of the stack from frontend down through **Docker**, Kubernetes and the **Linux** underneath.",
+      "I'm a platform engineer at [Banque Nationale du Canada](https://www.bnc.ca/), running GitHub for thousands of engineers. I'm also co-founder and CTO at [Reeveel](https://getreeveel.com), a startup making a new kind of digital frame.",
+      "I maintain [Sablier](https://sablierapp.dev/) and contribute to [TinyGo](https://tinygo.org), [Docker](https://www.docker.com) and [a fair number of other Go projects](/opensource/). Open source is the part I care about most, inside companies as much as outside them."
+    ],
     "location": {
       "address": "",
       "postalCode": "",

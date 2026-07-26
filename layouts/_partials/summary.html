@@ -1,0 +1,19 @@
+{{- /*
+  Renders basics.summary, an array of markdown paragraphs, so the intro has room
+  to breathe and can carry links.
+
+  markdownify returns inline HTML for a single-paragraph string rather than
+  wrapping it, so each entry gets its own <p> here. Style them through the
+  wrapper (.ac-hero__summary p, .ac-resume__summary p).
+
+  Root-relative hrefs written in the data are rewritten through RelURL so
+  internal links survive a deploy to a subpath as well as the custom domain at
+  root. Go's regexp has no lookahead, so the character after the slash is
+  captured and put back rather than asserted, which keeps protocol-relative
+  "//" URLs from being rewritten.
+*/ -}}
+{{- $root := urls.RelURL "/" -}}
+
+{{- range hugo.Data.resume.basics.summary }}
+<p>{{ . | markdownify | replaceRE `href="/([^/])` (printf `href="%s$1` $root) | safeHTML }}</p>
+{{- end }}

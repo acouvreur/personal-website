@@ -1,0 +1,42 @@
+{{- /*
+  Renders a brand mark as an inline monochrome SVG.
+
+  Call with a dict:
+    repo    "owner/name", resolved through data/brands.json
+    keyword a skill keyword, resolved through the same file
+    slug    an icon slug, used directly
+    class   extra classes for the <svg>
+
+  Icons come from simple-icons (CC0) and are stored as bare path data in
+  data/icons.json, so they inline with no request and inherit currentColor.
+  That is what makes them work in both themes without a per-logo fix.
+
+  Repositories fall back to the GitHub mark, so every row gets something and the
+  list never looks half-finished. Keywords do not: a chip with no matching brand
+  is just text.
+*/ -}}
+{{- $brands := hugo.Data.brands -}}
+{{- $slug := .slug -}}
+
+{{- with .repo -}}
+  {{- $repo := . -}}
+  {{- $owner := index (strings.Split $repo "/") 0 -}}
+  {{- if index $brands.repos $repo -}}
+    {{- $slug = index $brands.repos $repo -}}
+  {{- else if index $brands.owners $owner -}}
+    {{- $slug = index $brands.owners $owner -}}
+  {{- else -}}
+    {{- $slug = $brands.fallback -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with .keyword -}}
+  {{- $slug = index $brands.keywords . -}}
+{{- end -}}
+
+{{- with $slug -}}
+  {{- with index hugo.Data.icons . -}}
+    <svg class="ac-icon {{ $.class }}" viewBox="0 0 24 24" role="img" aria-hidden="true"
+         focusable="false" fill="currentColor"><title>{{ .title }}</title><path d="{{ .path }}"/></svg>
+  {{- end -}}
+{{- end -}}

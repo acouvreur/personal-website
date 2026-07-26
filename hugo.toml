@@ -40,7 +40,7 @@ enableRobotsTXT = true
       [languages.en.params.ananke]
         # fonts.html is a partial that generates @font-face rules; it must come
         # first so the faces are declared before anything uses them.
-        custom_css = ['fonts.html', 'alexis.css']
+        custom_css = ['fonts.html', 'palette-blue.css', 'alexis.css']
         show_recent_posts = false
 
         [languages.en.params.ananke.social.follow]

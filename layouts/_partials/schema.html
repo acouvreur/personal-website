@@ -18,6 +18,9 @@
   {{- $jobTitle = (index . 0).position -}}
 {{- end -}}
 
+{{- /* summary is an array of markdown paragraphs; flatten it to plain prose. */ -}}
+{{- $summary := delimit $basics.summary " " | markdownify | plainify -}}
+
 {{- $person := dict
   "@type" "Person"
   "@id" (printf "%s#person" site.BaseURL)
@@ -26,7 +29,7 @@
   "email" (printf "mailto:%s" $basics.email)
   "image" $basics.picture
   "jobTitle" $jobTitle
-  "description" ($basics.summary | plainify)
+  "description" $summary
   "sameAs" (apply $basics.profiles "index" "." "url")
 -}}
 

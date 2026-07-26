@@ -142,11 +142,20 @@ automated requests outright are excluded in `lychee.toml`.
 
 ## Theme and fonts
 
-Colours are CSS custom properties, and dark mode is a single
-`prefers-color-scheme` block that reassigns them. There is no toggle, so no
-flash of the wrong theme and no JavaScript. `@media print` pins everything back
-to light, otherwise generating the PDF on a machine set to dark would produce a
-dark PDF.
+Colours are CSS custom properties, held in `assets/ananke/css/palette-*.css` and
+selected by one entry in `ananke.custom_css`. `alexis.css` refers to the tokens
+and never to a literal colour, so swapping the whole scheme is a one-line change.
+Spare palettes (sand, blueprint, oscilloscope, spectrum) sit alongside the
+active one.
+
+The site is **light only**. Three of its four surfaces are printed artefacts, the
+resume sheet, the PDF and the social cards, so a dark variant would have been the
+odd one out rather than the default, and keeping one meant the resume flashing
+white when a dark-mode visitor clicked into it.
+
+`/resume/` is presented as a sheet of paper on a desk. That is scoped by
+`body_classes = 'ac-paper'` in its front matter, which Ananke resolves per page,
+so the treatment applies there and nowhere else.
 
 Fonts are self-hosted from `assets/fonts/`: variable woff2 files covering the
 whole weight range, split latin / latin-ext exactly as Google serves them. The

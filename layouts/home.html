@@ -10,7 +10,9 @@
     <div class="ac-hero__text">
       <p class="ac-eyebrow">{{ $basics.label }}</p>
       <h1 class="ac-hero__title mt0 mb3">{{ $basics.name }}</h1>
-      <p class="ac-hero__summary mt0 mb4">{{ $basics.summary }}</p>
+      <div class="ac-hero__summary mb4">
+        {{ partial "summary.html" . }}
+      </div>
 
       <p class="ac-hero__location mt0 mb4">
         {{ with $basics.location }}{{ .city }}{{ with .region }}, {{ . }}{{ end }}{{ end }}
@@ -43,21 +45,25 @@
           my scale-to-zero project for Docker, Kubernetes and Podman.
         </p>
       </div>
+      {{/* These two are whole-card links. The Sablier one above is not, because
+           its text already contains a link and anchors cannot nest. */}}
       {{ with hugo.Data.opensource }}
-        <div class="ac-highlight">
+        <a class="ac-highlight ac-highlight--link" href="{{ urls.RelURL "/opensource/" }}">
           <span class="ac-highlight__stat">{{ len . }}</span>
           <p class="ac-highlight__label">
             Projects I've contributed to, among them TinyGo, Traefik, Docker and Terraform.
           </p>
-        </div>
+          <span class="ac-highlight__go">Browse every PR <span aria-hidden="true">&rarr;</span></span>
+        </a>
       {{ end }}
       {{ with hugo.Data.resume.talks }}
-        <div class="ac-highlight">
+        <a class="ac-highlight ac-highlight--link" href="{{ urls.RelURL "/talks/" }}">
           <span class="ac-highlight__stat">{{ len . }}</span>
           <p class="ac-highlight__label">
             Talks at JUG Montreal and CNCF Montreal, in French and in English.
           </p>
-        </div>
+          <span class="ac-highlight__go">Watch them <span aria-hidden="true">&rarr;</span></span>
+        </a>
       {{ end }}
     </div>
   </section>

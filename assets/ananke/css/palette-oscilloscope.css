@@ -1,0 +1,40 @@
+/* =============================================================
+   Palette: oscilloscope.
+
+   Phosphor green on instrument black. Measurement and observability,
+   which is a whole skill group on this site: Prometheus, Grafana,
+   InfluxDB, Telegraf. Deep green in light mode so the accent still
+   carries on paper.
+
+   Swap palettes in hugo.toml -> ananke.custom_css.
+   ============================================================= */
+
+:root {
+  color-scheme: light;
+
+  --ac-bg:      #fafbfa;
+  --ac-soft:    #eff3f0;
+  --ac-border:  #d2ded6;
+  --ac-text:    #0e1512;
+  --ac-muted:   #55655c;
+  --ac-accent:  #0f7a45;
+  --ac-accent-dark: #0b5c34;
+  --ac-on-accent: #ffffff;
+
+  --ac-merged:  #6f42c1;
+  --ac-landed:  #1a7f37;
+  --ac-open:    #0969da;
+  --ac-closed:  #6e7781;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+    --ac-bg:      #ffffff;
+    --ac-soft:    #eff3f0;
+    --ac-border:  #d2ded6;
+    --ac-text:    #0e1512;
+    --ac-muted:   #55655c;
+    --ac-accent:  #0b5c34;
+  }
+}

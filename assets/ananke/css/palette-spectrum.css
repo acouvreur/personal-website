@@ -1,0 +1,39 @@
+/* =============================================================
+   Palette: spectrum.
+
+   Spectroscopy: the violet end of the visible band against a near-black
+   that leans indigo rather than grey. Reads as physics and research
+   rather than infrastructure.
+
+   Swap palettes in hugo.toml -> ananke.custom_css.
+   ============================================================= */
+
+:root {
+  color-scheme: light;
+
+  --ac-bg:      #fbfaff;
+  --ac-soft:    #f2effa;
+  --ac-border:  #ddd6ee;
+  --ac-text:    #16121f;
+  --ac-muted:   #5f5872;
+  --ac-accent:  #6d3ecf;
+  --ac-accent-dark: #562fa8;
+  --ac-on-accent: #ffffff;
+
+  --ac-merged:  #6f42c1;
+  --ac-landed:  #1a7f37;
+  --ac-open:    #0969da;
+  --ac-closed:  #6e7781;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+    --ac-bg:      #ffffff;
+    --ac-soft:    #f2effa;
+    --ac-border:  #ddd6ee;
+    --ac-text:    #16121f;
+    --ac-muted:   #5f5872;
+    --ac-accent:  #562fa8;
+  }
+}

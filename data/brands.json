@@ -1,0 +1,47 @@
+{
+  "_comment": "Maps repositories and skill keywords to icon slugs in data/icons.json. Repos are matched most specific first: exact owner/name, then owner, then the GitHub mark as a fallback so every row gets a mark.",
+
+  "repos": {
+    "docker/cli": "docker",
+    "moby/moby": "docker",
+    "traefik/traefik": "traefikproxy",
+    "podman-container-tools/podman": "podman",
+    "jenkinsci/kubernetes-plugin": "jenkins",
+    "integrations/terraform-provider-github": "terraform",
+    "jfrog/terraform-provider-platform": "terraform",
+    "HewlettPackard/terraschema": "terraform",
+    "OpenAPITools/openapi-generator": "openapiinitiative",
+    "Azure/setup-kubectl": "kubernetes",
+    "sablierapp/sablier": "go",
+    "acouvreur/traefik-modsecurity-plugin": "traefikproxy"
+  },
+
+  "owners": {
+    "espressif": "espressif",
+    "tinygo-org": "go",
+    "golang": "go",
+    "google": "go",
+    "testcontainers": "go",
+    "jfrog": "jfrog",
+    "HewlettPackard": "hp"
+  },
+
+  "fallback": "github",
+
+  "keywords": {
+    "Go": "go",
+    "Kubernetes": "kubernetes",
+    "Docker": "docker",
+    "Docker Swarm": "docker",
+    "Podman": "podman",
+    "Traefik": "traefikproxy",
+    "Nginx": "nginx",
+    "JavaScript": "javascript",
+    "InfluxDB": "influxdb",
+    "Grafana": "grafana",
+    "OWASP": "owasp",
+    "ModSecurity": "owasp",
+    "Google Cloud": "googlecloud",
+    "Bluetooth Low Energy": "bluetooth"
+  }
+}
