@@ -162,6 +162,8 @@
       "note": "Q2 meetup at the Google Montreal office",
       "date": "2023-06-21",
       "language": "English",
+      "poster": "images/cncf-montreal.jpg",
+      "icon": "cncf",
       "url": "https://community.cncf.io/events/details/cncf-montreal-presents-q2-cncf-montreal-cloud-native-users-and-contributor-stories/",
       "description": "One of the evening's lightning sessions, an end user story on building with and contributing to cloud native tooling."
     },

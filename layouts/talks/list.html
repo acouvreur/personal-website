@@ -17,13 +17,16 @@
       {{ $talk := . }}
       <article class="ac-talk">
 
-        {{ with $talk.video }}
+        {{/* Three ways a talk can be illustrated, most specific first: a
+             recording, a supplied image, or a generated card carrying the
+             venue's brand mark so talks without video still have a poster. */}}
+        {{ if $talk.video }}
           {{/* Poster frame plus a play button. The YouTube player is only
                fetched once the visitor actually asks for it. */}}
-          <div class="ac-video" data-video="{{ . }}" data-title="{{ $talk.title }}">
+          <div class="ac-video" data-video="{{ $talk.video }}" data-title="{{ $talk.title }}">
             <button class="ac-video__play" type="button">
               <img class="ac-video__poster"
-                   src="{{ partial "video-thumb.html" . }}"
+                   src="{{ partial "video-thumb.html" $talk.video }}"
                    alt="" loading="lazy" width="960" height="540">
               <span class="ac-video__badge" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -31,6 +34,40 @@
               <span class="ac-video__label">Play “{{ $talk.title }}”</span>
             </button>
           </div>
+
+        {{ else }}
+          {{/* No recording. These deliberately do NOT carry .ac-video: that
+               class is what the player script hooks, and an emblem has no
+               video to play. They link to the event instead. */}}
+          {{ $emblem := "" }}
+          {{ with $talk.poster }}
+            {{ with resources.Get . }}
+              {{ $logo := .Process "resize 320x webp q88" }}
+              {{ $emblem = printf `<img class="ac-emblem__logo" src="%s" alt="%s" loading="lazy" width="%d" height="%d">`
+                   $logo.RelPermalink $talk.event $logo.Width $logo.Height }}
+            {{ else }}
+              {{ errorf "talks: poster %q not found in assets/" $talk.poster }}
+            {{ end }}
+          {{ else }}
+            {{ with $talk.icon }}
+              {{ $emblem = partial "brand-icon.html" (dict "slug" . "class" "ac-emblem__mark") }}
+            {{ end }}
+          {{ end }}
+
+          {{ with $emblem }}
+            {{ if $talk.url }}
+              <a class="ac-emblem" href="{{ $talk.url }}" rel="noopener" target="_blank"
+                 aria-label="{{ $talk.event }} event page">
+                {{ . | safeHTML }}
+                <span class="ac-emblem__caption">{{ $talk.event }}</span>
+              </a>
+            {{ else }}
+              <div class="ac-emblem">
+                {{ . | safeHTML }}
+                <span class="ac-emblem__caption">{{ $talk.event }}</span>
+              </div>
+            {{ end }}
+          {{ end }}
         {{ end }}
 
         <div class="ac-talk__body">
@@ -69,8 +106,10 @@
 
 <script>
   // Swap the poster for the real player on first click, so the page costs
-  // nothing until someone wants to watch.
-  document.querySelectorAll('.ac-video').forEach(function (holder) {
+  // nothing until someone wants to watch. The attribute selector matters:
+  // without it this also grabs posters that have no recording behind them and
+  // builds an embed for the video id "undefined".
+  document.querySelectorAll('.ac-video[data-video]').forEach(function (holder) {
     holder.addEventListener('click', function () {
       var frame = document.createElement('iframe');
       frame.src = 'https://www.youtube-nocookie.com/embed/' + holder.dataset.video + '?autoplay=1&rel=0';

@@ -788,14 +788,17 @@ body.ac-paper .ac-footer { background: var(--ac-canvas); }
   align-items: start;
 }
 
-/* Talks without a recording have no poster, so the text takes the full width. */
-.ac-talk:not(:has(.ac-video)) { grid-template-columns: 1fr; }
+/* A talk with no poster at all, of either kind, gives its text the full width.
+   Both classes must be listed: an emblem is not a .ac-video, deliberately, so
+   the player script cannot pick it up. */
+.ac-talk:not(:has(.ac-video, .ac-emblem)) { grid-template-columns: 1fr; }
 
 .ac-talk__title { font-size: 1.5rem; font-weight: 600; line-height: 1.25; }
 .ac-talk__summary { color: var(--ac-muted); line-height: 1.65; }
 .ac-talk__note { font-size: .85rem; color: var(--ac-muted); opacity: .8; }
 
-.ac-video {
+.ac-video,
+.ac-emblem {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -859,6 +862,52 @@ body.ac-paper .ac-footer { background: var(--ac-canvas); }
 }
 
 .ac-video__frame { display: block; width: 100%; height: 100%; border: 0; }
+
+/* A talk with no recording still gets a poster: the venue's logo, or its brand
+   mark if there is no logo to hand, so the three sit level. Both are emblems
+   rather than photographs, so they are centred on a field rather than cropped
+   to fill one. */
+.ac-emblem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .9rem;
+  background:
+    radial-gradient(120% 120% at 50% 0%, var(--ac-bg) 0%, var(--ac-soft) 100%);
+  /* Usually an <a> to the event page, since there is no video to play. */
+  text-decoration: none;
+  transition: border-color .15s ease;
+}
+
+a.ac-emblem:hover { border-color: var(--ac-accent); }
+a.ac-emblem:hover .ac-emblem__caption { color: var(--ac-accent); }
+a.ac-emblem:focus-visible { outline: 3px solid var(--ac-accent); outline-offset: 2px; }
+
+.ac-emblem__logo {
+  width: 34%;
+  max-width: 132px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.ac-emblem__mark {
+  width: 30%;
+  height: auto;
+  max-width: 120px;
+  margin: 0;
+  opacity: .5;
+  color: var(--ac-text);
+}
+
+.ac-emblem__caption {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ac-muted);
+}
 
 @media screen and (max-width: 60em) {
   .ac-talk { grid-template-columns: 1fr; gap: 1.25rem; }
