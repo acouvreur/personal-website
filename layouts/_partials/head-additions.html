@@ -11,6 +11,12 @@
 
 <meta name="theme-color" content="#2563eb">
 
+{{- /* Umami analytics. Production only, so `hugo server` and the local builds
+       the screenshot tools drive do not show up in the stats. */ -}}
+{{- if hugo.IsProduction }}
+<script defer src="https://cloud.umami.is/script.js" data-website-id="ba80c8d8-0368-4ac5-95ba-58726e2aa1ce"></script>
+{{- end }}
+
 {{- /* Fonts are self-hosted (see _partials/fonts.html), so there is nothing to
        preconnect to.
 
