@@ -1,21 +1,362 @@
 [
   {
+    "repo": "saltosystems/winrt-go",
+    "number": 127,
+    "title": "feat: add BluetoothLEAdvertisementReceivedEventArgs.GetAdvertisementType",
+    "url": "https://github.com/saltosystems/winrt-go/pull/127",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-10-12"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 505,
+    "title": "windows: merge scan responses into scan results",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/505",
+    "state": "open",
+    "type": "other",
+    "created": "2026-10-12"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 504,
+    "title": "windows: return whole service UUIDs in scan results",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/504",
+    "state": "open",
+    "type": "other",
+    "created": "2026-10-12"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 21,
+    "title": "fix: release what calls from Go autorelease",
+    "url": "https://github.com/tinygo-org/cbgo/pull/21",
+    "state": "open",
+    "type": "fix",
+    "created": "2026-10-11"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 501,
+    "title": "gattc: return ErrServiceNotFound and ErrCharacteristicNotFound",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/501",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-07",
+    "closed": "2026-10-09"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 499,
+    "title": "darwin: return ATT errors as AttributeProtocolError",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/499",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-07",
+    "closed": "2026-10-09"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 497,
+    "title": "gattc: never report more bytes read than fit in the buffer",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/497",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-07",
+    "closed": "2026-10-09"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 495,
+    "title": "darwin: return the ATT MTU from GetMTU like the other backends",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/495",
+    "state": "closed",
+    "type": "other",
+    "created": "2026-10-07",
+    "closed": "2026-10-07"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 493,
+    "title": "darwin: do not deliver read results to the notification callback",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/493",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-07",
+    "closed": "2026-10-09"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 491,
+    "title": "darwin: keep services found by earlier DiscoverServices calls",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/491",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-07",
+    "closed": "2026-10-09"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 20,
+    "title": "core: keep the NSError domain",
+    "url": "https://github.com/tinygo-org/cbgo/pull/20",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-07",
+    "closed": "2026-10-09"
+  },
+  {
+    "repo": "integrations/terraform-provider-github",
+    "number": 3654,
+    "title": "feat: adopt existing Pages site on 409 in github_repository_pages",
+    "url": "https://github.com/integrations/terraform-provider-github/pull/3654",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-09-24"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 474,
+    "title": "feat(softdevice): use ConnectionPriority, and add PeripheralLatency",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/474",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-09-02"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 473,
+    "title": "feat(windows): use ConnectionPriority for preferred connection parameters",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/473",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-09-02"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 472,
+    "title": "feat(gap): add ConnectionPriority to ConnectionParams",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/472",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-09-02"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 471,
+    "title": "feat(gap): add ConnectionPriority to ConnectionParams",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/471",
+    "state": "closed",
+    "type": "feat",
+    "created": "2026-09-02",
+    "closed": "2026-09-02"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 468,
+    "title": "feat: add WithContext operations to the common interfaces",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/468",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-08-26"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 18,
+    "title": "docs: document L2CAP support and add a build workflow",
+    "url": "https://github.com/tinygo-org/cbgo/pull/18",
+    "state": "merged",
+    "type": "docs",
+    "created": "2026-08-26",
+    "closed": "2026-08-27"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 17,
+    "title": "fix: resolve the vet failures the new build workflow surfaces",
+    "url": "https://github.com/tinygo-org/cbgo/pull/17",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-27"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 15,
+    "title": "docs: document L2CAP support and add a build workflow",
+    "url": "https://github.com/tinygo-org/cbgo/pull/15",
+    "state": "closed",
+    "type": "docs",
+    "created": "2026-08-26",
+    "closed": "2026-08-26"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 14,
+    "title": "fix: deliver L2CAP stream events instead of scheduling on a run loop that never runs",
+    "url": "https://github.com/tinygo-org/cbgo/pull/14",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-27"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 13,
+    "title": "feat: expose the peer on the other end of an L2CAP channel",
+    "url": "https://github.com/tinygo-org/cbgo/pull/13",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-08-26",
+    "closed": "2026-08-27"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 12,
+    "title": "fix: closing an L2CAP channel no longer leaves Go holding a freed pointer",
+    "url": "https://github.com/tinygo-org/cbgo/pull/12",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-27"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 11,
+    "title": "fix: distinguish an L2CAP stream that has ended from one with no data yet",
+    "url": "https://github.com/tinygo-org/cbgo/pull/11",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-27"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 10,
+    "title": "fix: L2CAP reads and writes never report failure as a negative count with no error",
+    "url": "https://github.com/tinygo-org/cbgo/pull/10",
+    "state": "merged",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-27"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 9,
+    "title": "docs: document L2CAP support and add a build workflow",
+    "url": "https://github.com/tinygo-org/cbgo/pull/9",
+    "state": "closed",
+    "type": "docs",
+    "created": "2026-08-26",
+    "closed": "2026-08-26"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 8,
+    "title": "fix: deliver L2CAP stream events instead of scheduling on a run loop that never runs",
+    "url": "https://github.com/tinygo-org/cbgo/pull/8",
+    "state": "closed",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-26"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 7,
+    "title": "feat: expose the peer on the other end of an L2CAP channel",
+    "url": "https://github.com/tinygo-org/cbgo/pull/7",
+    "state": "closed",
+    "type": "feat",
+    "created": "2026-08-26",
+    "closed": "2026-08-26"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 6,
+    "title": "fix: closing an L2CAP channel no longer leaves Go holding a freed pointer",
+    "url": "https://github.com/tinygo-org/cbgo/pull/6",
+    "state": "closed",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-26"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 5,
+    "title": "fix: distinguish an L2CAP stream that has ended from one with no data yet",
+    "url": "https://github.com/tinygo-org/cbgo/pull/5",
+    "state": "closed",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-26"
+  },
+  {
+    "repo": "tinygo-org/cbgo",
+    "number": 4,
+    "title": "fix: L2CAP reads and writes never report failure as a negative count with no error",
+    "url": "https://github.com/tinygo-org/cbgo/pull/4",
+    "state": "closed",
+    "type": "fix",
+    "created": "2026-08-26",
+    "closed": "2026-08-26"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 772,
+    "title": "feat(ble_conn_mgr): let an application read back its advertising state",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/772",
+    "state": "landed",
+    "type": "feat",
+    "created": "2026-08-15",
+    "closed": "2026-09-01"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 771,
+    "title": "fix(ble_conn_mgr): stop the advertising restart failing on its own two paths",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/771",
+    "state": "landed",
+    "type": "fix",
+    "created": "2026-08-15",
+    "closed": "2026-09-01"
+  },
+  {
+    "repo": "espressif/esp-idf",
+    "number": 18940,
+    "title": "ci(docker): publish image layers with zstd compression (IDFGH-18099)",
+    "url": "https://github.com/espressif/esp-idf/pull/18940",
+    "state": "open",
+    "type": "ci",
+    "created": "2026-08-06"
+  },
+  {
+    "repo": "espressif/esp-idf",
+    "number": 18939,
+    "title": "ci(docker): shallow clone IDF for tag-pinned images (IDFGH-18100)",
+    "url": "https://github.com/espressif/esp-idf/pull/18939",
+    "state": "open",
+    "type": "ci",
+    "created": "2026-08-06"
+  },
+  {
     "repo": "espressif/esp-iot-solution",
     "number": 754,
     "title": "feat(ble_conn_mgr): add esp_ble_conn_whitelist_sync_bonds() [draft, #752]",
     "url": "https://github.com/espressif/esp-iot-solution/pull/754",
-    "state": "open",
+    "state": "landed",
     "type": "feat",
-    "created": "2026-07-21"
+    "created": "2026-07-21",
+    "closed": "2026-08-21"
   },
   {
     "repo": "espressif/esp-iot-solution",
     "number": 750,
     "title": "fix(ble_conn_mgr): post ESP_BLE_CONN_EVENT_STARTED on host sync",
     "url": "https://github.com/espressif/esp-iot-solution/pull/750",
-    "state": "open",
+    "state": "landed",
     "type": "fix",
-    "created": "2026-07-21"
+    "created": "2026-07-21",
+    "closed": "2026-08-21"
   },
   {
     "repo": "espressif/esp-nimble",
@@ -40,9 +381,10 @@
     "number": 3492,
     "title": "feat: add ID in data_source_github_repository_teams",
     "url": "https://github.com/integrations/terraform-provider-github/pull/3492",
-    "state": "open",
+    "state": "closed",
     "type": "feat",
-    "created": "2026-06-17"
+    "created": "2026-06-17",
+    "closed": "2026-09-24"
   },
   {
     "repo": "zitadel/terraform-provider-zitadel",
@@ -78,9 +420,10 @@
     "number": 453,
     "title": "fix(windows): close leaked resources",
     "url": "https://github.com/tinygo-org/bluetooth/pull/453",
-    "state": "open",
+    "state": "merged",
     "type": "fix",
-    "created": "2026-05-20"
+    "created": "2026-05-20",
+    "closed": "2026-08-25"
   },
   {
     "repo": "moby/moby",
@@ -153,7 +496,7 @@
   {
     "repo": "integrations/terraform-provider-github",
     "number": 3396,
-    "title": "fix: support repository rename in resource_github_actions_repository_…",
+    "title": "fix: support repository rename in github_actions_repository_oidc_subject_claim_customization_template",
     "url": "https://github.com/integrations/terraform-provider-github/pull/3396",
     "state": "open",
     "type": "fix",
@@ -192,9 +535,10 @@
     "number": 444,
     "title": "feat!: add err parameter to connectHandler",
     "url": "https://github.com/tinygo-org/bluetooth/pull/444",
-    "state": "open",
+    "state": "closed",
     "type": "feat",
-    "created": "2026-04-26"
+    "created": "2026-04-26",
+    "closed": "2026-09-02"
   },
   {
     "repo": "tinygo-org/cbgo",
@@ -211,9 +555,10 @@
     "number": 436,
     "title": "feat: add WASM/WebBluetooth support",
     "url": "https://github.com/tinygo-org/bluetooth/pull/436",
-    "state": "open",
+    "state": "merged",
     "type": "feat",
-    "created": "2026-04-10"
+    "created": "2026-04-10",
+    "closed": "2026-10-09"
   },
   {
     "repo": "tinygo-org/bluetooth",
@@ -379,18 +724,20 @@
     "number": 423,
     "title": "Add connection latency windows",
     "url": "https://github.com/tinygo-org/bluetooth/pull/423",
-    "state": "open",
+    "state": "closed",
     "type": "other",
-    "created": "2026-03-17"
+    "created": "2026-03-17",
+    "closed": "2026-10-09"
   },
   {
     "repo": "tinygo-org/bluetooth",
     "number": 422,
     "title": "feat(gap): add ConnectionLatency in ConnectionParams",
     "url": "https://github.com/tinygo-org/bluetooth/pull/422",
-    "state": "open",
+    "state": "closed",
     "type": "feat",
-    "created": "2026-03-17"
+    "created": "2026-03-17",
+    "closed": "2026-09-02"
   },
   {
     "repo": "tinygo-org/bluetooth",
@@ -556,9 +903,10 @@
     "number": 2876,
     "title": "fix!: github_repository_collaborators ID is now set the repository ID",
     "url": "https://github.com/integrations/terraform-provider-github/pull/2876",
-    "state": "open",
+    "state": "closed",
     "type": "fix",
-    "created": "2025-11-07"
+    "created": "2025-11-07",
+    "closed": "2026-09-24"
   },
   {
     "repo": "google/go-github",
@@ -603,9 +951,10 @@
     "number": 387,
     "title": "feat(darwin): add `WithContext` operations",
     "url": "https://github.com/tinygo-org/bluetooth/pull/387",
-    "state": "open",
+    "state": "closed",
     "type": "feat",
-    "created": "2025-10-04"
+    "created": "2025-10-04",
+    "closed": "2026-09-02"
   },
   {
     "repo": "tinygo-org/bluetooth",
