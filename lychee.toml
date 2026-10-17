@@ -3,7 +3,9 @@
 # Browser-ish identity: several sites (LinkedIn in particular) refuse anything
 # that looks automated.
 user_agent = "Mozilla/5.0 (compatible; lychee; +https://www.alexiscouvreur.fr)"
-accept = ["200", "203", "206", "429"]
+# 429 and 503 mean "busy, try later", not "gone": a site that is rate limiting
+# or briefly down should not open an issue. 404s and the like still fail.
+accept = ["200", "203", "206", "429", "503"]
 timeout = 20
 max_retries = 2
 max_concurrency = 8
