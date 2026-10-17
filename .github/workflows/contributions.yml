@@ -1,0 +1,47 @@
+name: Update contributions
+
+on:
+  schedule:
+    - cron: "17 6 * * *"   # daily, off the top of the hour to avoid the cron rush
+  workflow_dispatch:
+
+permissions:
+  contents: write   # push the data commit
+  actions: write    # trigger the Pages deploy
+
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
+
+      - name: Regenerate contribution data
+        run: go run ./tools/contributions/main.go
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: update contributions"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      # Pushes made with the Actions token don't trigger other workflows, so
+      # start the deploy explicitly.
+      - name: Redeploy site
+        if: steps.commit.outputs.pushed == 'true'
+        run: gh workflow run github-pages.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
