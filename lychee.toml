@@ -3,7 +3,9 @@
 # Browser-ish identity: several sites (LinkedIn in particular) refuse anything
 # that looks automated.
 user_agent = "Mozilla/5.0 (compatible; lychee; +https://www.alexiscouvreur.fr)"
-accept = ["200", "203", "206", "429"]
+# 429 and 503 mean "busy, try later", not "gone": a site that is rate limiting
+# or briefly down should not open an issue. 404s and the like still fail.
+accept = ["200", "203", "206", "429", "503"]
 timeout = 20
 max_retries = 2
 max_concurrency = 8
@@ -23,8 +25,11 @@ exclude = [
   "^https://github\\.com/.*/pulls\\?",
   # mailto: has nothing to check.
   "^mailto:",
+  # Printed by tools/resumepdf after the Hugo build, which the link check skips.
+  "/alexis-couvreur-resume\\.pdf$",
 ]
 
 # Anchors are not resolved: the site has none that matter, and checking them on
-# third-party pages produces noise rather than signal.
-include_fragments = false
+# third-party pages produces noise rather than signal. lychee 0.24 replaced the
+# boolean with a mode, and rejects the whole file if it is still a boolean.
+include_fragments = "none"

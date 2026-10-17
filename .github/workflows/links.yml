@@ -36,16 +36,20 @@ jobs:
         with:
           install_args: "hugo"
 
+      # Not minified: lychee's parser loses track of the minified markup's
+      # unquoted attributes and silently skips almost every link after them.
       - name: Build site
-        run: hugo --gc --minify
+        run: hugo --gc
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
 
+      # root-dir resolves the site's root-relative links (/resume/, /favicon.svg)
+      # against the build, and has to be absolute, so it cannot live in lychee.toml.
       - name: Check links
         id: lychee
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
-          args: --config lychee.toml --no-progress './public/**/*.html'
+          args: --config lychee.toml --no-progress --root-dir '${{ github.workspace }}/public' './public/**/*.html'
           fail: false
           output: lychee-report.md
 
