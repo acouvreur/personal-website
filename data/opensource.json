@@ -1,8 +1,8 @@
 [
   {
     "name": "tinygo-org/bluetooth",
-    "merged": 24,
-    "open": 7,
+    "merged": 33,
+    "open": 8,
     "badge": "TinyGo org member",
     "summary": "Added the common GAP and GATT interfaces, L2CAP support, and a long run of macOS and Windows fixes. That work is how I ended up a member of the TinyGo organization."
   },
@@ -15,16 +15,17 @@
     "name": "espressif/esp-iot-solution",
     "merged": 0,
     "landed": 9,
+    "open": 2,
     "summary": "Work on the BLE connection manager and the Current Time Service in Espressif's ESP-IDF component library. Espressif pulls changes into their own tracker and closes the PR, so these show as closed on GitHub rather than merged."
+  },
+  {
+    "name": "saltosystems/winrt-go",
+    "merged": 8,
+    "open": 2
   },
   {
     "name": "cbrgm/githubevents",
     "merged": 7
-  },
-  {
-    "name": "saltosystems/winrt-go",
-    "merged": 5,
-    "open": 2
   },
   {
     "name": "OpenAPITools/openapi-generator",

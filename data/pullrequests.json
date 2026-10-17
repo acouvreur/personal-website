@@ -1,30 +1,175 @@
 [
   {
+    "repo": "tinygo-org/bluetooth",
+    "number": 520,
+    "title": "windows: call the connect handler when disconnecting",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/520",
+    "state": "open",
+    "type": "other",
+    "created": "2026-10-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 519,
+    "title": "darwin: return an error when Connect fails",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/519",
+    "state": "open",
+    "type": "other",
+    "created": "2026-10-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 518,
+    "title": "feat!: pass a ConnectionState to the connect handler",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/518",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-10-17"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 801,
+    "title": "feat(ble_services): let BAS and CTS require encryption, notifications included",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/801",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-10-15"
+  },
+  {
+    "repo": "espressif/esp-iot-solution",
+    "number": 800,
+    "title": "feat(ble_conn_mgr): refuse notify/indicate on a link a characteristic says must be encrypted",
+    "url": "https://github.com/espressif/esp-iot-solution/pull/800",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-10-15"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 130,
+    "title": "feat!: pass generic out parameters as caller-provided memory",
+    "url": "https://github.com/saltosystems/winrt-go/pull/130",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-10-15"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 129,
+    "title": "feat: generate Windows.Devices.Enumeration pairing classes",
+    "url": "https://github.com/saltosystems/winrt-go/pull/129",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-10-15",
+    "closed": "2026-10-16"
+  },
+  {
+    "repo": "saltosystems/winrt-go",
+    "number": 128,
+    "title": "feat: generate ProtocolError on GATT read, services and characteristics results",
+    "url": "https://github.com/saltosystems/winrt-go/pull/128",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-10-15",
+    "closed": "2026-10-15"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 513,
+    "title": "linux: pair and unpair with a peripheral through BlueZ",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/513",
+    "state": "open",
+    "type": "other",
+    "created": "2026-10-15"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 512,
+    "title": "windows: pair and unpair with a peripheral",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/512",
+    "state": "open",
+    "type": "other",
+    "created": "2026-10-15"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 511,
+    "title": "windows: report the ATT error code of a refused read or discovery",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/511",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-15",
+    "closed": "2026-10-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 510,
+    "title": "windows: check the read status before using its value",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/510",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-15",
+    "closed": "2026-10-17"
+  },
+  {
     "repo": "saltosystems/winrt-go",
     "number": 127,
     "title": "feat: add BluetoothLEAdvertisementReceivedEventArgs.GetAdvertisementType",
     "url": "https://github.com/saltosystems/winrt-go/pull/127",
-    "state": "open",
+    "state": "merged",
     "type": "feat",
-    "created": "2026-10-12"
+    "created": "2026-10-12",
+    "closed": "2026-10-15"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 509,
+    "title": "windows: close discovered services when disconnecting",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/509",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-12",
+    "closed": "2026-10-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 508,
+    "title": "windows: return an error when characteristic discovery fails",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/508",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-12",
+    "closed": "2026-10-17"
+  },
+  {
+    "repo": "tinygo-org/bluetooth",
+    "number": 507,
+    "title": "windows: wait for the link in Connect",
+    "url": "https://github.com/tinygo-org/bluetooth/pull/507",
+    "state": "merged",
+    "type": "other",
+    "created": "2026-10-12",
+    "closed": "2026-10-17"
   },
   {
     "repo": "tinygo-org/bluetooth",
     "number": 505,
     "title": "windows: merge scan responses into scan results",
     "url": "https://github.com/tinygo-org/bluetooth/pull/505",
-    "state": "open",
+    "state": "merged",
     "type": "other",
-    "created": "2026-10-12"
+    "created": "2026-10-12",
+    "closed": "2026-10-17"
   },
   {
     "repo": "tinygo-org/bluetooth",
     "number": 504,
     "title": "windows: return whole service UUIDs in scan results",
     "url": "https://github.com/tinygo-org/bluetooth/pull/504",
-    "state": "open",
+    "state": "merged",
     "type": "other",
-    "created": "2026-10-12"
+    "created": "2026-10-12",
+    "closed": "2026-10-17"
   },
   {
     "repo": "tinygo-org/cbgo",
@@ -128,18 +273,20 @@
     "number": 473,
     "title": "feat(windows): use ConnectionPriority for preferred connection parameters",
     "url": "https://github.com/tinygo-org/bluetooth/pull/473",
-    "state": "open",
+    "state": "merged",
     "type": "feat",
-    "created": "2026-09-02"
+    "created": "2026-09-02",
+    "closed": "2026-10-15"
   },
   {
     "repo": "tinygo-org/bluetooth",
     "number": 472,
     "title": "feat(gap): add ConnectionPriority to ConnectionParams",
     "url": "https://github.com/tinygo-org/bluetooth/pull/472",
-    "state": "open",
+    "state": "merged",
     "type": "feat",
-    "created": "2026-09-02"
+    "created": "2026-09-02",
+    "closed": "2026-10-15"
   },
   {
     "repo": "tinygo-org/bluetooth",
