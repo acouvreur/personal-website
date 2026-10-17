@@ -58,6 +58,13 @@ jobs:
   deploy:
     name: Deploy
     if: github.event_name != 'pull_request'
+    # Pages refuses a deployment while another is in progress, so a burst of
+    # merges used to fail all but one. Deploys now queue: the running one is
+    # never cancelled, and a newer pending deploy replaces an older one, since
+    # only the latest commit needs to go out.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
