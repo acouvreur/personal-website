@@ -1,5 +1,6 @@
 +++
-title = 'Back to Basics: direnv'
+title = 'direnv: Onboarding in One cd'
+series = ['Back to Basics']
 date = 2026-10-20T10:00:00-04:00
 draft = false
 tags = ['direnv', 'vault', 'devex']
@@ -59,6 +60,8 @@ export DB_PASSWORD=$(vault kv get -field=password secret/myapp/dev/db)
 The `vault token lookup` line checks whether you already have a valid token. If you
 don't, `vault login -method=oidc` opens the browser, you sign in with the same account
 as everything else, and the token is cached. Most days that line does nothing.
+
+{{< diagram src="flow.svg" caption="What happens on `cd`. Leave the directory and it's all gone." >}}
 
 So what changed?
 
