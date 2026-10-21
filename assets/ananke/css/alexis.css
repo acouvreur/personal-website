@@ -295,6 +295,32 @@ a:hover .ac-icon,
   color: var(--ac-muted);
 }
 
+/* Alerts: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION], rendered by
+   layouts/_markup/render-blockquote.html. Each type only swaps --ac-alert. */
+.ac-alert {
+  --ac-alert: var(--ac-note);
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--ac-alert);
+  border-radius: 0 6px 6px 0;
+  background: color-mix(in srgb, var(--ac-alert) 7%, var(--ac-bg));
+}
+.ac-alert--tip       { --ac-alert: var(--ac-tip); }
+.ac-alert--important { --ac-alert: var(--ac-important); }
+.ac-alert--warning   { --ac-alert: var(--ac-warning); }
+.ac-alert--caution   { --ac-alert: var(--ac-caution); }
+.ac-alert__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+  color: var(--ac-alert);
+}
+.ac-alert__icon { flex: none; }
+.ac-alert__title + p { margin-top: 0; }
+.ac-alert > :last-child { margin-bottom: 0; }
+
 /* ----- Resume as a sheet of paper ----------------------------- */
 /*
   The resume is the one page that is a document rather than a web page, so it is

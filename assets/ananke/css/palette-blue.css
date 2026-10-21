@@ -26,6 +26,14 @@
   --ac-landed:  #1a7f37;
   --ac-open:    #0969da;
   --ac-closed:  #6e7781;
+
+  /* Alert boxes in posts (> [!NOTE] and friends). GitHub's colours, for the
+     same reason as above. */
+  --ac-note:      #0969da;
+  --ac-tip:       #1a7f37;
+  --ac-important: #8250df;
+  --ac-warning:   #9a6700;
+  --ac-caution:   #d1242f;
 }
 
 /* Paper is light even when the screen is not, or generating the PDF on a
