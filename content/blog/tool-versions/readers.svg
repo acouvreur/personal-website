@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" role="img" aria-labelledby="tv-title tv-desc">
+  <title id="tv-title">Who reads .tool-versions</title>
+  <desc id="tv-desc">One .tool-versions file with five lines: golang, nodejs, terraform, golangci-lint and goreleaser. On your machine, mise reads every line. In CI, setup-go reads the golang line, setup-node the nodejs line, golangci-lint-action and goreleaser-action their own lines, and mise-action installs terraform, whose setup action does not read the file.</desc>
+  <defs>
+    <marker id="tv-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-head" d="M0 0 L10 5 L0 10 z"/>
+    </marker>
+  </defs>
+
+  <text class="dg-heading" x="95" y="36" text-anchor="middle">On your machine</text>
+  <text class="dg-heading" x="600" y="36" text-anchor="middle">In CI</text>
+
+  <!-- The file -->
+  <rect class="dg-box dg-box--key" x="230" y="56" width="200" height="264" rx="8"/>
+  <text class="dg-code" x="330" y="86" text-anchor="middle" font-weight="600">.tool-versions</text>
+  <line class="dg-rule" x1="230" y1="102" x2="430" y2="102"/>
+  <text class="dg-code" x="250" y="134.5">golang 1.25.3</text>
+  <text class="dg-code" x="250" y="174.5">nodejs 22.11.0</text>
+  <text class="dg-code" x="250" y="214.5">terraform 1.13.4</text>
+  <text class="dg-code" x="250" y="254.5">golangci-lint 2.6.0</text>
+  <text class="dg-code" x="250" y="294.5">goreleaser 2.12.0</text>
+
+  <!-- Locally: mise reads the whole file -->
+  <rect class="dg-box" x="20" y="150" width="150" height="80" rx="8"/>
+  <text class="dg-title" x="95" y="185" text-anchor="middle">mise</text>
+  <text class="dg-note" x="95" y="208" text-anchor="middle">reads every line</text>
+  <path class="dg-arrow" d="M228 190 H174" marker-end="url(#tv-arrow)"/>
+
+  <!-- In CI: one action per line -->
+  <path class="dg-arrow" d="M432 130 H496" marker-end="url(#tv-arrow)"/>
+  <path class="dg-arrow" d="M432 170 H496" marker-end="url(#tv-arrow)"/>
+  <path class="dg-arrow dg-arrow--return" d="M432 210 H496" marker-end="url(#tv-arrow)"/>
+  <path class="dg-arrow" d="M432 250 H496" marker-end="url(#tv-arrow)"/>
+  <path class="dg-arrow" d="M432 290 H496" marker-end="url(#tv-arrow)"/>
+
+  <rect class="dg-box" x="500" y="114" width="200" height="32" rx="6"/>
+  <text class="dg-code" x="600" y="134.5" text-anchor="middle">setup-go</text>
+  <rect class="dg-box" x="500" y="154" width="200" height="32" rx="6"/>
+  <text class="dg-code" x="600" y="174.5" text-anchor="middle">setup-node</text>
+  <rect class="dg-box dg-box--fallback" x="500" y="194" width="200" height="32" rx="6"/>
+  <text class="dg-code" x="600" y="214.5" text-anchor="middle">mise-action</text>
+  <rect class="dg-box" x="500" y="234" width="200" height="32" rx="6"/>
+  <text class="dg-code" x="600" y="254.5" text-anchor="middle">golangci-lint-action</text>
+  <rect class="dg-box" x="500" y="274" width="200" height="32" rx="6"/>
+  <text class="dg-code" x="600" y="294.5" text-anchor="middle">goreleaser-action</text>
+</svg>

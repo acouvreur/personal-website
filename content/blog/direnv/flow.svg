@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" role="img" aria-labelledby="dv-title dv-desc">
+  <title id="dv-title">What happens when you cd into the repo</title>
+  <desc id="dv-desc">You cd into the repo. direnv's shell hook runs before the prompt and runs the .envrc if it is allowed. The .envrc exports the defaults, checks the Vault token or logs in with OIDC, and reads the password with vault kv get. Vault returns the password, the .envrc hands its exported variables to direnv, and direnv loads them into your shell. When you cd out, direnv unloads them.</desc>
+  <defs>
+    <marker id="dv-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-head" d="M0 0 L10 5 L0 10 z"/>
+    </marker>
+  </defs>
+
+  <!-- Participants -->
+  <rect class="dg-box" x="25" y="16" width="130" height="40" rx="6"/>
+  <text class="dg-title" x="90" y="41" text-anchor="middle">Your shell</text>
+  <rect class="dg-box" x="205" y="16" width="130" height="40" rx="6"/>
+  <text class="dg-title" x="270" y="41" text-anchor="middle">direnv</text>
+  <rect class="dg-box dg-box--key" x="385" y="16" width="130" height="40" rx="6"/>
+  <text class="dg-code" x="450" y="41" text-anchor="middle" font-weight="600">.envrc</text>
+  <rect class="dg-box" x="565" y="16" width="130" height="40" rx="6"/>
+  <text class="dg-title" x="630" y="41" text-anchor="middle">Vault</text>
+
+  <line class="dg-life" x1="90" y1="56" x2="90" y2="545"/>
+  <line class="dg-life" x1="270" y1="56" x2="270" y2="545"/>
+  <line class="dg-life" x1="450" y1="56" x2="450" y2="545"/>
+  <line class="dg-life" x1="630" y1="56" x2="630" y2="545"/>
+
+  <!-- cd in -->
+  <path class="dg-arrow" d="M94 100 H264" marker-end="url(#dv-arrow)"/>
+  <text class="dg-code" x="180" y="92" text-anchor="middle">cd my-repo</text>
+  <text class="dg-note" x="180" y="118" text-anchor="middle">hook runs before the prompt</text>
+
+  <path class="dg-arrow" d="M274 150 H444" marker-end="url(#dv-arrow)"/>
+  <text x="360" y="142" text-anchor="middle">runs it, if allowed</text>
+
+  <path class="dg-arrow" d="M454 185 H500 V215 H458" marker-end="url(#dv-arrow)"/>
+  <text x="510" y="205">exports defaults</text>
+
+  <path class="dg-arrow" d="M454 260 H624" marker-end="url(#dv-arrow)"/>
+  <text x="540" y="252" text-anchor="middle">token, or OIDC login</text>
+  <text class="dg-note" x="540" y="278" text-anchor="middle">browser opens if needed</text>
+
+  <path class="dg-arrow" d="M454 315 H624" marker-end="url(#dv-arrow)"/>
+  <text class="dg-code" x="540" y="307" text-anchor="middle">kv get …/db</text>
+
+  <path class="dg-arrow dg-arrow--return" d="M626 355 H456" marker-end="url(#dv-arrow)"/>
+  <text x="540" y="347" text-anchor="middle">password</text>
+
+  <path class="dg-arrow dg-arrow--return" d="M446 400 H276" marker-end="url(#dv-arrow)"/>
+  <text x="360" y="392" text-anchor="middle">exported variables</text>
+
+  <path class="dg-arrow dg-arrow--return" d="M266 440 H96" marker-end="url(#dv-arrow)"/>
+  <text x="180" y="432" text-anchor="middle">variables loaded</text>
+
+  <!-- cd out -->
+  <path class="dg-arrow" d="M94 490 H264" marker-end="url(#dv-arrow)"/>
+  <text class="dg-code" x="180" y="482" text-anchor="middle">cd ..</text>
+
+  <path class="dg-arrow dg-arrow--return" d="M266 530 H96" marker-end="url(#dv-arrow)"/>
+  <text x="180" y="522" text-anchor="middle">variables unloaded</text>
+</svg>
