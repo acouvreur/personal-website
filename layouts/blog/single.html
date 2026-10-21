@@ -20,6 +20,8 @@
     {{ .Content }}
   </div>
 
+  {{ partials.Include "series.html" . }}
+
   <nav class="ac-post-nav mt5 pt4 bt b--black-10">
     {{ with .PrevInSection }}
       <a class="ac-read-more no-underline" href="{{ .RelPermalink }}"><span aria-hidden="true">&larr;</span> {{ .Title }}</a>

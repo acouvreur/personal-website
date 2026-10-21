@@ -1,0 +1,25 @@
+{{- /*
+  Rows of posts: date, tags, title, description and a read-more link. Shared by
+  the blog index and the taxonomy term pages (tags, series), so a post looks the
+  same wherever it is listed.
+
+  Call with a page collection. The description comes from front matter; the
+  summary is only a fallback for a post without one.
+*/ -}}
+<div class="ac-post-list">
+  {{ range . }}
+    <article class="ac-post-row">
+      <div class="ac-meta mb2">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "January 2, 2006" }}</time>
+        {{ range .Params.tags }}<span class="ac-tag">{{ . }}</span>{{ end }}
+      </div>
+      <h2 class="ac-post-row__title mt0 mb2">
+        <a class="ac-title-link no-underline" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+      <p class="ac-post-row__summary mt0 mb3">
+        {{ with .Params.description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 240 }}{{ end }}
+      </p>
+      <a class="ac-read-more no-underline" href="{{ .RelPermalink }}">Read more <span aria-hidden="true">&rarr;</span></a>
+    </article>
+  {{ end }}
+</div>

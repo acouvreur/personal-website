@@ -1,0 +1,9 @@
+{{- /*
+  One muted sentence at the end of a post with a `series` front matter value,
+  linking to the series page. A post belongs to one series, so only the first
+  value is used.
+*/ -}}
+{{- with .GetTerms "series" -}}
+  {{- $term := index . 0 -}}
+  <p class="ac-series">This post is part of <a href="{{ $term.RelPermalink }}">{{ $term.LinkTitle }}</a>.</p>
+{{- end -}}

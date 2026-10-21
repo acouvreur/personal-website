@@ -1,0 +1,20 @@
+{{- /*
+  Inlines an SVG from the post's folder as a figure:
+
+    {{< diagram src="flow.svg" caption="What happens on `cd`." >}}
+
+  Inline rather than <img> so the diagram takes the site's fonts and palette:
+  the SVG carries dg-* classes only, and .ac-diagram in alexis.css colours them.
+  On narrow screens the figure scrolls sideways instead of shrinking the text.
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- with .Page.Resources.Get $src -}}
+<figure class="ac-diagram">
+  <div class="ac-diagram__scroll">{{ .Content | safeHTML }}</div>
+  {{- with $.Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>
+{{- else -}}
+  {{- errorf "diagram: %q not found next to %s" $src .Page.File.Path -}}
+{{- end -}}

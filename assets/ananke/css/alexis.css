@@ -283,11 +283,19 @@ a:hover .ac-icon,
 .ac-prose img { max-width: 100%; height: auto; }
 .ac-prose pre {
   background: var(--ac-soft);
+  color: var(--ac-text);
   border: 1px solid var(--ac-border);
   border-radius: 6px;
   padding: 1rem;
   overflow-x: auto;
 }
+/* The theme's copy button is drawn for a dark code panel; ours is light. */
+.code-block .code-copy {
+  color: var(--ac-muted);
+  background-color: var(--ac-bg);
+  border-color: var(--ac-border);
+}
+.code-block .code-copy:hover { background-color: var(--ac-soft); }
 .ac-prose blockquote {
   border-left: 3px solid var(--ac-accent);
   margin-left: 0;
@@ -320,6 +328,31 @@ a:hover .ac-icon,
 .ac-alert__icon { flex: none; }
 .ac-alert__title + p { margin-top: 0; }
 .ac-alert > :last-child { margin-bottom: 0; }
+
+/* Diagrams: inline SVGs from a post's folder (layouts/_shortcodes/diagram.html).
+   The SVGs carry dg-* classes only; colours and fonts all come from here, so
+   they follow the palette. */
+.ac-diagram { margin: 2rem 0; }
+.ac-diagram__scroll { overflow-x: auto; }
+.ac-diagram svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.ac-diagram figcaption { margin-top: .75rem; font-size: .9rem; line-height: 1.6; color: var(--ac-muted); }
+.ac-diagram .dg-box     { fill: var(--ac-bg); stroke: var(--ac-border); stroke-width: 1.5; }
+.ac-diagram .dg-box--key { fill: var(--ac-soft); stroke: var(--ac-accent); }
+.ac-diagram .dg-box--fallback { stroke-dasharray: 5 4; }
+.ac-diagram .dg-rule    { stroke: var(--ac-border); stroke-width: 1.5; }
+.ac-diagram .dg-life    { stroke: var(--ac-border); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.ac-diagram .dg-arrow   { fill: none; stroke: var(--ac-muted); stroke-width: 1.5; }
+.ac-diagram .dg-arrow--return { stroke-dasharray: 5 4; }
+.ac-diagram .dg-head    { fill: var(--ac-muted); }
+.ac-diagram text        { fill: var(--ac-text); font-size: 14px; }
+.ac-diagram .dg-title   { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; }
+.ac-diagram .dg-heading { fill: var(--ac-muted); font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+.ac-diagram .dg-code    { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+.ac-diagram .dg-note    { fill: var(--ac-muted); font-size: 12.5px; }
+
+/* Series sign-off at the end of a post (layouts/_partials/series.html). */
+.ac-series { margin: 2.5rem 0 0; color: var(--ac-muted); line-height: 1.7; }
+.ac-series a { color: var(--ac-accent); }
 
 /* ----- Resume as a sheet of paper ----------------------------- */
 /*

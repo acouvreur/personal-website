@@ -9,6 +9,8 @@ enableRobotsTXT = true
 
 [taxonomies]
   tag = 'tags'
+  # Posts that build on each other, shown in a box at the top of each one.
+  series = 'series'
 
 # Every page also renders a bare 1200x630 card at <page>/og.html, which
 # tools/ogimages screenshots into the og.png referenced by the meta tags.
@@ -23,6 +25,12 @@ enableRobotsTXT = true
   home = ['html', 'rss', 'ogcard']
   section = ['html', 'rss', 'ogcard']
   page = ['html', 'ogcard']
+
+# Highlight with CSS classes rather than inline styles, so every code block,
+# with or without a language, gets the same light panel from alexis.css. The
+# colours live in assets/ananke/css/syntax.css.
+[markup.highlight]
+  noClasses = false
 
 [languages]
 
@@ -40,7 +48,7 @@ enableRobotsTXT = true
       [languages.en.params.ananke]
         # fonts.html is a partial that generates @font-face rules; it must come
         # first so the faces are declared before anything uses them.
-        custom_css = ['fonts.html', 'palette-blue.css', 'alexis.css']
+        custom_css = ['fonts.html', 'palette-blue.css', 'syntax.css', 'alexis.css']
         show_recent_posts = false
 
         [languages.en.params.ananke.social.follow]
