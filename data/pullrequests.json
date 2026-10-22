@@ -1,5 +1,24 @@
 [
   {
+    "repo": "kimdre/doco-cd",
+    "number": 2096,
+    "title": "feat: only recreate the services that failed to start on a deploy retry",
+    "url": "https://github.com/kimdre/doco-cd/pull/2096",
+    "state": "open",
+    "type": "feat",
+    "created": "2026-10-22"
+  },
+  {
+    "repo": "kimdre/doco-cd",
+    "number": 2094,
+    "title": "feat: include resolved revision in per-stack log lines",
+    "url": "https://github.com/kimdre/doco-cd/pull/2094",
+    "state": "merged",
+    "type": "feat",
+    "created": "2026-10-22",
+    "closed": "2026-10-22"
+  },
+  {
     "repo": "tinygo-org/bluetooth",
     "number": 520,
     "title": "windows: call the connect handler when disconnecting",
