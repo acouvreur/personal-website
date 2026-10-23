@@ -1,0 +1,19 @@
+{{- /*
+  The profile photo, the same file everywhere: the home page, the resume and
+  the structured data. Returns the image resource.
+
+  The source is a portrait-format photo, cropped square at build time. The
+  square starts $top pixels down, just above the hair, so the shoulders show
+  too. The slide deck crops it the same way in slides/themes/site.css
+  (.me > img), so keep the two in step. 400px is about twice the largest size
+  it is shown at, for sharp screens.
+*/ -}}
+{{- $img := "" -}}
+{{- with resources.Get "images/alexis.webp" -}}
+  {{- $top := 160 -}}
+  {{- $band := .Crop (printf "%dx%d Top" .Width (add .Width $top)) -}}
+  {{- $img = ($band.Crop (printf "%dx%d Bottom" .Width .Width)).Resize "400x400 webp q85" -}}
+{{- else -}}
+  {{- errorf "portrait: assets/images/alexis.webp is missing" -}}
+{{- end -}}
+{{- return $img -}}

@@ -42,8 +42,8 @@
 
     </div>
 
-    {{ with $basics.picture }}
-      <img class="ac-resume__avatar" src="{{ . }}" alt="{{ $basics.name }}" loading="lazy" width="120" height="120">
+    {{ with partial "portrait.html" . }}
+      <img class="ac-resume__avatar" src="{{ .RelPermalink }}" alt="{{ $basics.name }}" width="120" height="120">
     {{ end }}
   </header>
 
@@ -201,7 +201,7 @@
             <li>
               <a class="ac-link" href="{{ .url }}" rel="noopener" target="_blank">{{ .title }}</a>
               <span class="ac-line-meta">
-                {{ .event }} &middot; {{ time.Format "Jan 2006" .date }}{{ with .language }} &middot; {{ . }}{{ end }}
+                {{ .event }} &middot; {{ time.Format "Jan 2006" .date }}{{ with .language }} &middot; {{ . }}{{ end }}{{ if now.Before ((time.AsTime .date).AddDate 0 0 1) }} &middot; upcoming{{ end }}
               </span>
             </li>
           {{ end }}

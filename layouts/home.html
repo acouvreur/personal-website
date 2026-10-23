@@ -24,9 +24,10 @@
       </div>
     </div>
 
-    {{ with $basics.picture }}
+    {{/* The largest thing above the fold, so it loads eagerly. */}}
+    {{ with partial "portrait.html" . }}
       <div class="ac-hero__avatar">
-        <img src="{{ . }}" alt="{{ $basics.name }}" loading="lazy" width="220" height="220">
+        <img src="{{ .RelPermalink }}" alt="{{ $basics.name }}" width="220" height="220" fetchpriority="high">
       </div>
     {{ end }}
   </div>
@@ -57,8 +58,14 @@
         </a>
       {{ end }}
       {{ with hugo.Data.resume.talks }}
+        {{/* Talks already given: an upcoming one is on the talks page, but
+             it is not a talk given yet. */}}
+        {{ $given := 0 }}
+        {{ range . }}
+          {{ if (time.AsTime .date).Before now }}{{ $given = add $given 1 }}{{ end }}
+        {{ end }}
         <a class="ac-highlight ac-highlight--link" href="{{ urls.RelURL "/talks/" }}">
-          <span class="ac-highlight__stat">{{ len . }}</span>
+          <span class="ac-highlight__stat">{{ $given }}</span>
           <p class="ac-highlight__label">
             Talks at JUG Montreal and CNCF Montreal, in French and in English.
           </p>

@@ -5,7 +5,6 @@
   "basics": {
     "name": "Alexis Couvreur",
     "label": "Co-founder at Reeveel · Software Engineer",
-    "picture": "https://avatars.githubusercontent.com/u/22034450",
     "email": "alexiscouvreur.pro@gmail.com",
     "website": "https://www.alexiscouvreur.fr",
     "summary": [
@@ -146,6 +145,16 @@
     }
   ],
   "talks": [
+    {
+      "title": "From Backend to Hardware",
+      "event": "Montréal JUG",
+      "note": "Présentations éclairs de la communauté, chez Maplr",
+      "date": "2026-11-05",
+      "language": "French",
+      "url": "https://www.meetup.com/montreal-jug/events/316679816/",
+      "slides": "from-backend-to-hardware",
+      "description": "After years of deploying code in seconds, I moved to a physical product. The steps from an idea to an object made in series, from prototypes to firmware, battery life, over-the-air updates and telemetry, and how each one differs from backend work."
+    },
     {
       "title": "Comment générer des stubs WireMock avec OpenAPI Generator",
       "event": "Montréal JUG",
