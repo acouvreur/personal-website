@@ -1,0 +1,950 @@
+/* @theme site */
+
+/* =============================================================
+   Marp theme for the talks, matching the site: the tokens of
+   assets/ananke/css/palette-blue.css, Space Grotesk headings over
+   Inter, and the same treatments as alexis.css (eyebrow labels,
+   underlined emphasis, quiet code blocks). Built on Marp's default
+   theme, which supplies the layout primitives; everything that shows
+   is overridden here.
+
+   Marp cannot read the site's stylesheets, so the colours are copied
+   below. If the site changes palette, change them here too.
+
+   Fonts are read from ../fonts/, which tools/slides fills from
+   assets/fonts/ next to every built deck: the very files the site
+   serves, so the two cannot drift, and the HTML, the PDF and the
+   PowerPoint all resolve the same relative path.
+
+   Slide classes, set per slide with <!-- _class: name -->:
+     lead   vertically centred title slide, for the opening and the close
+   The header directive renders as the site's eyebrow label.
+   ============================================================= */
+
+@import 'default';
+
+/* Both families are variable fonts, so one file per script covers every
+   weight, split latin / latin-ext the way data/fonts.json declares them. */
+@font-face {
+  font-family: 'Inter';
+  font-weight: 300 700;
+  font-display: block;
+  src: url('../fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 300 700;
+  font-display: block;
+  src: url('../fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-weight: 300 700;
+  font-display: block;
+  src: url('../fonts/space-grotesk-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-weight: 300 700;
+  font-display: block;
+  src: url('../fonts/space-grotesk-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C0, U+2C60-2C7F, U+A720-A7FF;
+}
+
+section {
+  /* palette-blue.css */
+  --bg: #ffffff;
+  --soft: #f7f8fa;
+  --border: #e5e7eb;
+  --text: #14171a;
+  --muted: #5b6570;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+
+  /* One colour per firmware layer, the same on every slide that shows them
+     (.tree, .legend, .layers): controller, service, repository, driver. */
+  --c-ctrl: #0969da;
+  --c-svc: #8250df;
+  --c-repo: #1a7f37;
+  --c-drv: #bc4c00;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 30px;
+  line-height: 1.55;
+  letter-spacing: 0;
+  padding: 96px 96px 72px;
+  justify-content: flex-start;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 .55em;
+}
+h1 { font-size: 72px; font-weight: 700; }
+h2 { font-size: 50px; font-weight: 600; }
+h3 { font-size: 36px; font-weight: 600; }
+
+p, li { margin: 0 0 .5em; }
+ul, ol { padding-left: 1.2em; }
+li::marker { color: var(--muted); }
+
+/* As in the hero: emphasis keeps the text colour and takes an accent rule
+   underneath, so it reads as a highlight rather than as a link. */
+strong {
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .05em .3em;
+  font-size: .85em;
+}
+
+/* Like a code block in a post (.ac-prose pre). */
+pre {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .75em 1em;
+  font-size: 22px;
+  line-height: 1.55;
+}
+pre code { background: transparent; border: 0; padding: 0; font-size: 1em; }
+
+/* Code colours: the GitHub light style the site uses (assets/ananke/css/
+   syntax.css), mapped from Chroma's classes onto highlight.js's. */
+.hljs { color: #1f2328; background: transparent; }
+.hljs-keyword, .hljs-selector-tag, .hljs-type, .hljs-meta .hljs-keyword { color: #cf222e; }
+.hljs-string, .hljs-regexp, .hljs-meta .hljs-string { color: #0a3069; }
+.hljs-number, .hljs-literal, .hljs-attr, .hljs-attribute, .hljs-variable,
+.hljs-template-variable, .hljs-symbol, .hljs-operator, .hljs-tag, .hljs-name { color: #0550ae; }
+.hljs-built_in, .hljs-title, .hljs-title.function_, .hljs-title.class_, .hljs-section { color: #6639ba; }
+.hljs-comment, .hljs-quote, .hljs-meta { color: #57606a; }
+.hljs-params, .hljs-punctuation { color: #1f2328; }
+
+/* Like a quote in a post (.ac-prose blockquote). */
+blockquote {
+  margin: .6em 0 0;
+  padding: .1em 0 .1em .9em;
+  border-left: 4px solid var(--accent);
+  color: var(--muted);
+  font-size: .9em;
+}
+blockquote::before, blockquote::after { content: none; }
+
+/* Ruled rows only. The default theme boxes every cell and stripes the rows,
+   with selectors specific enough that these have to match them. */
+table { border-collapse: collapse; font-size: .9em; }
+table tr,
+table tr:nth-child(2n) { background: transparent; }
+table th,
+table td {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding: .4em 1.4em .4em 0;
+  background: transparent;
+  text-align: left;
+}
+table th {
+  color: var(--muted);
+  font-size: .7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+/* ----- Layer colours ----- */
+/* A directory tree written as <pre class="tree"><code>…</code></pre>, with
+   each name in <span class="ctrl|svc|repo|drv"> and its note in <i>. */
+.tree .ctrl, .legend .ctrl { color: var(--c-ctrl); }
+.tree .svc, .legend .svc { color: var(--c-svc); }
+.tree .repo, .legend .repo { color: var(--c-repo); }
+.tree .drv, .legend .drv { color: var(--c-drv); }
+.tree span { font-weight: 600; }
+.tree i { font-style: normal; color: var(--muted); }
+.legend { margin-top: .5em; }
+.legend span { font-weight: 600; }
+
+/* Rows of the layer diagram take the same colours: a stripe on the left,
+   the name, and the tag. */
+.layers li.ctrl { border-left: 6px solid var(--c-ctrl); }
+.layers li.svc { border-left: 6px solid var(--c-svc); }
+.layers li.repo { border-left: 6px solid var(--c-repo); }
+.layers li.drv { border-left: 6px solid var(--c-drv); }
+.layers li.ctrl b, .layers li.ctrl em { color: var(--c-ctrl); }
+.layers li.svc b, .layers li.svc em { color: var(--c-svc); }
+.layers li.repo b, .layers li.repo em { color: var(--c-repo); }
+.layers li.drv b, .layers li.drv em { color: var(--c-drv); }
+
+/* ----- Concurrent calls into one state machine ----- */
+/* <svg class="race">: callers on the left, wires into a service, the service's
+   states on the right. These rules are the static end state (one call accepted,
+   the others refused, the state on QUEUED), which is what the PDF and the
+   PowerPoint show. The slide animates the sequence itself, in a <style> inside
+   the svg, only while the HTML deck shows it. */
+.race { width: 100%; height: auto; display: block; }
+.race text {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.race .caller rect { fill: var(--bg); stroke: var(--c-ctrl); stroke-width: 2; }
+.race .caller text { fill: var(--c-ctrl); }
+.race .service rect { fill: var(--bg); stroke: var(--c-svc); stroke-width: 2.5; }
+.race .service text { fill: var(--c-svc); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.race .state rect { fill: var(--soft); stroke: var(--border); stroke-width: 2; }
+.race .state.on rect { fill: #eef3fe; stroke: var(--accent); }
+.race .state text { font-family: 'Space Grotesk', 'Inter', sans-serif; fill: var(--text); }
+.race .wire { stroke-width: 3; }
+.race .wire.ok { stroke: #1a7f37; }
+.race .wire.ko { stroke: #d1242f; }
+.race .verdict { font-size: 18px; }
+.race .verdict.ok { fill: #1a7f37; }
+.race .verdict.ko { fill: #d1242f; }
+.race .dot { fill: var(--accent); opacity: 0; }
+.race .wire.http2 { stroke: transparent; }
+.race .verdict.hidden { opacity: 0; }
+/* The log bar shows one line at a time; .shown is the one in the static frame. */
+.race .logbar { fill: #24292f; }
+.race .log {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 19px;
+  font-weight: 500;
+  text-anchor: start;
+  fill: #d1d9e0;
+  opacity: 0;
+}
+.race .log.warn { fill: #f2cc60; }
+.race .log.shown { opacity: 1; }
+.race .link { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 5; }
+.race .link-label { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 16px; fill: var(--muted); }
+.race .step { fill: none; stroke: var(--muted); stroke-width: 2; marker-end: url(#race-arrow); }
+.race marker path { fill: var(--muted); }
+
+pre.oneline { font-size: 20px; margin: .5em 0 .4em; padding: .5em .9em; }
+
+/* ----- Features over the platform, with events ----- */
+/* An inline <svg class="arch">: feature columns (<g class="feature">) whose
+   layer boxes take the layer colours, a dashed event bus, event arrows
+   (.event, .event-label) and the platform hosts (<g class="host">). */
+.arch { width: 100%; height: auto; max-height: 360px; display: block; }
+.arch text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 18px; dominant-baseline: middle; }
+.arch .feature > rect:first-child { fill: var(--soft); stroke: var(--border); stroke-width: 1.5; }
+.arch .feature .name { font-weight: 700; fill: var(--text); }
+.arch .feature rect.ctrl, .arch .feature rect.svc, .arch .feature rect.drv, .arch .feature rect.repo { fill: var(--bg); stroke-width: 2; }
+.arch rect.ctrl { stroke: var(--c-ctrl); } .arch text.ctrl { fill: var(--c-ctrl); font-weight: 600; }
+.arch rect.svc { stroke: var(--c-svc); } .arch text.svc { fill: var(--c-svc); font-weight: 600; }
+.arch rect.drv { stroke: var(--c-drv); } .arch text.drv { fill: var(--c-drv); font-weight: 600; }
+.arch rect.repo { stroke: var(--c-repo); } .arch text.repo { fill: var(--c-repo); font-weight: 600; }
+.arch .bus { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 8 6; }
+.arch .bus-label, .arch .platform-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  fill: var(--muted);
+}
+.arch .bus-label { text-anchor: end; fill: var(--accent); }
+.arch .event { fill: none; stroke: var(--accent); stroke-width: 2.5; marker-end: url(#arch-arrow); }
+.arch marker path { fill: var(--accent); }
+.arch .event-label { fill: var(--accent); font-weight: 700; font-size: 16px; }
+.arch .host rect { fill: #24292f; }
+.arch .host text { fill: #ffffff; text-anchor: middle; font-weight: 600; }
+
+/* ----- Board profiles ----- */
+/* <pre class="boards">: a board profile name split into its parts, each in its
+   own colour, with the notes in <i> using the same colours as a legend. The
+   panel is in the driver colour, since a panel is what a driver is for. */
+.boards span.f { color: var(--muted); }
+.boards .chip { color: var(--accent); font-weight: 600; }
+.boards .rev { color: var(--c-svc); font-weight: 600; }
+.boards .panel { color: var(--c-drv); font-weight: 600; }
+.boards .cmd { color: var(--text); font-weight: 600; }
+.boards i { font-style: normal; color: var(--muted); }
+strong.drv { color: var(--c-drv); text-decoration-color: var(--c-drv); }
+
+/* ----- Platform diagram ----- */
+/* The features as a row of chips, above the shared platform bands they
+   register on:
+     <div class="platform"><div class="features"><span>…</span>…</div>
+       <p class="register">…</p><ol><li><b>name</b><span>role</span></li>…</ol></div> */
+.platform { display: flex; flex-direction: column; gap: 10px; margin-top: .1em; }
+.platform .features { display: flex; flex-wrap: wrap; gap: 10px; }
+.platform .features span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 20px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  /* Neutral on purpose: a feature spans every layer, so no layer colour. */
+  border-top: 3px solid var(--muted);
+  border-radius: 6px;
+  background: var(--soft);
+}
+.platform .register {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+.platform .register::after { content: " ↓"; color: var(--accent); }
+.platform ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.platform li {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  padding: 11px 22px;
+  background: #24292f;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 23px;
+}
+.platform li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 22px; }
+.platform li span { color: rgba(255, 255, 255, .78); }
+
+/* ----- Layer diagram ----- */
+/* A stack of layers, top to bottom, with the directions of flow beside it as
+   two full-height arrows, each label reading the way its arrow points:
+     <div class="layers"><ol><li><b>Name</b><span>role</span><em>tag</em></li>…</ol>
+       <div class="flow">
+         <div class="down"><span>calls</span><i></i></div>
+         <div class="up"><i></i><span>events</span></div>
+       </div>
+     </div>
+   A layer with class "new" is set off in the accent colour. Needs the deck to
+   be built with HTML enabled, which tools/slides does. */
+.layers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 28px;
+  margin-top: .2em;
+}
+.layers ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.layers li {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 24px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 26px;
+}
+.layers li b {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.layers li span { color: var(--muted); }
+.layers li em {
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent);
+}
+.layers li.new { background: #eef3fe; border-color: var(--accent); }
+
+.flow {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  padding: 4px 0;
+}
+.flow > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.flow span {
+  writing-mode: vertical-rl;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+/* Read bottom to top, the way the events travel. */
+.flow .up span { transform: rotate(180deg); }
+.flow i {
+  flex: 1;
+  width: 2px;
+  background: var(--border);
+  position: relative;
+}
+.flow i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 9px solid transparent;
+}
+.flow .down i::after { bottom: -4px; border-top-color: var(--accent); border-bottom: 0; }
+.flow .up i::after { top: -4px; border-bottom-color: var(--accent); border-top: 0; }
+
+/* ----- Logos ----- */
+/* <img class="logo"> sits in a line of text, in front of the name it stands
+   for, at the text's own size: in a list, a link, or a title. It keeps its
+   brand colours. */
+img.logo {
+  display: inline-block;
+  height: 1em;
+  width: auto;
+  vertical-align: -0.14em;
+  margin-right: .3em;
+}
+
+/* ----- Punchline ----- */
+/* <p class="punch">: the one number a slide is about, set large. */
+.punch {
+  margin-top: .7em;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ----- Spec sheet ----- */
+/* A product's features as a two-column grid of name and one line:
+     <div class="specs"><div><b>Name</b><span>what it does</span></div>…</div> */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 32px;
+  margin-top: .2em;
+}
+.specs > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.specs b {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+.specs span { font-size: 20px; line-height: 1.35; color: var(--muted); }
+
+/* ----- Chain of steps ----- */
+/* Steps joined by arrows, left to right, each a name and one line:
+     <div class="chain"><div><b>Name</b><span>what it does</span></div><i></i>…</div>
+   An <i></i> between two steps draws the arrow; <i data-label="OTLP"></i>
+   writes a word on it. "chain loop" adds an arrow back to the first step,
+   for a cycle. "chain down" stacks the steps, for a narrow column. */
+.chain {
+  display: flex;
+  align-items: stretch;
+  margin-top: .3em;
+}
+.chain > div {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.chain b {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.chain span { font-size: 20px; line-height: 1.35; color: var(--muted); }
+.chain code { font-size: 17px; background: none; border: 0; padding: 0; color: var(--accent-dark); }
+.chain > i {
+  flex: 0 0 44px;
+  position: relative;
+  align-self: center;
+  height: 2px;
+  background: var(--accent);
+  margin-right: 8px;
+}
+.chain > i::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  border: 9px solid transparent;
+  border-left-color: var(--accent);
+  border-right: 0;
+}
+.chain > i[data-label]::before {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+/* The way back to the first step: a line under the steps, with its arrow
+   pointing up into the first one. */
+.chain.loop { position: relative; padding-bottom: 46px; }
+.chain.loop::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 8px;
+  height: 30px;
+  border: 2px solid var(--accent);
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+}
+.chain.loop::before {
+  content: "";
+  position: absolute;
+  left: calc(12% - 9px);
+  bottom: 38px;
+  border: 9px solid transparent;
+  border-bottom-color: var(--accent);
+  border-top: 0;
+  z-index: 1;
+}
+.chain.down { flex-direction: column; margin-bottom: .5em; }
+.chain.down > i {
+  flex: 0 0 34px;
+  width: 2px;
+  height: auto;
+  margin: 0 0 8px 40px;
+  align-self: flex-start;
+}
+.chain.down > i::after {
+  right: auto;
+  top: auto;
+  left: -8px;
+  bottom: -8px;
+  border: 9px solid transparent;
+  border-top-color: var(--accent);
+  border-bottom: 0;
+}
+.chain.down > i[data-label]::before { bottom: auto; top: 50%; left: 18px; transform: translateY(-50%); }
+.chain.down > div { flex: 0 0 auto; padding: 10px 18px; }
+
+/* ----- Timeline ----- */
+/* Milestones on one horizontal line, labels alternating above and below so
+   ten of them fit:
+     <ol class="timeline"><li><b>Date</b><span>What</span></li>…</ol>
+   li.now is where we are, with an optional <em> badge; li.next and everything
+   after it is still to come, drawn hollow on a dashed line. */
+.timeline {
+  --line: 50%;
+  position: relative;
+  list-style: none;
+  margin: .4em 0 0;
+  padding: 0;
+  height: 400px;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+/* The line: solid up to "now" (the 7th of 10 columns), dashed after. */
+.timeline::before,
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: var(--line);
+  height: 3px;
+  margin-top: -1.5px;
+}
+.timeline::before { left: 0; width: 65%; background: var(--accent); }
+.timeline::after {
+  left: 65%;
+  right: 0;
+  background: repeating-linear-gradient(90deg, var(--border) 0 10px, transparent 10px 18px);
+}
+.timeline li { position: relative; margin: 0; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: var(--line);
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--accent);
+  z-index: 1;
+}
+.timeline li.next::before { background: var(--bg); box-shadow: 0 0 0 2px var(--muted); }
+.timeline li.now::before { width: 26px; height: 26px; box-shadow: 0 0 0 2px var(--accent), 0 0 0 9px #e3ebfd; }
+/* The label: above the line for odd milestones, below for even ones, and
+   wider than its column, since its neighbours sit on the other side. */
+.timeline li > * { display: block; }
+.timeline li b,
+.timeline li span,
+.timeline li em {
+  position: absolute;
+  left: 50%;
+  width: 190px;
+  margin-left: -95px;
+  text-align: center;
+}
+.timeline li b {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.timeline li span {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.timeline li:nth-child(odd) b { bottom: calc(100% - var(--line) + 30px + 2.6em); }
+.timeline li:nth-child(odd) span { bottom: calc(100% - var(--line) + 30px); }
+.timeline li:nth-child(even) b { top: calc(var(--line) + 30px); }
+.timeline li:nth-child(even) span { top: calc(var(--line) + 30px + 1.6em); }
+.timeline li.next b { color: var(--muted); }
+.timeline li.next span { color: var(--muted); font-weight: 500; }
+.timeline li.now span { font-size: 26px; color: var(--accent-dark); }
+/* The badge sits above the date, so it suits an odd (label above) milestone. */
+.timeline li em {
+  bottom: calc(100% - var(--line) + 30px + 4.6em);
+  width: auto;
+  margin-left: 0;
+  transform: translateX(-50%);
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ----- Ladder ----- */
+/* Cumulative steps down, one row each, with a bar whose width the row sets:
+     <ol class="ladder"><li style="--w: 80%"><b>Step</b><span>how</span><i></i>
+       <em>value</em><small>gain</small></li>…</ol>
+   --w is the value over the first row's, so the bars are to scale.
+
+   Rows are a fixed 66px, so an overlay can be drawn in pixels: with four
+   rows the ladder is 1088 x 306 and the bars start at x = 250. Bars too thin
+   to see get a zoom, as a last item holding an inline svg on that grid:
+     <li class="loupe" aria-hidden="true"><svg viewBox="0 0 1088 306">…</svg></li>
+   with .source (around the thin bars), .link, .lens (the circle's fill), the
+   enlarged .bar shapes clipped to it, .rim (drawn last) and .factor. */
+.ladder {
+  list-style: none;
+  margin: .3em 0 .7em;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ladder li {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 120px 90px;
+  grid-template-rows: auto auto;
+  column-gap: 20px;
+  align-items: center;
+}
+.ladder b {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+}
+.ladder span { grid-column: 1; grid-row: 2; font-size: 17px; color: var(--muted); }
+.ladder i {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  position: relative;
+  justify-self: start;
+  height: 30px;
+  width: var(--w);
+  background: var(--accent);
+  border-radius: 4px;
+}
+/* Below a few pixels the radius would round the bar away entirely. */
+.ladder li:nth-child(3) i,
+.ladder li:nth-child(4) i { border-radius: 0; }
+
+.ladder { position: relative; }
+.ladder li:not(.loupe) { height: 66px; }
+.ladder li.loupe {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+.ladder li.loupe svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ladder .source,
+.ladder .rim { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+.ladder .link { stroke: var(--muted); stroke-width: 1.5; }
+.ladder .lens { fill: var(--bg); }
+.ladder .bar { fill: var(--accent); }
+.ladder .factor {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  fill: var(--muted);
+  text-anchor: middle;
+}
+.ladder li:first-child i { background: var(--muted); }
+.ladder em {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  font-style: normal;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: right;
+}
+.ladder small {
+  grid-column: 4;
+  grid-row: 1 / 3;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ----- Two columns ----- */
+/* <div class="split"> with a blank line inside, then two blocks (a code fence,
+   an <svg>, a list...). Each takes half the width. */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+.split pre { margin: 0; font-size: 19px; }
+/* Two blocks of different heights, aligned on their first line. */
+.split.top { align-items: start; }
+
+/* ----- State machine diagram ----- */
+/* An inline <svg class="fsm">: <g class="state [initial]"><rect/><text/></g>
+   for states, <path class="edge"/> for transitions, <text class="label [end]">
+   beside them. Styled here so the diagram uses the deck's fonts and colours. */
+.fsm { width: 100%; height: auto; max-height: 420px; }
+.fsm .state rect { fill: var(--soft); stroke: var(--border); stroke-width: 1.5; }
+.fsm .state.initial rect { fill: #eef3fe; stroke: var(--accent); }
+.fsm .state text {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  fill: var(--text);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.fsm .edge {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+  marker-end: url(#fsm-arrow);
+}
+.fsm marker path { fill: var(--muted); }
+.fsm .label {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  fill: var(--muted);
+  dominant-baseline: middle;
+}
+.fsm .label.end { text-anchor: end; }
+
+/* ----- A/B update diagram ----- */
+/* Steps side by side, each showing the two firmware slots and their state:
+     <div class="ab"><div class="ok"><b>Step</b>
+       <p class="slot run">A · v1<span>state</span></p>…</div>…</div>
+   Slot classes: run (the one booting), write (being written), fail (rejected).
+   A step with class ok or ko takes the success or failure colour (the site's
+   alert colours, GitHub's, for the same reason as the site uses them). */
+.ab {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: .2em 0 .8em;
+}
+.ab > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.ab b {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.ab .ok b { color: #1a7f37; }
+.ab .ko b { color: #d1242f; }
+.ab .slot {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.ab .slot span {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+}
+.ab .slot.run { border-color: var(--accent); background: #eef3fe; }
+.ab .slot.run span { color: var(--accent); }
+.ab .slot.write { border-style: dashed; border-color: var(--accent); }
+.ab .slot.fail { border-color: #d1242f; color: var(--muted); text-decoration: line-through; }
+.ab .slot.fail span { color: #d1242f; text-decoration: none; }
+
+/* The header directive is the site's eyebrow: small spaced capitals in the
+   accent colour, above the title. */
+header {
+  top: 52px;
+  left: 96px;
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+footer {
+  left: 96px;
+  bottom: 30px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/* Page number, when the deck sets paginate: true. */
+section::after {
+  right: 96px;
+  bottom: 30px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/* ----- About the speaker ----- */
+/* <div class="me"><img src="…" alt=""><ul><li>…</li></ul></div>: a round
+   portrait beside a short list. */
+.me {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+  margin-top: .3em;
+}
+/* The portrait only: logos inside the list are .logo, not this. */
+.me > img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* Portrait photos: from just above the hair down to the shoulders. The
+     site crops alexis.webp the same way, in layouts/_partials/portrait.html:
+     160px down a 480x720 photo is 160 / (720 - 480) of the way. */
+  object-position: 50% 66.67%;
+  border: 1px solid var(--border);
+}
+.me ul { margin: 0; }
+.me li { margin-bottom: .55em; }
+
+/* ----- Chapter slides ----- */
+/* <!-- _class: chapter --> opens a part of the talk: the accent colour edge
+   to edge, the chapter number as the eyebrow, a title and one line. */
+section.chapter {
+  background: var(--accent);
+  color: #ffffff;
+  justify-content: center;
+}
+section.chapter header {
+  position: static;
+  margin-bottom: 24px;
+  color: rgba(255, 255, 255, .75);
+}
+section.chapter h1 {
+  color: #ffffff;
+  font-size: 104px;
+  line-height: 1.02;
+  margin-bottom: .3em;
+}
+section.chapter p { color: rgba(255, 255, 255, .85); font-size: 34px; }
+
+/* ----- Title and closing slides ----- */
+/* Laid out like the home page hero: eyebrow, big title, muted lede. */
+section.lead { justify-content: center; }
+section.lead header { position: static; margin-bottom: 24px; }
+section.lead h1 {
+  font-size: 104px;
+  line-height: 1.02;
+  margin-bottom: .35em;
+}
+section.lead h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 24em;
+  margin-bottom: 1em;
+}
+section.lead p { color: var(--muted); font-size: 26px; }

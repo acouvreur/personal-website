@@ -32,8 +32,17 @@ jobs:
         id: pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
-      # No install_args, so this installs everything mise.toml pins: Hugo and Go.
+      # No install_args, so this installs everything mise.toml pins: Hugo, Go
+      # and Node.
       - uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
+
+      # Before Hugo: the decks land in static/slides/, so Hugo publishes them and
+      # the talks page can see which ones exist. Marp drives the same Chrome as
+      # the two steps after the build.
+      - name: Build talk slides
+        run: |
+          npm ci --no-audit --no-fund
+          go run ./tools/slides
 
       - name: Build site
         run: hugo --gc --minify
