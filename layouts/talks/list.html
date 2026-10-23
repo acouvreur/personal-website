@@ -15,11 +15,30 @@
   <div class="ac-talk-list">
     {{ range $talks }}
       {{ $talk := . }}
+
+      {{/* The deck, built from slides/<slug>/ by tools/slides into
+           static/slides/ before Hugo runs. Only used once it has been built,
+           so a fresh checkout without `npm ci` still builds, just without
+           the slides. */}}
+      {{ $deck := "" }}
+      {{ with $talk.slides }}
+        {{ if os.FileExists (printf "static/slides/%s/index.html" .) }}
+          {{ $deck = printf "slides/%s/" . }}
+        {{ else }}
+          {{ warnf "talks: deck %q is not built, run `mise run slides`" . }}
+        {{ end }}
+      {{ end }}
+
+      {{/* Upcoming until the end of the talk's day. The site rebuilds daily,
+           so the badge goes on its own the morning after. */}}
+      {{ $upcoming := now.Before ((time.AsTime $talk.date).AddDate 0 0 1) }}
+
       <article class="ac-talk">
 
-        {{/* Three ways a talk can be illustrated, most specific first: a
-             recording, a supplied image, or a generated card carrying the
-             venue's brand mark so talks without video still have a poster. */}}
+        {{/* Four ways a talk can be illustrated, most specific first: a
+             recording, the deck's title slide, a supplied image, or a
+             generated card carrying the venue's brand mark so talks without
+             video still have a poster. */}}
         {{ if $talk.video }}
           {{/* Poster frame plus a play button. The YouTube player is only
                fetched once the visitor actually asks for it. */}}
@@ -34,6 +53,17 @@
               <span class="ac-video__label">Play “{{ $talk.title }}”</span>
             </button>
           </div>
+
+        {{ else if $deck }}
+          {{/* No recording yet, but slides: a typeset card linking to the
+               deck, real text rather than a picture of the title slide, so
+               it stays sharp and legible at poster size. Not .ac-video
+               either, for the same reason as below. */}}
+          <a class="ac-cover" href="{{ urls.RelURL $deck }}">
+            <span class="ac-cover__event">{{ $talk.event }}</span>
+            <span class="ac-cover__title">{{ $talk.title }}</span>
+            <span class="ac-cover__go">Slides <span aria-hidden="true">&rarr;</span></span>
+          </a>
 
         {{ else }}
           {{/* No recording. These deliberately do NOT carry .ac-video: that
@@ -78,6 +108,9 @@
             {{ with $talk.language }}
               <span class="ac-tag">{{ . }}</span>
             {{ end }}
+            {{ if $upcoming }}
+              <span class="ac-badge">Upcoming</span>
+            {{ end }}
           </div>
 
           <h2 class="ac-talk__title mt0 mb2">{{ $talk.title }}</h2>
@@ -95,6 +128,17 @@
               {{ if $talk.video }}Watch on YouTube{{ else }}Event page{{ end }}
               <span aria-hidden="true">&rarr;</span>
             </a>
+          {{ end }}
+
+          {{ with $deck }}
+            {{ $slug := $talk.slides }}
+            <p class="ac-talk__slides mt3 mb0">
+              <a class="ac-read-more no-underline" href="{{ urls.RelURL . }}">View the slides <span aria-hidden="true">&rarr;</span></a>
+              <span class="ac-meta-sep">&middot;</span>
+              <a class="ac-link" href="{{ urls.RelURL (printf "%s%s.pdf" . $slug) }}" download>PDF</a>
+              <span class="ac-meta-sep">&middot;</span>
+              <a class="ac-link" href="{{ urls.RelURL (printf "%s%s.pptx" . $slug) }}" download>PowerPoint</a>
+            </p>
           {{ end }}
         </div>
 

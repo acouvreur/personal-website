@@ -1,6 +1,12 @@
 [tools]
 hugo = "0.163.1"
 go = "1.22"
+# Only for Marp, which tools/slides drives to build the talk decks.
+node = "24"
+
+[tasks.slides]
+description = "Build the talk decks in slides/ into static/slides/ (HTML, PDF and PowerPoint)"
+run = ["npm ci --no-audit --no-fund", "go run ./tools/slides"]
 
 [tasks.contributions]
 description = "Regenerate data/opensource.json from the GitHub API"

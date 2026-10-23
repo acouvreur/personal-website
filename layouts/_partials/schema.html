@@ -27,7 +27,7 @@
   "name" $basics.name
   "url" site.BaseURL
   "email" (printf "mailto:%s" $basics.email)
-  "image" $basics.picture
+  "image" (partial "portrait.html" .).Permalink
   "jobTitle" $jobTitle
   "description" $summary
   "sameAs" (apply $basics.profiles "index" "." "url")

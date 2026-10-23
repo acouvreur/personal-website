@@ -1,0 +1,8 @@
+{
+  "name": "alexiscouvreur-site",
+  "private": true,
+  "description": "Build tooling for the site. Hugo builds the site itself; this only pins Marp, which tools/slides drives to turn slides/ into HTML, PDF and PowerPoint.",
+  "devDependencies": {
+    "@marp-team/marp-cli": "4.5.1"
+  }
+}

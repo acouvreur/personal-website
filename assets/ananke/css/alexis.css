@@ -847,23 +847,70 @@ body.ac-paper .ac-footer { background: var(--ac-canvas); }
   align-items: start;
 }
 
-/* A talk with no poster at all, of either kind, gives its text the full width.
-   Both classes must be listed: an emblem is not a .ac-video, deliberately, so
-   the player script cannot pick it up. */
-.ac-talk:not(:has(.ac-video, .ac-emblem)) { grid-template-columns: 1fr; }
+/* A talk with no poster at all, of any kind, gives its text the full width.
+   Every class must be listed: an emblem or a cover is not a .ac-video,
+   deliberately, so the player script cannot pick it up. */
+.ac-talk:not(:has(.ac-video, .ac-emblem, .ac-cover)) { grid-template-columns: 1fr; }
 
 .ac-talk__title { font-size: 1.5rem; font-weight: 600; line-height: 1.25; }
 .ac-talk__summary { color: var(--ac-muted); line-height: 1.65; }
 .ac-talk__note { font-size: .85rem; color: var(--ac-muted); opacity: .8; }
 
 .ac-video,
-.ac-emblem {
+.ac-emblem,
+.ac-cover {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid var(--ac-border);
   background: var(--ac-soft);
   aspect-ratio: 16 / 9;
+}
+
+/* A typeset poster for a talk that has slides but no recording yet: the event
+   as an eyebrow, the title large, and the way to the slides at the foot. A
+   wash of the accent in one corner sets it apart from the plain emblems. */
+.ac-cover {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  padding: 1.75rem 2rem;
+  text-decoration: none;
+  color: var(--ac-text);
+  background:
+    radial-gradient(120% 140% at 0% 0%,
+      color-mix(in srgb, var(--ac-accent) 14%, var(--ac-bg)) 0%,
+      var(--ac-soft) 70%);
+  transition: border-color .15s ease;
+}
+.ac-cover__event {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--ac-accent);
+}
+.ac-cover__title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.ac-cover__go {
+  margin-top: auto;
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--ac-accent);
+}
+.ac-cover__go span { display: inline-block; transition: transform .15s ease; }
+.ac-cover:hover { border-color: var(--ac-accent); }
+.ac-cover:hover .ac-cover__go span { transform: translateX(3px); }
+.ac-cover:focus-visible { outline: 3px solid var(--ac-accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ac-cover__go span { transition: none; }
+  .ac-cover:hover .ac-cover__go span { transform: none; }
 }
 
 .ac-video__play {
