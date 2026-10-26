@@ -4,9 +4,10 @@
     "number": 2096,
     "title": "feat: only recreate the services that failed to start on a deploy retry",
     "url": "https://github.com/kimdre/doco-cd/pull/2096",
-    "state": "open",
+    "state": "closed",
     "type": "feat",
-    "created": "2026-10-22"
+    "created": "2026-10-22",
+    "closed": "2026-10-26"
   },
   {
     "repo": "kimdre/doco-cd",
