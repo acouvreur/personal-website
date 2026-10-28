@@ -24,9 +24,10 @@
     "number": 520,
     "title": "windows: call the connect handler when disconnecting",
     "url": "https://github.com/tinygo-org/bluetooth/pull/520",
-    "state": "open",
+    "state": "merged",
     "type": "other",
-    "created": "2026-10-17"
+    "created": "2026-10-17",
+    "closed": "2026-10-27"
   },
   {
     "repo": "tinygo-org/bluetooth",
@@ -40,11 +41,12 @@
   {
     "repo": "tinygo-org/bluetooth",
     "number": 518,
-    "title": "feat!: pass a ConnectionState to the connect handler",
+    "title": "feat: add SetConnectionStateHandler with a disconnect reason",
     "url": "https://github.com/tinygo-org/bluetooth/pull/518",
-    "state": "open",
+    "state": "merged",
     "type": "feat",
-    "created": "2026-10-17"
+    "created": "2026-10-17",
+    "closed": "2026-10-27"
   },
   {
     "repo": "espressif/esp-iot-solution",

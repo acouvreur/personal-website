@@ -1,8 +1,8 @@
 [
   {
     "name": "tinygo-org/bluetooth",
-    "merged": 33,
-    "open": 8,
+    "merged": 35,
+    "open": 6,
     "badge": "TinyGo org member",
     "summary": "Added the common GAP and GATT interfaces, L2CAP support, and a long run of macOS and Windows fixes. That work is how I ended up a member of the TinyGo organization."
   },
