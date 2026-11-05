@@ -1,4 +1,9 @@
 {
+  "bnc": {
+    "name": "Banque Nationale",
+    "url": "https://www.bnc.ca/",
+    "logo": "images/companies/bnc.png"
+  },
   "gologic": {
     "name": "GoLogic",
     "url": "https://www.gologic.ca/",
@@ -13,5 +18,15 @@
     "name": "Maplr",
     "url": "https://maplr.co/",
     "logo": "images/companies/maplr.png"
+  },
+  "reeveel": {
+    "name": "Reeveel",
+    "url": "https://getreeveel.com",
+    "logo": "images/companies/reeveel.png"
+  },
+  "sablier": {
+    "name": "Sablier",
+    "url": "https://sablierapp.dev/",
+    "logo": "images/companies/sablier.png"
   }
 }

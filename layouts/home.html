@@ -5,18 +5,14 @@
 {{ define "main" }}
 {{ $basics := hugo.Data.resume.basics }}
 
-<section class="ac-hero mw8 center ph3 ph4-ns pv5">
-  <div class="ac-hero__grid">
+<section class="ac-hero">
+  <div class="ac-hero__grid mw8 center ph3 ph4-ns">
     <div class="ac-hero__text">
-      <p class="ac-eyebrow">{{ $basics.label }}</p>
       <h1 class="ac-hero__title mt0 mb3">{{ $basics.name }}</h1>
-      <div class="ac-hero__summary mb4">
-        {{ partial "summary.html" . }}
-      </div>
 
-      <p class="ac-hero__location mt0 mb4">
-        {{ with $basics.location }}{{ .city }}{{ with .region }}, {{ . }}{{ end }}{{ end }}
-      </p>
+      {{/* The way the talks introduce me, with a line on each role below. The
+           longer version, basics.summary, is on the resume. */}}
+      <p class="ac-hero__intro mt0 mb4">{{ $basics.intro | markdownify }}</p>
 
       <div class="ac-cta-row">
         <a class="ac-btn ac-btn--primary no-underline" href="{{ urls.RelURL "/resume/" }}">View resume</a>
@@ -27,11 +23,27 @@
     {{/* The largest thing above the fold, so it loads eagerly. */}}
     {{ with partial "portrait.html" . }}
       <div class="ac-hero__avatar">
-        <img src="{{ .RelPermalink }}" alt="{{ $basics.name }}" width="220" height="220" fetchpriority="high">
+        <img src="{{ .RelPermalink }}" alt="{{ $basics.name }}" width="240" height="240" fetchpriority="high">
+        {{ with $basics.location }}
+          <p class="ac-hero__location mb0">{{ partial "brand-icon.html" (dict "slug" "mapleleaf" "class" "ac-icon--brand") }}{{ .city }}, {{ .country }}</p>
+        {{ end }}
       </div>
     {{ end }}
   </div>
 </section>
+
+<ul class="ac-roles ac-highlight-grid mw8 center ph3 ph4-ns">
+  {{ range $basics.roles }}
+    {{ $company := index hugo.Data.companies .company }}
+    {{ $logo := (resources.Get $company.logo).Process "resize 64x webp q88" }}
+    <li class="ac-highlight">
+      <img src="{{ $logo.RelPermalink }}" alt="" width="{{ $logo.Width }}" height="{{ $logo.Height }}">
+      <p class="ac-roles__company mt0 mb0"><a href="{{ $company.url }}" rel="noopener" target="_blank">{{ $company.name }}</a></p>
+      <p class="ac-roles__title mt0 mb1">{{ .title }}</p>
+      <p class="ac-roles__detail mt0 mb0">{{ .detail }}</p>
+    </li>
+  {{ end }}
+</ul>
 
 {{ with hugo.Data.resume.projects }}
   {{ $lead := index . 0 }}

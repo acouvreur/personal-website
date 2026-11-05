@@ -7,6 +7,12 @@
     "label": "Co-founder at Reeveel · Software Engineer",
     "email": "alexiscouvreur.pro@gmail.com",
     "website": "https://www.alexiscouvreur.fr",
+    "intro": "**Backend developer**, working in platform engineering and DevSecOps. I cover the whole depth of the stack, from frontend down through Docker, Kubernetes and the Linux underneath.",
+    "roles": [
+      { "title": "Platform engineer", "company": "bnc", "detail": "Running GitHub for thousands of engineers." },
+      { "title": "Co-founder and CTO", "company": "reeveel", "detail": "A startup making a new kind of digital frame." },
+      { "title": "Maintainer", "company": "sablier", "detail": "Starts containers on demand, stops idle ones." }
+    ],
     "summary": [
       "I'm a software engineer based in Montreal, working in **platform engineering** and **DevSecOps**. **Backend** is my home ground, and I work the whole depth of the stack from frontend down through **Docker**, Kubernetes and the **Linux** underneath.",
       "I'm a platform engineer at [Banque Nationale du Canada](https://www.bnc.ca/), running GitHub for thousands of engineers. I'm also co-founder and CTO at [Reeveel](https://getreeveel.com), a startup making a new kind of digital frame.",
@@ -16,6 +22,7 @@
       "address": "",
       "postalCode": "",
       "city": "Montreal",
+      "country": "Canada",
       "countryCode": "CA",
       "region": "Quebec"
     },

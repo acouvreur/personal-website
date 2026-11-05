@@ -211,29 +211,73 @@ a:hover .ac-icon,
 .ac-cta-row { display: flex; flex-wrap: wrap; gap: .75rem; }
 
 /* ----- Home hero --------------------------------------------- */
+/* The accent colour edge to edge, like the chapter slides of the talks, with the
+   portrait hanging over its lower edge into the page. */
+.ac-hero { background: var(--ac-accent); color: var(--ac-on-accent); }
+
 .ac-hero__grid {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: 1fr 240px;
+  gap: 3.5rem;
+  padding-top: 3.6rem;
+  padding-bottom: 3.6rem;
 }
 
-.ac-hero__title { font-size: 3.2rem; font-weight: 700; line-height: 1.05; }
+.ac-hero__title { color: var(--ac-on-accent); font-size: 4.2rem; font-weight: 700; line-height: 1.02; }
 
-.ac-hero__summary { font-size: 1.1rem; line-height: 1.7; color: var(--ac-muted); max-width: 36rem; }
-.ac-hero__summary p { margin: 0 0 1rem; }
-.ac-hero__summary p:last-child { margin-bottom: 0; }
+.ac-hero__intro { font-size: 1.2rem; line-height: 1.6; color: rgba(255, 255, 255, .92); max-width: 36rem; }
+.ac-hero__intro strong { color: var(--ac-on-accent); font-weight: 600; }
 
-/* The first line is the claim, so give it a little more presence than the two
-   that follow it. */
-.ac-hero__summary p:first-child { font-size: 1.22rem; color: var(--ac-text); }
+/* The buttons turned inside out, to stand on the accent colour. */
+.ac-hero .ac-btn { background: transparent; border-color: var(--ac-on-accent); color: var(--ac-on-accent); }
+.ac-hero .ac-btn:hover { background: rgba(255, 255, 255, .14); }
+.ac-hero .ac-btn--primary { background: var(--ac-on-accent); color: var(--ac-accent); }
+.ac-hero .ac-btn--primary:hover { background: rgba(255, 255, 255, .88); color: var(--ac-accent-dark); }
 
-.ac-hero__summary a { color: var(--ac-accent); text-decoration: none; }
-.ac-hero__summary a:hover { text-decoration: underline; }
+.ac-hero__avatar {
+  position: relative;
+  align-self: end;
+  margin-bottom: -7.4rem;
+  text-align: center;
+}
+.ac-hero__avatar img {
+  display: block;
+  box-sizing: border-box;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border: 6px solid var(--ac-bg);
+}
+.ac-hero__location { margin-top: .7rem; font-size: .95rem; color: var(--ac-muted); }
+
+/* The highlight cards' own grid and box, with the border hidden, so this row
+   lines up with the cards below it column for column. The padding on top leaves
+   room for the portrait's overhang. */
+.ac-roles {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 5.15rem;
+  padding-bottom: 2.15rem;
+}
+.ac-roles .ac-highlight {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: .85rem;
+  align-content: start;
+  border-color: transparent;
+}
+/* The logo beside the text, which all sits in the second column. */
+.ac-roles img { grid-row: 1 / span 3; grid-column: 1; width: 40px; height: 40px; margin-top: .2rem; }
+.ac-roles p { grid-column: 2; }
+.ac-roles__company { font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 1.25rem; font-weight: 600; }
+.ac-roles__company a { color: var(--ac-text); text-decoration: none; }
+.ac-roles__company a:hover { color: var(--ac-accent); }
+.ac-roles__title { font-size: .93rem; font-weight: 500; color: var(--ac-accent); }
+.ac-roles__detail { font-size: .95rem; line-height: 1.5; color: var(--ac-muted); }
 
 /* Emphasised words keep the text colour and take an accent rule underneath, so
    they read as highlights rather than as links, which are coloured instead. */
-.ac-hero__summary strong,
 .ac-resume__summary strong {
   font-weight: 500;
   color: var(--ac-text);
@@ -242,17 +286,23 @@ a:hover .ac-icon,
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }
-.ac-hero__location { font-size: .9rem; color: var(--ac-muted); }
-
-.ac-hero__avatar img {
-  border-radius: 50%;
-  border: 1px solid var(--ac-border);
-  display: block;
-}
 
 @media screen and (max-width: 60em) {
-  .ac-hero__grid { grid-template-columns: 1fr; gap: 2rem; }
-  .ac-hero__title { font-size: 2.4rem; }
+  .ac-hero__grid { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 2.4rem; padding-bottom: 2rem; }
+  .ac-hero__title { font-size: 2.8rem; }
+  .ac-hero__intro { font-size: 1.05rem; }
+
+  /* A single row inside the band here, so nothing hangs over its edge, and a
+     red leaf would not read on the accent colour. */
+  .ac-hero__avatar { order: -1; display: flex; align-items: center; gap: .9rem; margin-bottom: 0; text-align: left; }
+  .ac-hero__avatar img { width: 88px; height: 88px; border-width: 3px; }
+  .ac-hero__location { margin-top: 0; color: rgba(255, 255, 255, .92); }
+  .ac-hero__location .ac-icon { fill: var(--ac-on-accent); }
+
+  /* Stacked, the cards' full padding and gap would space these out too far. */
+  .ac-roles { padding-top: 1.5rem; padding-bottom: 1.7rem; }
+  .ac-roles.ac-highlight-grid { gap: 0; }
+  .ac-roles .ac-highlight { padding-top: .7rem; padding-bottom: .7rem; }
   .ac-page-title { font-size: 2rem; }
 }
 
