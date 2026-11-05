@@ -160,6 +160,15 @@ body {
   opacity: .75;
 }
 
+/* A logo in its own colours, naming the site a link goes to. Full strength, and
+   lowered further so the larger mark stays centred on the text. */
+.ac-icon--brand {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.4em;
+  opacity: 1;
+}
+
 /* The repo name sits at .78rem, where a 1em mark reads as noise. Give it its
    own floor so the brand stays legible next to small monospace text. */
 .ac-pr__repo {
@@ -854,7 +863,9 @@ body.ac-paper .ac-footer { background: var(--ac-canvas); }
 
 .ac-talk__title { font-size: 1.5rem; font-weight: 600; line-height: 1.25; }
 .ac-talk__summary { color: var(--ac-muted); line-height: 1.65; }
-.ac-talk__note { font-size: .85rem; color: var(--ac-muted); opacity: .8; }
+/* Faded through the colour rather than opacity, which would wash out the links
+   and logos of the companies it names. */
+.ac-talk__note { font-size: .85rem; color: color-mix(in srgb, var(--ac-muted) 80%, var(--ac-bg)); }
 
 .ac-video,
 .ac-emblem,
@@ -911,6 +922,15 @@ body.ac-paper .ac-footer { background: var(--ac-canvas); }
 @media (prefers-reduced-motion: reduce) {
   .ac-cover__go span { transition: none; }
   .ac-cover:hover .ac-cover__go span { transform: none; }
+}
+
+/* The event's own visual in place of the typeset text, edge to edge. */
+.ac-cover--image { padding: 0; }
+.ac-cover--image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .ac-video__play {

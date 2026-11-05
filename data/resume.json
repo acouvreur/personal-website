@@ -153,6 +153,7 @@
       "language": "French",
       "url": "https://www.meetup.com/montreal-jug/events/316679816/",
       "slides": "from-backend-to-hardware",
+      "cover": "images/montreal-jug-2026-11-05.webp",
       "description": "After years of deploying code in seconds, I moved to a physical product. The steps from an idea to an object made in series, from prototypes to firmware, battery life, over-the-air updates and telemetry, and how each one differs from backend work."
     },
     {
@@ -163,6 +164,7 @@
       "language": "French",
       "video": "0jhONfBrcKw",
       "url": "https://www.youtube.com/watch?v=0jhONfBrcKw",
+      "eventUrl": "https://www.meetup.com/montreal-jug/events/298622222/",
       "description": "A lightning talk on generating WireMock stubs straight from an OpenAPI spec, with a generator I wrote myself and got shipped in openapi-generator 7.3.0."
     },
     {
@@ -179,11 +181,12 @@
     {
       "title": "Sablier, scale to zero",
       "event": "Montréal JUG",
-      "note": "Recorded at GoLogic",
+      "note": "Lightning Présentations Éclairs, épisode 2, chez GoLogic",
       "date": "2023-03-29",
       "language": "French",
       "video": "0cPt_w7NIs0",
       "url": "https://www.youtube.com/watch?v=0cPt_w7NIs0",
+      "eventUrl": "https://www.meetup.com/montreal-jug/events/292245865/",
       "description": "How Sablier starts containers on demand and shuts them down once nothing is using them, and how it slots in behind Nginx, Traefik and other reverse proxies."
     }
   ],

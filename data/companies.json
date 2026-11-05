@@ -1,0 +1,17 @@
+{
+  "gologic": {
+    "name": "GoLogic",
+    "url": "https://www.gologic.ca/",
+    "logo": "images/companies/gologic.png"
+  },
+  "google": {
+    "name": "Google",
+    "url": "https://about.google/",
+    "logo": "images/companies/google.png"
+  },
+  "maplr": {
+    "name": "Maplr",
+    "url": "https://maplr.co/",
+    "logo": "images/companies/maplr.png"
+  }
+}

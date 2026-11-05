@@ -11,6 +11,9 @@
   data/icons.json, so they inline with no request and inherit currentColor.
   That is what makes them work in both themes without a per-logo fix.
 
+  The exceptions come from elsewhere and keep their brand colour: those entries
+  also carry their own viewBox, color and fillRule.
+
   Repositories fall back to the GitHub mark, so every row gets something and the
   list never looks half-finished. Keywords do not: a chip with no matching brand
   is just text.
@@ -36,7 +39,7 @@
 
 {{- with $slug -}}
   {{- with index hugo.Data.icons . -}}
-    <svg class="ac-icon {{ $.class }}" viewBox="0 0 24 24" role="img" aria-hidden="true"
-         focusable="false" fill="currentColor"><title>{{ .title }}</title><path d="{{ .path }}"/></svg>
+    <svg class="ac-icon {{ $.class }}" viewBox="{{ .viewBox | default "0 0 24 24" }}" role="img" aria-hidden="true"
+         focusable="false" fill="{{ .color | default "currentColor" }}" fill-rule="{{ .fillRule | default "nonzero" }}"><title>{{ .title }}</title><path d="{{ .path }}"/></svg>
   {{- end -}}
 {{- end -}}

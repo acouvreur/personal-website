@@ -55,14 +55,24 @@
           </div>
 
         {{ else if $deck }}
-          {{/* No recording yet, but slides: a typeset card linking to the
-               deck, real text rather than a picture of the title slide, so
+          {{/* No recording yet, but slides: a card linking to the deck. It
+               shows the event's own visual if there is one, otherwise it is
+               typeset, real text rather than a picture of the title slide, so
                it stays sharp and legible at poster size. Not .ac-video
                either, for the same reason as below. */}}
-          <a class="ac-cover" href="{{ urls.RelURL $deck }}">
-            <span class="ac-cover__event">{{ $talk.event }}</span>
-            <span class="ac-cover__title">{{ $talk.title }}</span>
-            <span class="ac-cover__go">Slides <span aria-hidden="true">&rarr;</span></span>
+          <a class="ac-cover{{ with $talk.cover }} ac-cover--image{{ end }}" href="{{ urls.RelURL $deck }}">
+            {{ with $talk.cover }}
+              {{ with resources.Get . }}
+                {{ $image := .Process "resize 1280x webp q85" }}
+                <img src="{{ $image.RelPermalink }}" alt="{{ $talk.title }} slides" loading="lazy" width="{{ $image.Width }}" height="{{ $image.Height }}">
+              {{ else }}
+                {{ errorf "talks: cover %q not found in assets/" $talk.cover }}
+              {{ end }}
+            {{ else }}
+              <span class="ac-cover__event">{{ $talk.event }}</span>
+              <span class="ac-cover__title">{{ $talk.title }}</span>
+              <span class="ac-cover__go">Slides <span aria-hidden="true">&rarr;</span></span>
+            {{ end }}
           </a>
 
         {{ else }}
@@ -120,12 +130,34 @@
           {{ end }}
 
           {{ with $talk.note }}
-            <p class="ac-talk__note mt0 mb3">{{ . }}</p>
+            {{/* A company from data/companies.json named in the note becomes a
+                 link to its site, behind its logo. */}}
+            {{ $note := htmlEscape . }}
+            {{ range hugo.Data.companies }}
+              {{ $logo := (resources.Get .logo).Process "resize 64x webp q88" }}
+              {{ $note = replace $note .name (printf `<a class="ac-link nowrap" href="%s" rel="noopener" target="_blank"><img class="ac-icon ac-icon--brand" src="%s" alt="" loading="lazy" width="%d" height="%d">%s</a>`
+                   .url $logo.RelPermalink $logo.Width $logo.Height .name) }}
+            {{ end }}
+            <p class="ac-talk__note mt0 mb3">{{ $note | safeHTML }}</p>
           {{ end }}
 
-          {{ with $talk.url }}
+          {{/* url is the recording when there is one and the event otherwise,
+               so a recorded talk names its event page in eventUrl. */}}
+          {{ $event := $talk.url }}
+          {{ if $talk.video }}
+            {{ $event = $talk.eventUrl }}
+            {{ with $talk.url }}
+              <a class="ac-read-more no-underline" href="{{ . }}" rel="noopener" target="_blank">
+                {{ partial "brand-icon.html" (dict "slug" "youtube" "class" "ac-icon--brand") }}Watch on YouTube
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            {{ end }}
+          {{ end }}
+
+          {{ with $event }}
+            {{ if $talk.video }}<span class="ac-meta-sep">&middot;</span>{{ end }}
             <a class="ac-read-more no-underline" href="{{ . }}" rel="noopener" target="_blank">
-              {{ if $talk.video }}Watch on YouTube{{ else }}Event page{{ end }}
+              {{ if strings.Contains . "meetup.com" }}{{ partial "brand-icon.html" (dict "slug" "meetup" "class" "ac-icon--brand") }}{{ end }}Event page
               <span aria-hidden="true">&rarr;</span>
             </a>
           {{ end }}
