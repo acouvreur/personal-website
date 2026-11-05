@@ -187,6 +187,7 @@
       "video": "0cPt_w7NIs0",
       "url": "https://www.youtube.com/watch?v=0cPt_w7NIs0",
       "eventUrl": "https://www.meetup.com/montreal-jug/events/292245865/",
+      "slides": "sablier",
       "description": "How Sablier starts containers on demand and shuts them down once nothing is using them, and how it slots in behind Nginx, Traefik and other reverse proxies."
     }
   ],
