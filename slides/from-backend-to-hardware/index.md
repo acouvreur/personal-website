@@ -562,27 +562,30 @@ Tenir un an sur une charge.
 ---
 
 <!-- _header: Exigence · un an sur une charge -->
-<!-- _footer: Puce ESP32-S3 seule, au repos, 3,3 V, 25 °C. Source : datasheet ESP32-S3 v2.2, Espressif. Barres à l’échelle. -->
+<!-- _footer: Puce ESP32-S3 seule, au repos, 3,3 V, 25 °C (datasheet v2.2). Autonomie : 10 000 mAh ÷ courant. Barres à l’échelle. -->
 
 ## Les leviers, un par un
 
 <ol class="ladder">
-  <li style="--w: 100%"><b>Sans rien</b><span>CPU à 160 MHz, qui attend</span><i></i><em>27,6 mA</em></li>
-  <li style="--w: 47.8261%"><b>+ CPU adaptatif</b><span>descend à 40 MHz</span><i></i><em>13,2 mA</em><small>÷ 2</small></li>
-  <li style="--w: 0.8696%"><b>+ Light sleep</b><span>dort entre deux tâches</span><i></i><em>240 µA</em><small>÷ 115</small></li>
-  <li style="--w: 0.0254%"><b>+ Deep sleep</b><span>jusqu’au prochain réveil</span><i></i><em>7 µA</em><small>÷ 3 900</small></li>
+  <li class="short" style="--w: 100%"><b>Sans rien</b><span>CPU à 160 MHz, qui attend</span><i></i><em>27,6 mA</em><time>15 jours</time></li>
+  <li class="short" style="--w: 47.8261%"><b>+ CPU adaptatif</b><span>descend à 40 MHz</span><i></i><em>13,2 mA</em><time>1 mois</time></li>
+  <li style="--w: 0.8696%"><b>+ Light sleep</b><span>dort entre deux tâches</span><i></i><em>240 µA</em><time>4,8 ans</time></li>
+  <li style="--w: 0.0254%"><b>+ Deep sleep</b><span>jusqu’au prochain réveil</span><i></i><em>7 µA</em><time>163 ans</time></li>
   <li class="loupe" aria-hidden="true">
     <svg viewBox="0 0 1088 306">
-      <defs><clipPath id="ladder-lens"><circle cx="560" cy="233" r="85"/></clipPath></defs>
+      <defs><clipPath id="ladder-lens"><circle cx="520" cy="233" r="75"/></clipPath></defs>
+      <text class="head" x="1088" y="-10">sur 10 000 mAh</text>
+      <line class="goal" x1="0" y1="153" x2="1088" y2="153"/>
+      <text class="goal-label" x="1088" y="159">Notre exigence : 1 an</text>
       <rect class="source" x="242" y="170" width="22" height="126" rx="11"/>
-      <line class="link" x1="264" y1="233" x2="475" y2="233"/>
-      <circle class="lens" cx="560" cy="233" r="85"/>
+      <line class="link" x1="264" y1="233" x2="445" y2="233"/>
+      <circle class="lens" cx="520" cy="233" r="75"/>
       <g clip-path="url(#ladder-lens)">
-        <rect class="bar" x="506" y="178" width="100" height="30"/>
-        <rect class="bar" x="506" y="258" width="2.9" height="30"/>
+        <rect class="bar" x="474" y="178" width="96" height="30"/>
+        <rect class="bar" x="474" y="258" width="2.8" height="30"/>
       </g>
-      <circle class="rim" cx="560" cy="233" r="85"/>
-      <text class="factor" x="680" y="238">× 20</text>
+      <circle class="rim" cx="520" cy="233" r="75"/>
+      <text class="factor" x="630" y="238">× 20</text>
     </svg>
   </li>
 </ol>
@@ -591,7 +594,8 @@ Et pour y rester : des **interruptions** plutôt que du polling, et **un nom** p
 
 <!--
 - Le point de départ : la puce allumée qui attend, réglage par défaut
-- Chaque levier s'ajoute au précédent : ÷ 2, puis ÷ 115, puis ÷ 3 900
+- Chaque levier s'ajoute au précédent. Sur la même batterie : 15 jours, 1 mois, 4,8 ans, 163 ans
+- Le light sleep passe la ligne d'un an. 163 ans, c'est sur le papier : 3 900 fois moins de courant au total
 - Chiffres de la puce seule : la carte, l'écran et la radio ajoutent le reste
 - Interruptions : sinon on se réveille pour vérifier les capteurs
 - Deep sleep : chaque réveil repart de zéro, le "éteindre et rallumer" gratuit

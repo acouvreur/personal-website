@@ -667,17 +667,21 @@ img.logo {
 }
 
 /* ----- Ladder ----- */
-/* Cumulative steps down, one row each, with a bar whose width the row sets:
+/* Cumulative steps down, one row each, with a bar whose width the row sets, the
+   value it stands for and how long that lasts:
      <ol class="ladder"><li style="--w: 80%"><b>Step</b><span>how</span><i></i>
-       <em>value</em><small>gain</small></li>…</ol>
-   --w is the value over the first row's, so the bars are to scale.
+       <em>value</em><time>lasts</time></li>…</ol>
+   --w is the value over the first row's, so the bars are to scale. A row marked
+   .short falls short of the requirement, which mutes its duration.
 
    Rows are a fixed 66px, so an overlay can be drawn in pixels: with four
-   rows the ladder is 1088 x 306 and the bars start at x = 250. Bars too thin
-   to see get a zoom, as a last item holding an inline svg on that grid:
+   rows the ladder is 1088 x 306 and the bars start at x = 250, 552 wide at 100%.
+   Bars too thin to see get a zoom, as a last item holding an inline svg on that
+   grid:
      <li class="loupe" aria-hidden="true"><svg viewBox="0 0 1088 306">…</svg></li>
    with .source (around the thin bars), .link, .lens (the circle's fill), the
-   enlarged .bar shapes clipped to it, .rim (drawn last) and .factor. */
+   enlarged .bar shapes clipped to it, .rim (drawn last) and .factor. The same
+   svg draws the durations' .head and the requirement's .goal and .goal-label. */
 .ladder {
   list-style: none;
   margin: .3em 0 .7em;
@@ -689,7 +693,7 @@ img.logo {
 .ladder li {
   margin: 0;
   display: grid;
-  grid-template-columns: 230px minmax(0, 1fr) 120px 90px;
+  grid-template-columns: 230px minmax(0, 1fr) 96px 150px;
   grid-template-rows: auto auto;
   column-gap: 20px;
   align-items: center;
@@ -738,23 +742,46 @@ img.logo {
   fill: var(--muted);
   text-anchor: middle;
 }
+.ladder .head {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  fill: var(--muted);
+  text-anchor: end;
+}
+.ladder .goal { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 6 5; }
+/* The stroke is a halo in the background colour, to break the line behind it. */
+.ladder .goal-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  fill: var(--accent);
+  text-anchor: end;
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 12px;
+}
 .ladder li:first-child i { background: var(--muted); }
 .ladder em {
   grid-column: 3;
   grid-row: 1 / 3;
   font-style: normal;
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 22px;
+  color: var(--muted);
   text-align: right;
+  white-space: nowrap;
 }
-.ladder small {
+.ladder time {
   grid-column: 4;
   grid-row: 1 / 3;
-  font-size: 20px;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 34px;
   font-weight: 600;
-  color: var(--accent);
+  text-align: right;
+  white-space: nowrap;
 }
+.ladder li.short time { color: var(--muted); }
 
 /* ----- Two columns ----- */
 /* <div class="split"> with a blank line inside, then two blocks (a code fence,
