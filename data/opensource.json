@@ -60,6 +60,10 @@
     "open": 1
   },
   {
+    "name": "Azure/setup-kubectl",
+    "merged": 1
+  },
+  {
     "name": "HewlettPackard/terraschema",
     "merged": 1
   },

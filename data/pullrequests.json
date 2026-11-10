@@ -609,18 +609,20 @@
     "number": 261,
     "title": "feat: add version-file input to read kubectl version from .tool-versions",
     "url": "https://github.com/Azure/setup-kubectl/pull/261",
-    "state": "open",
+    "state": "merged",
     "type": "feat",
-    "created": "2026-05-13"
+    "created": "2026-05-13",
+    "closed": "2026-11-09"
   },
   {
     "repo": "Azure/setup-kubectl",
     "number": 260,
     "title": "feat: add downloadBaseURL input to support custom download mirrors",
     "url": "https://github.com/Azure/setup-kubectl/pull/260",
-    "state": "open",
+    "state": "closed",
     "type": "feat",
-    "created": "2026-05-13"
+    "created": "2026-05-13",
+    "closed": "2026-11-09"
   },
   {
     "repo": "compose-spec/compose-go",
