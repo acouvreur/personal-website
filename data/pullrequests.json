@@ -1,5 +1,14 @@
 [
   {
+    "repo": "espressif/idf-extra-components",
+    "number": 921,
+    "title": "fix(esp_schedule): log schedule arming at debug level",
+    "url": "https://github.com/espressif/idf-extra-components/pull/921",
+    "state": "open",
+    "type": "fix",
+    "created": "2026-11-13"
+  },
+  {
     "repo": "kimdre/doco-cd",
     "number": 2096,
     "title": "feat: only recreate the services that failed to start on a deploy retry",
