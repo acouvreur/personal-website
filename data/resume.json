@@ -158,7 +158,9 @@
       "note": "Présentations éclairs de la communauté, chez Maplr",
       "date": "2026-11-05",
       "language": "French",
-      "url": "https://www.meetup.com/montreal-jug/events/316679816/",
+      "video": "Xfxj4JZnb0E",
+      "url": "https://www.youtube.com/watch?v=Xfxj4JZnb0E",
+      "eventUrl": "https://www.meetup.com/montreal-jug/events/316679816/",
       "slides": "from-backend-to-hardware",
       "cover": "images/montreal-jug-2026-11-05.webp",
       "description": "After years of deploying code in seconds, I moved to a physical product. The steps from an idea to an object made in series, from prototypes to firmware, battery life, over-the-air updates and telemetry, and how each one differs from backend work."
