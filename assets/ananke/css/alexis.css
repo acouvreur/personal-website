@@ -917,6 +917,35 @@ body.ac-paper .ac-footer { background: var(--ac-canvas); }
    and logos of the companies it names. */
 .ac-talk__note { font-size: .85rem; color: color-mix(in srgb, var(--ac-muted) 80%, var(--ac-bg)); }
 
+/* The recording is the main way in, a line of its own. Everything else about a
+   talk (event page, slides, downloads) sits in a quieter row under it, in the
+   muted colour, so the eye lands on the video first. */
+.ac-talk__watch-link {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--ac-accent);
+}
+.ac-talk__watch-link:hover { color: var(--ac-accent-dark); }
+
+.ac-talk__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .35rem 1.25rem;
+  font-size: .85rem;
+}
+.ac-talk__link { color: var(--ac-muted); text-decoration: none; cursor: pointer; }
+.ac-talk__link:hover { color: var(--ac-accent); text-decoration: underline; }
+
+/* The downloads fold away behind one word. The summary has no marker: it reads
+   as one more link in the row, and opening it adds PDF and PowerPoint beside it. */
+.ac-talk__download { display: inline-flex; flex-wrap: wrap; align-items: baseline; }
+.ac-talk__download > summary { list-style: none; }
+.ac-talk__download > summary::-webkit-details-marker { display: none; }
+/* A gap does not reach the links inside a details, so they take a margin. */
+.ac-talk__download > a { margin-left: 1.25rem; }
+
 .ac-video,
 .ac-emblem,
 .ac-cover {

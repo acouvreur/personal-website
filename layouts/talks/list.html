@@ -142,35 +142,40 @@
           {{ end }}
 
           {{/* url is the recording when there is one and the event otherwise,
-               so a recorded talk names its event page in eventUrl. */}}
+               so a recorded talk names its event page in eventUrl. The
+               recording is the one thing worth a full line; the event page,
+               the slides and their downloads are secondary, in a quieter row
+               under it. The downloads fold away: most visitors read the deck
+               in the browser. */}}
           {{ $event := $talk.url }}
           {{ if $talk.video }}
             {{ $event = $talk.eventUrl }}
             {{ with $talk.url }}
-              <a class="ac-read-more no-underline" href="{{ . }}" rel="noopener" target="_blank">
-                {{ partial "brand-icon.html" (dict "slug" "youtube" "class" "ac-icon--brand") }}Watch on YouTube
-                <span aria-hidden="true">&rarr;</span>
-              </a>
+              <p class="ac-talk__watch mt3 mb0">
+                <a class="ac-talk__watch-link no-underline" href="{{ . }}" rel="noopener" target="_blank">
+                  {{ partial "brand-icon.html" (dict "slug" "youtube" "class" "ac-icon--brand") }}Watch on YouTube
+                </a>
+              </p>
             {{ end }}
           {{ end }}
 
-          {{ with $event }}
-            {{ if $talk.video }}<span class="ac-meta-sep">&middot;</span>{{ end }}
-            <a class="ac-read-more no-underline" href="{{ . }}" rel="noopener" target="_blank">
-              {{ if strings.Contains . "meetup.com" }}{{ partial "brand-icon.html" (dict "slug" "meetup" "class" "ac-icon--brand") }}{{ end }}Event page
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-          {{ end }}
-
-          {{ with $deck }}
-            {{ $slug := $talk.slides }}
-            <p class="ac-talk__slides mt3 mb0">
-              <a class="ac-read-more no-underline" href="{{ urls.RelURL . }}">View the slides <span aria-hidden="true">&rarr;</span></a>
-              <span class="ac-meta-sep">&middot;</span>
-              <a class="ac-link" href="{{ urls.RelURL (printf "%s%s.pdf" . $slug) }}" download>PDF</a>
-              <span class="ac-meta-sep">&middot;</span>
-              <a class="ac-link" href="{{ urls.RelURL (printf "%s%s.pptx" . $slug) }}" download>PowerPoint</a>
-            </p>
+          {{ if or $event $deck }}
+            <div class="ac-talk__links mt3 mb0">
+              {{ with $event }}
+                <a class="ac-talk__link" href="{{ . }}" rel="noopener" target="_blank">
+                  {{ if strings.Contains . "meetup.com" }}{{ partial "brand-icon.html" (dict "slug" "meetup" "class" "ac-icon--brand") }}{{ end }}Event page
+                </a>
+              {{ end }}
+              {{ with $deck }}
+                {{ $slug := $talk.slides }}
+                <a class="ac-talk__link" href="{{ urls.RelURL . }}">Slides</a>
+                <details class="ac-talk__download">
+                  <summary class="ac-talk__link">Download</summary>
+                  <a class="ac-talk__link" href="{{ urls.RelURL (printf "%s%s.pdf" . $slug) }}" download>PDF</a>
+                  <a class="ac-talk__link" href="{{ urls.RelURL (printf "%s%s.pptx" . $slug) }}" download>PowerPoint</a>
+                </details>
+              {{ end }}
+            </div>
           {{ end }}
         </div>
 
