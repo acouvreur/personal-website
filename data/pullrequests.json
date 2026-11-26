@@ -286,9 +286,10 @@
     "number": 3654,
     "title": "feat: adopt existing Pages site on 409 in github_repository_pages",
     "url": "https://github.com/integrations/terraform-provider-github/pull/3654",
-    "state": "open",
+    "state": "closed",
     "type": "feat",
-    "created": "2026-09-24"
+    "created": "2026-09-24",
+    "closed": "2026-11-25"
   },
   {
     "repo": "tinygo-org/bluetooth",
